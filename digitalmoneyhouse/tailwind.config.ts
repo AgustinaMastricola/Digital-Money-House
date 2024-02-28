@@ -18,9 +18,6 @@ const config: Config = {
       "light-gray":"CECECE",
       "error-text":"#E91010",
     },
-    fontSize:{
-      
-    },
     extend: {
       fontFamily: {
         "opensans":['Open Sans', 'sans-serif']
