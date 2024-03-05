@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({subsets: ["latin"], style: ['normal'], weight: ["100"]});
 
 export const metadata: Metadata = {
   title: "Digital Money House",
@@ -17,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={roboto.className}>{children}</body>
     </html>
   );
 }
