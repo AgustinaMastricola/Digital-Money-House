@@ -1,6 +1,7 @@
 import Image from "next/image";
 import portada from "../../public/portada.png";
 
+
 export default function Home() {
   return (
     <div className="w-full">
