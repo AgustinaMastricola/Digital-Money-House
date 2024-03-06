@@ -7,7 +7,7 @@ export default function Home() {
       <Image
         src={portada}
         alt="Imagen de portada"
-        className="w-full  h-full"
+        className="w-full h-full"
         priority
         
       />
