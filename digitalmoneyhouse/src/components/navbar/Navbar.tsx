@@ -10,10 +10,9 @@ const Navbar = () => {
             src={icon}
             alt="Icono brand"
             priority
-            placeholder='blur'
           />
         </div>
-        <div className='space-x-4 col-span-10 col-start-6'>
+        <div className='space-x-4 col-span-10 col-start-6 md:col-start-10'>
           <button className=" px-3 py-2 border rounded-[5px] text-xs text-total-primary font-extrabold">Ingresar</button>
           <button className=" px-3 py-2 border rounded-[5px] text-xs border-total-primary text-total-black bg-total-primary font-extrabold">Crear cuenta</button>
         </div>
