@@ -23,6 +23,9 @@ const config: Config = {
       fontFamily: {
         "opensans":['Open Sans', 'sans-serif']
       },
+      backgroundImage: {
+        'bg-img-mobile':"url('/portadaMobile.png')",
+      },
     },
   },
   plugins: [],

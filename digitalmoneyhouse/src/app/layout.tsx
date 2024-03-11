@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 
-const roboto = Roboto({subsets: ["latin"], style: ['normal'], weight: ["100"]});
+const openSans = Open_Sans({subsets: ["latin"], style: ['normal']});
 
 export const metadata: Metadata = {
   title: "Digital Money House",
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto.className}>
+      <body className={openSans.className}>
         <Navbar/>
         {children}
         <Footer/>
