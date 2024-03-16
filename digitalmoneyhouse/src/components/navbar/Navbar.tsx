@@ -12,7 +12,7 @@ const Navbar = () => {
             priority
           />
         </div>
-        <div className='space-x-4 col-span-10 col-start-6 md:col-start-10'>
+        <div className='space-x-4 md:space-x-3 col-span-10 col-start-7 sm:col-start-9 md:col-start-10 xl:col-start-11'>
           <button className=" px-3 py-2 border rounded-[5px] text-xs text-total-primary font-bold ">Ingresar</button>
           <button className=" px-3 py-2 border rounded-[5px] text-xs border-total-primary text-total-black bg-total-primary font-bold">Crear cuenta</button>
         </div>

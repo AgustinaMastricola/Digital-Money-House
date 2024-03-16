@@ -25,6 +25,7 @@ const config: Config = {
       },
       backgroundImage: {
         'bg-img-mobile':"url('/portadaMobile.png')",
+        'bg-img-tablet':"url('/portadaTablet.png')"
       },
     },
   },
