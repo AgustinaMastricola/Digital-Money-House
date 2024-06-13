@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/footer/Footer";
-import Home from "./page";
 
 const links = [
   {href:"/login", name:"Iniciar Sesión"},
@@ -26,8 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex flex-col `${openSans.className}`">
         <Navbar links={links}/>
-        <Home/>
-        <Footer/>
+        {children}
       </body>
     </html>
   );

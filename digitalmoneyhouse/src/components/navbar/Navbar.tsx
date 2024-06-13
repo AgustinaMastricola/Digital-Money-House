@@ -1,3 +1,4 @@
+"use client"
 import Image from 'next/image'
 import icon from '../../../public/LogoVerde.png'
 import Link from 'next/link'
@@ -11,13 +12,13 @@ const Navbar = ({links}:NavbarProps) => {
   return (
     <nav className="p-3 bg-total-black ">
       <div className='grid grid-cols-12 items-center'>
-        <div className='col-span-2 col-start-1'>
+        <Link href='/' className='col-span-2 col-start-1'>
           <Image
             src={icon}
             alt="Icono brand"
             priority
           />
-        </div>
+        </Link>
         <ul className='flex w-full space-x-4 col-span-6 col-start-7 items-center sm:col-start-8 md:col-start-9 lg:col-start-10'>
           {
             links.map((link, index)=>(
