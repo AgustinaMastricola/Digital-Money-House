@@ -5,6 +5,11 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import Home from "./page";
 
+const links = [
+  {href:"/login", name:"Iniciar Sesión"},
+  {href:"/signup", name: "Registrarme"}
+]
+
 const openSans = Open_Sans({subsets: ["latin"], style: ['normal']});
 
 export const metadata: Metadata = {
@@ -20,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex flex-col `${openSans.className}`">
-        <Navbar/>
+        <Navbar links={links}/>
         <Home/>
         <Footer/>
       </body>
