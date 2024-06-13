@@ -1,8 +1,9 @@
 import { UserType } from "@/types/users.types";
-import { API_URL_USERS, httpGet } from "../utils/api.url";
+import { httpsGet } from "../common/https.service";
 
 class UserApi {
-  getUserData = async (id:number) : Promise<UserType> => httpGet(`users/${id}`)
+  getUser = async (id:number) : Promise<UserType> => 
+    httpsGet(`/users/${id}`)
 }
 
 const userApi = new UserApi();

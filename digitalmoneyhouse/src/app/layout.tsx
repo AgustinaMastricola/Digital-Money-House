@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/footer/Footer";
-import Home from "./page";
+
+const links = [
+  {href:"/login", name:"Iniciar Sesión"},
+  {href:"/signup", name: "Registrarme"}
+]
 
 const openSans = Open_Sans({subsets: ["latin"], style: ['normal']});
 
@@ -20,9 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex flex-col `${openSans.className}`">
-        <Navbar/>
-        <Home/>
-        <Footer/>
+        <Navbar links={links}/>
+        {children}
       </body>
     </html>
   );
