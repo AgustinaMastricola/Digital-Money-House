@@ -2,7 +2,7 @@ import CardInfoHome from "@/components/cards/CardInfoHome";
 
 export default function Home() {
   return (
-    <div className="w-full h-auto bg-bg-img-mobile sm:bg-bg-img-tablet bg-cover space-y-32 lg:space-y-44 ">
+    <div className="w-full bg-bg-img-mobile sm:bg-bg-img-tablet bg-cover space-y-32 lg:space-y-44 ">
       <section className="ml-4 sm:ml-12 ">
         <p className="w-6/12 sm:w-5/12 lg:w-2/6   text-total-white text-2xl sm:text-3xl lg:text-5xl font-semibold sm:font-light pt-8 lg:pt-11">De ahora en adelante, hacés más con tu dinero</p>
         <hr className="underline my-2 w-5 text-total-primary border-2 sm:hidden"/>
