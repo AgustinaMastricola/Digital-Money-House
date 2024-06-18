@@ -1,1 +1,0 @@
-//layout de usuario con sesion ya iniciada
