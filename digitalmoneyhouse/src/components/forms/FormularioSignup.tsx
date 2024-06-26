@@ -1,75 +1,77 @@
 'use client'
 import { UserType } from "@/types/users.types"
-import ButtonSubmit from "../ui/buttons/buttonSubmit"
+import ButtonSubmit from "./buttonSubmit"
 import { useForm } from "react-hook-form";
+import userApi from "@/services/users/users.service";
 
 type FormData = {
-    user: UserType;
+    "dni": number,
+    "email": string,
+    "firstname": string,
+    "lastname": string,
+    "password": string,
+    "phone": string
 }
 
 const FormularioSignup = () => {
     const {register, handleSubmit} = useForm<FormData>();
 
-    const onSubmit = (data: FormData) => {
+    const onSubmit = async (data: FormData) => {
         console.log(JSON.stringify(data))
+        const response = await userApi.postUser(data)
+        return response
     }
     return (
         <div className="w-3/12 ">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid">
                         <div>
-                            <label></label>
                             <input 
                                 className="p-3 mb-4 w-full rounded bg-total-white border border-light-primary"
                                 type='text'
                                 placeholder='Nombre'
-                                {...register('user.firstname')}
+                                {...register('firstname')}
                             />
                         </div>
                         <div>
-                            <label></label>
                             <input 
                                 className="p-3 mb-4 w-full rounded bg-total-white border border-light-primary"
                                 type='text'
                                 placeholder='Apellido'
-                                {...register('user.lastname')}
+                                {...register('lastname')}
                             />
                         </div>
                         <div>
-                            <label></label>
                             <input 
                                 className="p-3 mb-4 w-full rounded bg-total-white border border-light-primary"
                                 type='text'
                                 placeholder='DNI'
-                                {...register('user.dni')}
+                                {...register('dni')}
                             />
                         </div>
                     </div>
                     <div>
                         <div>
-                            <label></label>
                             <input 
                                 className="p-3 mb-4 w-full rounded bg-total-white border border-light-primary"
                                 type='text'
                                 placeholder='Correo electrónico'
-                                {...register('user.email')}
+                                {...register('email')}
                             />
                         </div>
                         
                         <div>
-                            <label></label>
                             <input 
                                 className="p-3 mb-4 w-full rounded bg-total-white border border-light-primary"
-                                type='text'
+                                type='password'
                                 placeholder='Contraseña'
-                                {...register('user.password')}
+                                {...register('password')}
                             />
-                            <label></label>
                             <input 
                                 className="p-3 mb-4 w-full rounded bg-total-white border border-light-primary"
                                 type='text'
                                 placeholder='Teléfono'
-                                {...register('user.phone')}
+                                {...register('phone')}
                             />
                         </div>
                         <ButtonSubmit text={"Crear Cuenta"}/>
