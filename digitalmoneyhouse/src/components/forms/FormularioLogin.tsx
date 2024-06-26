@@ -1,15 +1,17 @@
 'use client'
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import ButtonSubmit from "./buttonSubmit";
 import userApi from "@/services/users/users.service";
+import InputText from "./inputText";
 
 type FormData = {
     "email": string,
     "password": string,
 }
 
-const FormurlarioLogin = () => {
-    const {register, handleSubmit} = useForm<FormData>();
+const FormularioLogin = () => {
+    const methods = useForm<FormData>();
+    const {handleSubmit} =  methods;
 
     const onSubmit = async (data: FormData) => {
         console.log(JSON.stringify(data))
@@ -19,27 +21,25 @@ const FormurlarioLogin = () => {
 
     return (
         <div className="w-3/12 ">
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="">
-                    <input 
-                        type="text" 
-                        placeholder="Correo electrónico" 
-                        {...register('email')}
-                        className="p-3 mb-4 w-full rounded bg-total-white border border-light-primary" 
-                    />
-                </div>
-                <div className="">
-                    <input 
-                        type="password" 
-                        placeholder="Contraseña" 
-                        {...register('password')}
-                        className="p-3 mb-4 w-full rounded bg-total-white border border-light-primary" 
-                    />
-                </div>
-                <ButtonSubmit text={"Ingresar"}/>
-            </form>
+            <FormProvider {...methods}>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div>
+                        <InputText 
+                            type='email'
+                            placeholder={'Correo electrónico'}
+                            fieldName={"email"} />
+                    </div>
+                    <div>
+                        <InputText 
+                            type='password'
+                            placeholder={'Contraseña'} 
+                            fieldName={"password"}/>
+                    </div>
+                    <ButtonSubmit text={"Ingresar"} onSubmit={onSubmit}/>
+                </form>
+            </FormProvider>
         </div>
     )
 }
 
-export default FormurlarioLogin;
+export default FormularioLogin;

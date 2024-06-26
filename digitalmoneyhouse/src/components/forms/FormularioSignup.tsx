@@ -1,8 +1,8 @@
 'use client'
-import { UserType } from "@/types/users.types"
 import ButtonSubmit from "./buttonSubmit"
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import userApi from "@/services/users/users.service";
+import InputText from "./inputText";
 
 type FormData = {
     "dni": number,
@@ -14,7 +14,8 @@ type FormData = {
 }
 
 const FormularioSignup = () => {
-    const {register, handleSubmit} = useForm<FormData>();
+    const methods = useForm<FormData>();
+    const {handleSubmit} =  methods;
 
     const onSubmit = async (data: FormData) => {
         console.log(JSON.stringify(data))
@@ -23,60 +24,39 @@ const FormularioSignup = () => {
     }
     return (
         <div className="w-3/12 ">
+            <FormProvider {...methods}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid">
-                        <div>
-                            <input 
-                                className="p-3 mb-4 w-full rounded bg-total-white border border-light-primary"
-                                type='text'
-                                placeholder='Nombre'
-                                {...register('firstname')}
-                            />
-                        </div>
-                        <div>
-                            <input 
-                                className="p-3 mb-4 w-full rounded bg-total-white border border-light-primary"
-                                type='text'
-                                placeholder='Apellido'
-                                {...register('lastname')}
-                            />
-                        </div>
-                        <div>
-                            <input 
-                                className="p-3 mb-4 w-full rounded bg-total-white border border-light-primary"
-                                type='text'
-                                placeholder='DNI'
-                                {...register('dni')}
-                            />
-                        </div>
+                        <InputText 
+                            type='text'
+                            placeholder='Nombre'
+                            fieldName='firstname'/>                        
+                        <InputText 
+                            type='text'
+                            placeholder='Apellido'
+                            fieldName='lastname'/>
+                        <InputText 
+                            type='text'
+                            placeholder='DNI'
+                            fieldName='dni'/>
+                        <InputText 
+                            type='email'
+                            placeholder='Correo electrónico'
+                            fieldName='email'/>    
                     </div>
                     <div>
-                        <div>
-                            <input 
-                                className="p-3 mb-4 w-full rounded bg-total-white border border-light-primary"
-                                type='text'
-                                placeholder='Correo electrónico'
-                                {...register('email')}
-                            />
-                        </div>
-                        
-                        <div>
-                            <input 
-                                className="p-3 mb-4 w-full rounded bg-total-white border border-light-primary"
-                                type='password'
-                                placeholder='Contraseña'
-                                {...register('password')}
-                            />
-                            <input 
-                                className="p-3 mb-4 w-full rounded bg-total-white border border-light-primary"
-                                type='text'
-                                placeholder='Teléfono'
-                                {...register('phone')}
-                            />
-                        </div>
-                        <ButtonSubmit text={"Crear Cuenta"}/>
+                        <InputText 
+                            type='password'
+                            placeholder='Contraseña'
+                            fieldName='password'/>
+                        <InputText 
+                            type='text'
+                            placeholder='Teléfono'
+                            fieldName='phone'/>
+                        <ButtonSubmit text={"Crear cuenta"} onSubmit={onSubmit}/>
                     </div>
                 </form>
+            </FormProvider>
             </div>
     )
 }
