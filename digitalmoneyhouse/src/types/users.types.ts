@@ -11,3 +11,7 @@ export type UserData = {
   "account_id": number,
   "email": string
 }
+export type UserLoginType = {
+  "email": string,
+  "password": string
+}

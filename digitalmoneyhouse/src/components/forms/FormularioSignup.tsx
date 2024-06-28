@@ -32,7 +32,7 @@ const FormularioSignup = () => {
 
     const onSubmit = async (data: FormData) => {
         console.log(JSON.stringify(data))
-        const response = await userApi.login(data)
+        const response = await userApi.signUp(data)
         console.log(JSON.stringify(response))
         return response
     }
