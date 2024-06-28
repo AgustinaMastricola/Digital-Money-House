@@ -7,7 +7,7 @@ export type UserType = {
   "phone": string  
 }
 export type UserData = {
+  "user_id": number,
   "account_id": number,
-  "email": string,
-  "user_id": number
+  "email": string
 }

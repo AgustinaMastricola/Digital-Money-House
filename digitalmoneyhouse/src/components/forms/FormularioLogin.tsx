@@ -15,7 +15,7 @@ const FormularioLogin = () => {
 
     const onSubmit = async (data: FormData) => {
         console.log(JSON.stringify(data))
-        const response = await userApi.getUser(285)
+        const response = await userApi.getUserData(285)
         return response
     }
 

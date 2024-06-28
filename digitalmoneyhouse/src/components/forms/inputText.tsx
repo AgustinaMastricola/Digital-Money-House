@@ -1,6 +1,6 @@
-import { FieldValues, useFormContext } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 type InputTextProps = {
-    type:'text' | 'password' | 'email';
+    type:'text' | 'password' | 'email' | 'number';
     fieldName: string;
     placeholder?: string;
 }

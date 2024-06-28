@@ -1,8 +1,9 @@
 'use client'
-import ButtonSubmit from "./buttonSubmit"
+import ButtonSubmit from "./buttonSubmit";
 import { FormProvider, useForm } from "react-hook-form";
 import userApi from "@/services/users/users.service";
 import InputText from "./inputText";
+import { useState } from "react";
 
 type FormData = {
     "dni": number,
@@ -18,8 +19,20 @@ const FormularioSignup = () => {
     const {handleSubmit} =  methods;
 
     const onSubmit = async (data: FormData) => {
-        console.log(JSON.stringify(data))
-        const response = await userApi.postUser(data)
+        const dniNumber = Number(data.dni);
+
+        if (isNaN(dniNumber)) {
+            console.error('El valor de DNI no es un número válido.');
+            return;
+        }
+        const formData: FormData = {
+            ...data,
+            dni: dniNumber,
+        };
+
+        console.log(JSON.stringify(formData))
+        const response = await userApi.login(formData)
+        console.log(JSON.stringify(response))
         return response
     }
     return (
@@ -36,10 +49,11 @@ const FormularioSignup = () => {
                             placeholder='Apellido'
                             fieldName='lastname'/>
                         <InputText 
-                            type='text'
+                            type='number'
                             placeholder='DNI'
-                            fieldName='dni'/>
-                        <InputText 
+                            fieldName='dni'
+                        /> 
+                        <InputText
                             type='email'
                             placeholder='Correo electrónico'
                             fieldName='email'/>    
