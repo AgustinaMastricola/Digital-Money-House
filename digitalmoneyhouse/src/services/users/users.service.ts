@@ -5,7 +5,7 @@ class UserApi {
   getUserData = async (id:number) : Promise<UserType> => 
     httpsGet(`/users/${id}`);
   login = async (user:UserType):Promise<UserData>=>
-    httpsPost(`/users`,{user:user})
+    httpsPost(`/users`,user)
 }
 
 const userApi = new UserApi();
