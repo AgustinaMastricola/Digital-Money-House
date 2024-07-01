@@ -1,15 +1,19 @@
 import { URLSearchParams } from "url";
-const URL_BASE = 'https://digitalmoney.digitalhouse.com/api'
+const API_URL_BASE = 'https://digitalmoney.digitalhouse.com/api'
+const API_URL_SERVICE = 'https://digitalmoney.digitalhouse.com/service'
 
 export const httpsGet = async <T>(endpoint:string, params?:URLSearchParams): Promise<T> => {
-    const res = await fetch(`${URL_BASE}${endpoint}${params? `?${params}` : '' }`)
+    const res = await fetch(`${API_URL_BASE}${endpoint}${params ? `?${params}` : '' }`)
     if(!res.ok){
         throw new Error(res.statusText)
     }
     return res.json()
 }
+export const httpsGetPublic = () => {
+
+}
 export const httpsPost = async <T>(endpoint:string, body: object, skipAuthorization?: boolean): Promise<T> => {
-    const res = await fetch(`${URL_BASE}${endpoint}`,{
+    const res = await fetch(`${API_URL_BASE}${endpoint}`,{
         method: 'POST',
         headers: 
             skipAuthorization ? 
@@ -27,4 +31,7 @@ export const httpsPost = async <T>(endpoint:string, body: object, skipAuthorizat
         window.location.replace('/')
     }
     return res.json()
+}
+export const httpsPostPublic = () => {
+    
 }
