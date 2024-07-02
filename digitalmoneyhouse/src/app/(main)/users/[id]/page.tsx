@@ -2,7 +2,7 @@ import userApi from "@/services/users/users.service"
 
 
 const userPage = async ({params}:{params: {id:number}}) => {
-  const userPromise = userApi.getUser(params.id)
+  const userPromise = userApi.getUserDataById(params.id)
   const [user] = await Promise.all([userPromise])
   
   return (
