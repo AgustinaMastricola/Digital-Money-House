@@ -1,11 +1,11 @@
 'use client'
 import { FormProvider, useForm } from "react-hook-form";
 import ButtonSubmit from "./buttonSubmit";
-import userApi from "@/services/users/users.service";
 import InputText from "./inputText";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { useRouter } from "next/navigation";
+import authApi from "@/services/authorization/auth.service";
 
 type FormData = {
     "email": string,
@@ -22,15 +22,12 @@ const FormularioLogin = () => {
         resolver: yupResolver(schema)
     });
     const {handleSubmit, reset, formState:{errors}} =  methods;
-    const router = useRouter();
 
+    const router = useRouter();
     const onSubmit = async (data: FormData) => {
-        const response = await userApi.login(data)
+        await authApi.login(data)
         reset()
-        if (response.token){
-            router.push('/')
-        }
-        return response
+        router.push('/')
     }
 
     return (

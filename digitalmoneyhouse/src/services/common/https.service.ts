@@ -1,5 +1,7 @@
-import { useRouter } from "next/navigation";
+'use server'
+import { cookies } from "next/headers";
 import { URLSearchParams } from "url";
+
 const URL_BASE = 'https://digitalmoney.digitalhouse.com'
 const API_URL_BASE = 'https://digitalmoney.digitalhouse.com/api'
 const API_URL_SERVICE = 'https://digitalmoney.digitalhouse.com/service'
@@ -10,9 +12,6 @@ export const httpsGet = async <T>(endpoint:string, params?:URLSearchParams): Pro
         throw new Error(res.statusText)
     }
     return res.json()
-}
-export const httpsGetPublic = async <T>(endpoint:string, params?:URLSearchParams): Promise<T> => {
-    return httpsGet(`${API_URL_BASE}${endpoint}`, params)
 }
 
 export const httpsPost = async <T>(endpoint:string, body: object, skipAuthorization?: boolean): Promise<T> => {
@@ -32,8 +31,16 @@ export const httpsPost = async <T>(endpoint:string, body: object, skipAuthorizat
     })
     return res.json()
 }
-export const httpsPostPublic = () => {
-    
+
+export const httpsPostCookie = async <T>(endpoint:string, body: object) => {
+    const response:string = await httpsPost(endpoint,body)
+    const cookieStore = cookies();
+    cookieStore.set({
+        name: 'token',
+        value: response,
+        httpOnly: true,
+        path: '/',
+    })
 }
 // export const httpsPatch = async <T> (endpoint:string, body:object, params?:URLSearchParams,  token:string): Promise<T> => {
 //     const res = await fetch(`${API_URL_BASE}${endpoint}${params ? `?${params}` : '' }`,{
