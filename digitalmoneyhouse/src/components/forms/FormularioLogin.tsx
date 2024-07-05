@@ -30,6 +30,7 @@ const FormularioLogin = () => {
         router.push('/')
     }
 
+
     return (
         <div className="w-3/12 ">
             <FormProvider {...methods}>
@@ -53,6 +54,7 @@ const FormularioLogin = () => {
                             <div className="text-error-text">La contraseña debe tener 8 caracteres como mínimo</div>}                             
                     </div>
                     <ButtonSubmit text={"Ingresar"} onSubmit={onSubmit}/>
+                    
                 </form>
             </FormProvider>
         </div>

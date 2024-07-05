@@ -1,10 +1,9 @@
 import { UserData, UserType, UserLoginType } from "@/types/users.types";
-import { httpsGet, httpsPost } from "../common/https.service";
-import { TokenType } from "@/types/token.types";
+import { httpsGet, httpsPostCookieDataUser } from "../common/https.service";
 
 class UserApi {
-  createNewUser = async (user:UserType) : Promise<UserData>=>
-    httpsPost(`/users`,user);
+  createNewUser = async (user:UserType)=>
+    httpsPostCookieDataUser(`/users`,user);
   getUserDataById = async (user_id:number) : Promise<UserType>=>
     httpsGet(`/users/${user_id}`);
   // updateUserData = async (token: string, body:UserType, params:number,) : Promise<UserType>=>
