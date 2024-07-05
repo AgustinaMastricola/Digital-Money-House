@@ -2,6 +2,7 @@
 import authApi from '@/services/authorization/auth.service'
 import NavLinks from './NavLinks'
 import NavLogo from './NavLogo'
+import { useRouter } from 'next/navigation'
 
 const links = [
   {href:"/login", name:"Iniciar Sesión"},
@@ -9,9 +10,10 @@ const links = [
 ]
 
 const Navbar = () => {
-
+  const router = useRouter();
   const handdleLogout = async () => {
     await authApi.logout()
+    router.push('/')
 }
 
   return (

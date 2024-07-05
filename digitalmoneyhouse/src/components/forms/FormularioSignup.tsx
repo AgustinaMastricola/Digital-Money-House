@@ -5,6 +5,8 @@ import userApi from "@/services/users/users.service";
 import InputText from "./inputText";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { useRouter } from "next/navigation";
+import { UserData } from "@/types/users.types";
 
 type FormData = {
     "dni": number,
@@ -29,13 +31,12 @@ const FormularioSignup = () => {
         resolver: yupResolver(schema)
     });
     const {handleSubmit, reset, formState:{errors}} =  methods;
-
+    
+    const router = useRouter();
     const onSubmit = async (data: FormData) => {
-        console.log(JSON.stringify(data))
-        const response = await userApi.createNewUser(data)
-        console.log(JSON.stringify(response))
+        await userApi.createNewUser(data)
         reset()
-        return response
+        router.push('/login')
     }
     return (
         <div className="w-3/12 ">
