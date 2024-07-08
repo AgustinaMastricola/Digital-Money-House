@@ -10,32 +10,28 @@ const API_URL_SERVICE = 'https://digitalmoney.digitalhouse.com/service'
 
 export const httpsGet = async <T>(endpoint:string, params?:URLSearchParams): Promise<T> => {
     const res = await fetch(`${API_URL_BASE}${endpoint}${params ? `?${params}` : '' }`)
+    //ACA VA LA LOGICA DE MANEJO DE ERRORES
     if(!res.ok){
         throw new Error(res.statusText)
     }
     return res.json()
 }
 
-export const httpsPost = async <T>(endpoint:string, body: object, skipAuthorization?: boolean): Promise<T> => {
+export const httpsPost = async <T>(endpoint:string, body: object): Promise<T> => {
     const res = await fetch(`${API_URL_BASE}${endpoint}`,{
         method: 'POST',
-        headers: 
-            skipAuthorization ? 
-            {   
-                'Content-Type':'application/json',
-            }
-            :
-            {
-                'Content-Type':'application/json',
-                'Authorization':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjI4OSIsImVtYWlsIjoiYWd1c21hc3RyaWNAZ21haWwuY29tIiwiZXhwIjoxNzE5NTI4OTcyfQ.pwrLHI3ingEoZ_N2vnrFkDmD3jTElQW5plGGbmGQWOc'
-            },
+        headers: {   
+            'Content-Type':'application/json',
+        },
         body: JSON.stringify(body)
+        //ACA VA LA LOGICA DE MANEJO DE ERRORES
     })
     return res.json()
 }
 
 export const httpsPostCookieToken = async (endpoint:string, body: object) => {
     const response:string = await httpsPost(endpoint,body)
+    //ACA VA LA LOGICA DE MANEJO DE ERRORES
     const cookieStore = cookies();
     cookieStore.set({
         name: 'token',
@@ -49,6 +45,7 @@ export const httpsPostCookieToken = async (endpoint:string, body: object) => {
 
 export const httpsPostCookieDataUser = async (endpoint:string, body: object) => {
     const response:UserData = await httpsPost(endpoint,body)
+    //ACA VA LA LOGICA DE MANEJO DE ERRORES
     const cookieStore = cookies();
     cookieStore.set({
         name: 'user_id',
@@ -77,7 +74,11 @@ export const httpsPostCookieDataUser = async (endpoint:string, body: object) => 
 }
 export const httpsPostLogout = async (endpoint:string) => {
     const response = httpsPost(`${API_URL_BASE}${endpoint}`,{})
+    //ACA VA LA LOGICA DE MANEJO DE ERRORES
     cookies().delete('token')
+    cookies().delete('user_id')
+    cookies().delete('account_id')
+    cookies().delete('email')
 }
 //para recuperar el token de la cookie
 // cookieStore.get('token').then(cookie => {
