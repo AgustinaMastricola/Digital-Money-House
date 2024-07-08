@@ -1,9 +1,9 @@
 
 const Footer = () => {
   return (
-    <div className="bg-footer-gray static bottom-0">
+    <footer className="bg-total-black w-full">
       <p className="text-total-primary p-5 text-center text-xs">© 2022 Digital Money House</p>
-    </div>
+    </footer>
   )
 }
 

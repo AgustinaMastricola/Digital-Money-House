@@ -1,33 +1,27 @@
-"use client"
-import Image from 'next/image'
-import icon from '../../../public/LogoVerde.png'
-import Link from 'next/link'
-import { LinksType } from '@/types/links.types'
+'use client'
+import authApi from '@/services/authorization/auth.service'
+import NavLinks from './NavLinks'
+import NavLogo from './NavLogo'
+import { useRouter } from 'next/navigation'
 
-type NavbarProps= {
-  links: LinksType[]
+const links = [
+  {href:"/login", name:"Iniciar Sesión"},
+  {href:"/signup", name: "Registrarme"}
+]
+
+const Navbar = () => {
+  const router = useRouter();
+  const handdleLogout = async () => {
+    await authApi.logout()
+    router.push('/')
 }
 
-const Navbar = ({links}:NavbarProps) => {
   return (
     <nav className="p-3 bg-total-black ">
       <div className='grid grid-cols-12 items-center'>
-        <Link href='/' className='col-span-2 col-start-1'>
-          <Image
-            src={icon}
-            alt="Icono brand"
-            priority
-          />
-        </Link>
-        <ul className='flex w-full space-x-3 col-span-9 col-start-4 items-center sm:col-start-8 md:col-start-9 lg:col-start-10'>
-          {
-            links.map((link, index)=>(
-              <li key={`navbar-link-${index}`} className="px-3 py-2 border rounded-[5px] text-xs text-total-primary font-bold">
-                <Link href={link.href}>{link.name}</Link>
-              </li>
-            ))
-          }
-        </ul>
+        <NavLogo/>
+        <NavLinks links={links}/>
+        <button className="p-3 mb-4 mt-4 w-full rounded bg-total-primary border border-total-primary text-total-black" onClick={handdleLogout}>logout </button>
       </div>
     </nav>
   )
