@@ -8,8 +8,17 @@ const URL_BASE = 'https://digitalmoney.digitalhouse.com'
 const API_URL_BASE = 'https://digitalmoney.digitalhouse.com/api'
 const API_URL_SERVICE = 'https://digitalmoney.digitalhouse.com/service'
 
-export const httpsGet = async <T>(endpoint:string, params?:URLSearchParams): Promise<T> => {
-    const res = await fetch(`${API_URL_BASE}${endpoint}${params ? `?${params}` : '' }`)
+export const httpsGet = async <T>(endpoint:string, params?:URLSearchParams, accessToken?: string): Promise<T> => {
+    const res = await fetch(`${API_URL_BASE}${endpoint}${params ? `?${params}` : '' }`, {
+        method: 'GET',
+        headers: !accessToken? 
+            {'Content-Type':'application/json'} 
+            :
+            {
+            'Content-Type':'application/json',
+            'Authorization:': `${accessToken}`
+            }
+    })
     //ACA VA LA LOGICA DE MANEJO DE ERRORES
     if(!res.ok){
         throw new Error(res.statusText)
@@ -76,9 +85,6 @@ export const httpsPostLogout = async (endpoint:string) => {
     const response = httpsPost(`${API_URL_BASE}${endpoint}`,{})
     //ACA VA LA LOGICA DE MANEJO DE ERRORES
     cookies().delete('token')
-    cookies().delete('user_id')
-    cookies().delete('account_id')
-    cookies().delete('email')
 }
 //para recuperar el token de la cookie
 // cookieStore.get('token').then(cookie => {
