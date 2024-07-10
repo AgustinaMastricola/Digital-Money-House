@@ -11,8 +11,8 @@ const NavLinks = ({links}:NavbarProps) => {
     const pathname = usePathname();
 
     return (
-        <ul className='w-full grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 xl:grid-cols-10'>
-            <div className="col-start-2 flex col-span-2">
+        <ul className='w-full grid grid-cols-7 sm:grid-cols-4 md:grid-cols-6 xl:grid-cols-10'>
+            <div className="flex space-x-3 col-span-6 col-start-8 sm:col-start-8 ">
                 {links.map((link, index)=>(
                     <li 
                         key={`navbar-link-${index}`} 
