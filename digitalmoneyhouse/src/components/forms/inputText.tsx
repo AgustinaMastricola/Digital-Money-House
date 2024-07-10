@@ -11,7 +11,7 @@ const InputText = ({type, fieldName, placeholder }:InputTextProps) => {
             type={type} 
             placeholder={placeholder}
             {...register(fieldName)} 
-            className="p-3 mb-2 mt-4 w-full rounded bg-total-white border border-light-primary" 
+            className="p-3 my-3 md:my-4 w-full rounded-lg bg-total-white border border-light-primary" 
         />
     )
 }

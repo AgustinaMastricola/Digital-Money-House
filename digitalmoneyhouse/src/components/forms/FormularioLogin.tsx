@@ -14,7 +14,7 @@ type FormData = {
 
 const schema = yup.object({
     email: yup.string().required(),
-    password: yup.string().required().min(8),
+    password: yup.string().required().min(6),
 }).required()
 
 const FormularioLogin = () => {
@@ -30,31 +30,29 @@ const FormularioLogin = () => {
         router.push('/')
     }
 
-
     return (
-        <div className="w-3/12 ">
+        <div className="w-full sm:w-6/12 md:w-5/12 lg:w-4/12 xl:w-3/12 flex justify-center">
             <FormProvider {...methods}>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)} className="w-10/12 flex flex-col">
                     <div>
                         <InputText 
                             type='email'
                             placeholder={'Correo electrónico'}
                             fieldName={"email"} />
-                        {errors.email?.type === "required" && 
-                            <div className="text-error-text">Campo obligatorio</div>}                            
                     </div>
                     <div>
                         <InputText 
                             type='password'
                             placeholder={'Contraseña'} 
                             fieldName={"password"}/>
-                        {errors.password?.type === "required" &&
-                            <div className="text-error-text">Campo obligatorio</div>} 
-                        {errors.password?.type === "min" &&
-                            <div className="text-error-text">La contraseña debe tener 8 caracteres como mínimo</div>}                             
                     </div>
                     <ButtonSubmit text={"Ingresar"} onSubmit={onSubmit}/>
-                    
+                    {errors.email?.type === "required" && 
+                        <div className="text-error-text">Campo obligatorio</div>}                            
+                    {errors.password?.type === "required" &&
+                        <div className="text-error-text italic text-center">Completar campos requeridos</div>} 
+                    {errors.password?.type === "min" &&
+                        <div className="text-error-text italic">La contraseña debe tener 6 caracteres como mínimo</div>} 
                 </form>
             </FormProvider>
         </div>
