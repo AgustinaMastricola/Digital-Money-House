@@ -11,12 +11,16 @@ const NavLinks = ({links}:NavbarProps) => {
     const pathname = usePathname();
 
     return (
-        <ul className='flex w-full space-x-3 col-span-9 col-start-4 items-center sm:col-start-8 md:col-start-9 lg:col-start-10'>
-            {links.map((link, index)=>(
-                <li key={`navbar-link-${index}`} className="px-3 py-2 border rounded-[5px] text-xs text-total-primary font-bold">
-                    <Link href={link.href}>{link.name}</Link>
-                </li>
-            ))}
+        <ul className='w-full grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 xl:grid-cols-10'>
+            <div className="col-start-2 flex col-span-2">
+                {links.map((link, index)=>(
+                    <li 
+                        key={`navbar-link-${index}`} 
+                        className={link.style && `${link.style} px-3 py-2 text-xs rounded-lg border font-bold`}>
+                        <Link href={link.href}>{link.name}</Link>
+                    </li>
+                ))}
+            </div>
         </ul>
     )
 }

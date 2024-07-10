@@ -10,7 +10,7 @@ const ButtonSubmit = <T extends FieldValues,> ({text, onSubmit}:ButtonProps<T>) 
         <button 
             type="submit"
             onClick={handleSubmit(onSubmit)} 
-            className="p-3 mb-4 mt-4 w-full rounded bg-total-primary border border-total-primary text-total-black  ">
+            className="p-3 mb-4 mt-4 w-full rounded-lg bg-total-primary border border-total-primary text-total-black  ">
             {text}
         </button>
     )

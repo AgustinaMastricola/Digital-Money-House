@@ -5,8 +5,8 @@ import NavLogo from './NavLogo'
 import { useRouter } from 'next/navigation'
 
 const links = [
-  {href:"/login", name:"Iniciar Sesión"},
-  {href:"/signup", name: "Registrarme"}
+  {href:"/login", name:"Ingresar", style:" bg-total-black border-total-primary text-total-primary"},
+  {href:"/signup", name: "Crear cuenta", style:"bg-total-primary border-total-primary text-total-black"}
 ]
 
 const Navbar = () => {
@@ -18,10 +18,10 @@ const Navbar = () => {
 
   return (
     <nav className="p-3 bg-total-black ">
-      <div className='grid grid-cols-12 items-center'>
+      <div className='flex items-center'>
         <NavLogo/>
         <NavLinks links={links}/>
-        <button className="p-3 mb-4 mt-4 w-full rounded bg-total-primary border border-total-primary text-total-black" onClick={handdleLogout}>logout </button>
+        {/* <button className="p-3 mb-4 mt-4 w-full rounded bg-total-primary border border-total-primary text-total-black" onClick={handdleLogout}>logout </button> */}
       </div>
     </nav>
   )
