@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function RootLayout( {children,}: Readonly<{children: React.ReactNode;}>) {
   return (
     <html lang="en">
-      <body className="flex flex-col h-screen `${openSans.className}`">
+      <body className="flex flex-col h-full`${openSans.className}`">
         {children}
       </body>
     </html>

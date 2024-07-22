@@ -30,8 +30,5 @@ header {
   flex-shrink: 0;
 }
 main {
-  flex-grow: 1; 
-}
-footer {
-  flex-shrink: 0; 
+  height: 100%;
 }

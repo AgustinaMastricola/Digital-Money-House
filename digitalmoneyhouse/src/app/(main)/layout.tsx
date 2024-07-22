@@ -5,7 +5,7 @@ import { FC, PropsWithChildren} from "react";
 const LayoutLogin: FC<PropsWithChildren> = ({children}) => {
   return <>
     <NavbarMain/>
-    <div>{children}</div>
+    <div className="h-full">{children}</div>
     <FooterLogin/>
   </>
 }
