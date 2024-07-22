@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
+import Navbar from "@/components/navbar/Navbar";
 
 const openSans = Open_Sans({subsets: ["latin"], style: ['normal']});
 
@@ -15,9 +15,7 @@ export default function RootLayout( {children,}: Readonly<{children: React.React
   return (
     <html lang="en">
       <body className="flex flex-col h-screen `${openSans.className}`">
-        <Navbar/>
         {children}
-        <Footer/>
       </body>
     </html>
   );

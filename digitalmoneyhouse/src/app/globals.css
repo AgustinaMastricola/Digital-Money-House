@@ -27,7 +27,7 @@ html, body {
   min-height: 100vh;
 }
 header {
-  flex-shrink: 0; /* Ensure the header does not shrink */
+  flex-shrink: 0;
 }
 main {
   flex-grow: 1; 
