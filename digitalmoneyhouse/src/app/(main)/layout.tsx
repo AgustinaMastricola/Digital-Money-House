@@ -1,9 +1,12 @@
-import Navbar from '@/components/navbar/Navbar'
-import React from 'react'
+import FooterLogin from "@/components/footer/FooterLogin";
+import NavbarMain from "@/components/navbar/NavbarMain";
+import { FC, PropsWithChildren} from "react";
 
-export default function Layout({children}:{children: React.ReactNode}){
-    return (<>
-        <Navbar/>
-        {children}
-    </>)
+const LayoutLogin: FC<PropsWithChildren> = ({children}) => {
+  return <>
+    <NavbarMain/>
+    <div className="h-full">{children}</div>
+    <FooterLogin/>
+  </>
 }
+export default LayoutLogin;

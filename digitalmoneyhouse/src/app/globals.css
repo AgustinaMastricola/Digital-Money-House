@@ -27,11 +27,13 @@ html, body {
   min-height: 100vh;
 }
 header {
-  flex-shrink: 0; /* Ensure the header does not shrink */
+  flex-shrink: 0;
 }
 main {
-  flex-grow: 1; 
+  height: 100%;
 }
-footer {
-  flex-shrink: 0; 
+.hide-arrow[type="number"]::-webkit-inner-spin-button,
+.hide-arrow[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
