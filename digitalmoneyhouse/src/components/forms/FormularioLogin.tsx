@@ -1,7 +1,7 @@
 'use client'
 import { FormProvider, useForm } from "react-hook-form";
-import ButtonSubmit from "./buttonSubmit";
-import InputText from "./inputText";
+import ButtonSubmit from "../buttons/buttonSubmit";
+import InputText from "../inputs/inputText";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { useRouter } from "next/navigation";
@@ -27,35 +27,40 @@ const FormularioLogin = () => {
     const onSubmit = async (data: FormData) => {
         await authApi.login(data)
         reset()
-        router.push('/')
+        setTimeout(()=>{
+            router.push('/')
+        }, 1000)
     }
 
     return (
-        <div className="w-full sm:w-6/12 md:w-5/12 lg:w-4/12 xl:w-3/12 flex justify-center">
-            <FormProvider {...methods}>
-                <form onSubmit={handleSubmit(onSubmit)} className="w-10/12 flex flex-col">
-                    <div>
-                        <InputText 
-                            type='email'
-                            placeholder={'Correo electrónico'}
-                            fieldName={"email"} />
-                    </div>
-                    <div>
-                        <InputText 
-                            type='password'
-                            placeholder={'Contraseña'} 
-                            fieldName={"password"}/>
-                    </div>
-                    <ButtonSubmit text={"Ingresar"} onSubmit={onSubmit}/>
-                    {errors.email?.type === "required" && 
-                        <div className="text-error-text">Campo obligatorio</div>}                            
-                    {errors.password?.type === "required" &&
-                        <div className="text-error-text italic text-center">Completar campos requeridos</div>} 
-                    {errors.password?.type === "min" &&
-                        <div className="text-error-text italic">La contraseña debe tener 6 caracteres como mínimo</div>} 
-                </form>
-            </FormProvider>
-        </div>
+        <>
+            <h1 className='text-total-white mb-4'>Iniciar sesión</h1>
+            <div className='w-full sm:w-6/12 md:w-5/12 lg:w-4/12 xl:w-3/12 flex justify-center'>
+                <FormProvider {...methods}>
+                    <form onSubmit={handleSubmit(onSubmit)} className="w-10/12 flex flex-col">
+                        <div>
+                            <InputText 
+                                type='email'
+                                placeholder={'Correo electrónico'}
+                                fieldName={"email"} />
+                        </div>
+                        <div>
+                            <InputText 
+                                type='password'
+                                placeholder={'Contraseña'} 
+                                fieldName={"password"}/>
+                        </div>
+                        <ButtonSubmit text={"Ingresar"} onSubmit={onSubmit}/>
+                        {errors.email?.type === "required" && 
+                            <div className="text-error-text">Campo obligatorio</div>}                            
+                        {errors.password?.type === "required" &&
+                            <div className="text-error-text italic text-center">Completar campos requeridos</div>} 
+                        {errors.password?.type === "min" &&
+                            <div className="text-error-text italic">La contraseña debe tener 6 caracteres como mínimo</div>} 
+                    </form>
+                </FormProvider>
+            </div>
+        </>
     )
 }
 
