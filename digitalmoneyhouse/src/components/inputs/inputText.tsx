@@ -12,6 +12,7 @@ const InputText = ({type, fieldName, placeholder }:InputTextProps) => {
             placeholder={placeholder}
             {...register(fieldName)} 
             className="p-3 my-3 md:my-4 w-full rounded-lg bg-total-white border border-light-primary" 
+            autoFocus={true}
         />
     )
 }

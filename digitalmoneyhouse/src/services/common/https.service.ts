@@ -21,7 +21,7 @@ export const httpsGet = async <T>(endpoint:string, params?:URLSearchParams, acce
     })
     //ACA VA LA LOGICA DE MANEJO DE ERRORES
     if(!res.ok){
-        throw new Error(res.statusText)
+        console.log(res.status)
     }
     return res.json()
 }
