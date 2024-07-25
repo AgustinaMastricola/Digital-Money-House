@@ -20,12 +20,12 @@ type FormData = {
 }
 
 const schema = yup.object({
-    dni: yup.number().positive().integer().required(),
-    email: yup.string().required(),
-    firstname: yup.string().required(),
-    lastname: yup.string().required(),
-    password: yup.string().required().min(6).max(20),
-    passwordConfirmed: yup.string().oneOf([yup.ref('password')]).required(),
+    dni: yup.number().required('Completá los campos requeridos.'),
+    email: yup.string().email('El formato del email es inválido. Ejemplo: email@gmail.com').required('Completá los campos requeridos.'),
+    firstname: yup.string().required('Completá los campos requeridos.'),
+    lastname: yup.string().required('Completá los campos requeridos.'),
+    password: yup.string().required('Completá los campos requeridos.').min(6,'La contraseña debe tener 6 caracteres como mínimo.').max(20),
+    passwordConfirmed: yup.string().oneOf([yup.ref('password')], 'Las contraseñas no coinciden.').required('Completá los campos requeridos.'),
     phone: yup.string().optional()
 }).required()
 
@@ -81,14 +81,18 @@ const FormularioSignup = () => {
                                 placeholder='Teléfono (opcional)'
                                 fieldName='phone'/>
                             <ButtonSubmit text={"Crear cuenta"} onSubmit={onSubmit}/>                            
-                            {errors.password?.type === "required" || errors.email?.type === 'required' &&
-                                <div className="text-error-text italic text-center">Completar campos requeridos</div>} 
-                            {errors.lastname?.type === "required" || errors.firstname?.type === 'required' &&
-                                <div className="text-error-text italic text-center">Completar campos requeridos</div>}                                 
-                            {errors.password?.type === "min" &&
-                                <div className="text-error-text italic">La contraseña debe tener 6 caracteres como mínimo</div>} 
+                            {errors.password &&
+                                <div className="text-error-text italic">{errors.password.message}</div>} 
+                            {errors.firstname &&
+                                <div className="text-error-text italic">{errors.firstname.message}</div>}                                  
+                            {errors.lastname &&
+                                <div className="text-error-text italic">{errors.lastname.message}</div>}
+                            {errors.dni &&
+                                <div className="text-error-text italic">{errors.dni.message}</div>}                                                                    
                             {errors.passwordConfirmed &&
-                                <div className="text-error-text italic">Las contraseñas deben coincidir</div>}                                                   
+                                <div className="text-error-text italic">{errors.passwordConfirmed.message}</div>} 
+                            {errors.email &&
+                                <div className="text-error-text italic">{errors.email.message}</div>}                                                                                   
                         </div>
                     </form>
                 </FormProvider>
