@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import authApi from "@/services/authorization/auth.service";
 import { useState } from "react";
 import ButtonPrimary from "../buttons/buttonPrimary";
+import ButtonSecondary from "../buttons/buttonSecondary";
 
 type FormData = {
     "email": string,
@@ -55,12 +56,10 @@ const FormularioLogin = () => {
                                 placeholder={'Correo electrónico'}
                                 fieldName={"email"}
                             />
-                            <button 
-                                onClick={handleEmailSubmit} 
-                                className="w-full text-center text-lg font-bold py-3 mb-4 mt-4 rounded-lg bg-total-primary border border-total-primary text-total-black"
-                                >
+                            <button onClick={handleEmailSubmit} className="w-full text-center text-lg font-bold py-3 mb-4 mt-4 rounded-lg bg-total-primary border border-total-primary text-total-black">
                                 <ButtonPrimary text={"Continuar"}/>
                             </button>
+                            <ButtonSecondary text="Crear cuenta"/>
                             <div className="text-error-text text-center">{errors.email?.message}</div>  
                         </div>
                         <div className={step === 2? 'visible':'hidden'}>
