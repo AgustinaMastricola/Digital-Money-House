@@ -1,4 +1,3 @@
-
 const Footer = () => {
   return (
     <footer className="bg-total-black w-full">

@@ -7,7 +7,6 @@ type SuccessMesageProps = {
 }
 
 const SuccessMesage = ({style}:SuccessMesageProps) => {
-
   return (
     <div className={`${style} flex flex-col items-center px-5 py-16 space-y-3`}>
       <h2 className='text-total-white text-3xl text-center'>Registro exitoso</h2>

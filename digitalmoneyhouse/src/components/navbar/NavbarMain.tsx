@@ -1,6 +1,5 @@
 'use client'
 import authApi from '@/services/authorization/auth.service'
-import NavLinks from './NavLinks'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'

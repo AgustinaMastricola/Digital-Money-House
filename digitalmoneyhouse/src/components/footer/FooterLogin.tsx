@@ -1,4 +1,3 @@
-
 const FooterLogin = () => {
   return (
       <footer className="bg-total-primary w-full">
