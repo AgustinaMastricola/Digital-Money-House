@@ -5,10 +5,10 @@ import InputText from "../inputs/inputText";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { useRouter } from "next/navigation";
-import authApi from "@/services/authorization/auth.service";
 import { useState } from "react";
 import ButtonPrimary from "../buttons/buttonPrimary";
 import ButtonSecondary from "../buttons/buttonSecondary";
+import { signIn } from "next-auth/react";
 
 type FormData = {
     "email": string,
@@ -24,23 +24,29 @@ const FormularioLogin = () => {
     const methods = useForm<FormData>({
         resolver: yupResolver(schema)
     });
-    const {handleSubmit, reset, watch, setError, formState:{errors}} =  methods;
+    const {handleSubmit, watch, setError, formState:{errors}} =  methods;
 
     const [step, setStep] = useState<number>(1);
+
     const handleEmailSubmit =  () => {
         const isValidEmail = watch('email') 
         if (isValidEmail) {
             setStep(2)
-            console.log(schema.fields.email)
         }
         setError('email', {type: 'required'})
     }
     const router = useRouter();
-    const onSubmit = async (data: FormData) => {
-        await authApi.login(data)
-        reset()
+
+    const onSubmit = async (dataForm: FormData) => {
+        const responseNextAuth = await signIn('credentials', {...dataForm, redirect:false})
+        console.log(responseNextAuth)
+        if (responseNextAuth?.error) {
+            
+            alert('credenciales invalidas')
+            return
+        }
         setTimeout(()=>{
-            router.push('/')
+            router.push('/dashboard')
         }, 1000)
     }
 
