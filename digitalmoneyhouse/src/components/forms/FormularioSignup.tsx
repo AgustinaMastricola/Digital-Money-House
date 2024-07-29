@@ -1,7 +1,6 @@
 'use client'
 import ButtonSubmit from "../buttons/buttonSubmit";
 import { FormProvider, useForm } from "react-hook-form";
-import userApi from "@/services/users/users.service";
 import InputText from "../inputs/inputText";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
@@ -37,7 +36,6 @@ const FormularioSignup = () => {
     const [showSuccessMessage, setShowSuccessMessage] = useState(false)
     const onSubmit = async (data: FormData) => {
         const { passwordConfirmed, ...userData } = data;
-        await userApi.createNewUser(userData)
         reset()
         setShowSuccessMessage(true)
     }
