@@ -8,7 +8,7 @@ import { signOut, useSession } from 'next-auth/react'
 
 const links = [
   {href:"/login", name:"Ingresar", style:" bg-total-black border-total-primary text-total-primary"},
-  {href:"/signup", name: "Crear cuenta", style:"bg-total-primary border-total-primary text-total-black"}
+  {href:"/signup", name: "Crear cuenta", style:"bg-total-primary border-total-primary text-total-black"},
 ]
 
 const Navbar = () => {
@@ -23,8 +23,9 @@ if(session){
           <Image src={icon} alt="Icono brand" priority/>
         </Link>
         <button 
-          className="p-3 mb-4 mt-4 rounded bg-total-primary border border-total-primary text-total-black" 
-          onClick={()=>signOut()}>logout 
+          className=' bg-total-black border-total-primary text-total-primary px-3 py-2 text-xs rounded-lg border font-bold'
+          onClick={()=>signOut()}>
+            Cerrar sesión
         </button>
       </div>
     </nav>
