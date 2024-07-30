@@ -1,4 +1,5 @@
 'use client'
+import NavbarDashboard from "@/components/navbar/NavbarDashboard";
 import { AccountData } from "@/types/account.types";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
@@ -22,6 +23,8 @@ const DashboardPage = () => {
 
   return (
     <div>
+      <NavbarDashboard firstname={'Agustina'} lastname="Mastricola"/>
+      
       <h1>
         DashboardPage
       </h1>

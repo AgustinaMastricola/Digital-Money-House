@@ -37,7 +37,7 @@ const FormularioLogin = () => {
             return
         }
         setTimeout(()=>{
-            router.push('/')
+            router.push('/dashboard')
         }, 1000)
     }
 
