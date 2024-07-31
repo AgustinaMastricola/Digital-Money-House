@@ -1,9 +1,11 @@
+'use client'
 import iconBrand from '../../../public/LogoVerde.png'
 import iconMenu from '../../../public/menu.png'
 import iconClose from '../../../public/close.png'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
+import { signOut, useSession } from 'next-auth/react'
 
 type NavbarDashProps= {
   firstname:string,
@@ -11,7 +13,7 @@ type NavbarDashProps= {
 }
 const menuLinks = [
   {href:"/", name:"Inicio"},
-  {href:"/activity", name:"Actividad"},
+  {href:"/dashboard", name:"Actividad"},
   {href:"/profile", name:"Tu perfil"},
   {href:"/transactions", name:"Cargar dinero"},
   {href:"/services", name:"Pagar servicios"},
@@ -19,6 +21,7 @@ const menuLinks = [
 ]
 
 const NavbarDashboard = ({firstname, lastname}:NavbarDashProps) => {
+  const { data: session, status } = useSession()
   const iniciales = `${firstname.charAt(0)+lastname.charAt(0)}`
   const [showMenu, setShowMenu] = useState(false)
 
@@ -40,7 +43,7 @@ const NavbarDashboard = ({firstname, lastname}:NavbarDashProps) => {
           </div>
         </div>
       </nav>
-      <div className={`bg-total-primary h-full absolute right-0 top-0 w-1/2 transition-transform duration-500 transform  ${showMenu ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={`bg-total-primary z-10 h-full absolute right-0 top-0 w-1/2 transition-transform duration-500 transform  ${showMenu ? 'translate-x-0' : 'translate-x-full'}`}>
         {showMenu && 
         <>
           <div className='bg-footer-gray py-14'>
@@ -55,6 +58,11 @@ const NavbarDashboard = ({firstname, lastname}:NavbarDashProps) => {
                 <Link href={link.href}>{link.name}</Link>
               </li>
             ))}
+            <button 
+              className='text-total-black'
+              onClick={()=>signOut()}>
+              Cerrar sesión
+            </button>
           </ul>
         </>
         }

@@ -1,11 +1,19 @@
+'use client'
 import CardInfoHome from "@/components/cards/CardInfoHome";
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";
+import NavbarDashboard from "@/components/navbar/NavbarDashboard";
+import { useSession } from "next-auth/react";
 
 export default function Home() {  
+  const { data: session, status } = useSession()
   return (
     <>
+    {session?
+      <NavbarDashboard firstname={"Agustina"} lastname={"Mastricola"}/>
+    :
       <Navbar/>
+  }
       <main>
         <div className="w-full h-full bg-bg-img-mobile sm:bg-bg-img-tablet bg-cover space-y-32 lg:space-y-44 ">
           <section className="ml-4 sm:ml-12 ">
