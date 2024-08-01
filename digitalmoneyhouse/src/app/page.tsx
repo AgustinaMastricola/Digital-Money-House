@@ -9,11 +9,11 @@ export default function Home() {
   const { data: session, status } = useSession()
   return (
     <>
-    {session?
+    {status === 'authenticated'?
       <NavbarDashboard firstname={"Agustina"} lastname={"Mastricola"}/>
     :
       <Navbar/>
-  }
+    }
       <main>
         <div className="w-full h-full bg-bg-img-mobile sm:bg-bg-img-tablet bg-cover space-y-32 lg:space-y-44 ">
           <section className="ml-4 sm:ml-12 ">
@@ -22,7 +22,7 @@ export default function Home() {
             <h5 className="text-total-primary text-lg sm:hidden">Tu nueva <br /><span className="font-semibold">billetera virtual</span> </h5>
             <h5 className="text-total-primary text-lg hidden sm:block lg:text-2xl">Tu nueva <span className="font-semibold">billetera virtual</span> </h5>
           </section>
-          <section className="h-1/2">
+          <section className="h-1/2 sm:h-1/3 sm:absolute sm:bottom-14">
             <div className="h-full bg-total-primary w-full rounded-t-3xl">
               <div className="space-y-4 flex flex-col items-center -translate-y-16 lg:flex-row lg:justify-center lg:space-x-2 lg:space-y-0">
                 <CardInfoHome
