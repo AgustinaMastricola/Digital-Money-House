@@ -1,11 +1,11 @@
-import { ActivityUserType } from "@/types/activityUser.types"
+
 import Image from "next/image"
 import ellipse from "../../../public/Ellipse.png"
-import { useState } from "react"
 import transformDay from "@/utils/functions"
+import { TransactionUserType } from "@/types/transaction.types"
 
 type ActivityListProps = {
-  transactions: ActivityUserType[]
+  transactions: TransactionUserType[]
 }
 
 const ActivityList = ({transactions}:ActivityListProps) => {
