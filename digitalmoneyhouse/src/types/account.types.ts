@@ -1,7 +1,7 @@
 export type AccountData = {
-  "id": number,
-  "user_id": number,
+  "alias":string,
+  "available_amount": number,
   "cvu": string,
-  "alias": string,
-  "available_amount": number
+  "id": number,
+  "user_id": number
 }

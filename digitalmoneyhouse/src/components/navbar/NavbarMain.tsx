@@ -3,11 +3,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import icon from '../../../public/LogoNegro.png'
 
-const links = [
-  {href:"/login", name:"Ingresar", style:" bg-total-primary border-total-black text-total-black"},
-  {href:"/signup", name: "Crear cuenta", style:"bg-total-black border-total-primary text-total-primary"}
-]
-
 const NavbarMain = () => {
   return (
     <nav className="p-3 bg-total-primary ">

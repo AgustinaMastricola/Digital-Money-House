@@ -1,5 +1,4 @@
 'use client'
-import CardInfoHome from "@/components/cards/CardInfoHome";
 import Footer from "@/components/footer/Footer";
 import HomeAnauthenticated from "@/components/home/HomeAnauthenticated";
 import HomeAuthenticated from "@/components/home/HomeAuthenticated";
