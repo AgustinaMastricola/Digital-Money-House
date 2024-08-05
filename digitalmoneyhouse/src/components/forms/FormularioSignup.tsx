@@ -1,5 +1,5 @@
 'use client'
-import ButtonSubmit from "../buttons/buttonSubmit";
+import ButtonSubmit from "../buttons/buttonSubmitForm";
 import { FormProvider, useForm } from "react-hook-form";
 import InputText from "../inputs/inputText";
 import { yupResolver } from "@hookform/resolvers/yup"

@@ -1,12 +1,12 @@
 'use client'
 import { FormProvider, useForm } from "react-hook-form";
-import ButtonSubmit from "../buttons/buttonSubmit";
+import ButtonSubmit from "../buttons/buttonSubmitForm";
 import InputText from "../inputs/inputText";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import ButtonPrimary from "../buttons/buttonPrimary";
-import ButtonSecondary from "../buttons/buttonSecondary";
+import ButtonPrimary from "../buttons/buttonLogin";
+import ButtonSecondary from "../buttons/buttonSignup";
 import { signIn } from "next-auth/react";
 import { LoginFormData } from "@/types/formData.types";
 import { loginSchema } from "@/lib/yup";
@@ -37,7 +37,7 @@ const FormularioLogin = () => {
             return
         }
         setTimeout(()=>{
-            router.push('/dashboard')
+            router.push('/')
         }, 1000)
     }
 
