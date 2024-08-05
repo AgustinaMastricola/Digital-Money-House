@@ -17,7 +17,7 @@ const menuLinks = [
   {href:"/profile", name:"Tu perfil"},
   {href:"/transactions", name:"Cargar dinero"},
   {href:"/services", name:"Pagar servicios"},
-  {href:"/cards", name:"Tarjetas"},
+  {href:"/tarjetas", name:"Tarjetas"},
 ]
 
 const NavbarDashboard = ({ firstname, lastname }: NavbarDashProps) => {

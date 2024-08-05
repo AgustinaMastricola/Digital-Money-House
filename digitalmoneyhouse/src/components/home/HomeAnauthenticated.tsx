@@ -1,4 +1,4 @@
-import CardInfoHome from "../cards/CardInfoHome";
+import InfoHome from "../banner/InfoHome";
 
 const HomeAnauthenticated = () => {
 	return (
@@ -20,11 +20,11 @@ const HomeAnauthenticated = () => {
 				<section className="h-1/2 sm:h-1/3 sm:absolute sm:bottom-14">
 					<div className="h-full bg-total-primary w-full rounded-t-3xl">
 						<div className="space-y-4 flex flex-col items-center -translate-y-16 lg:flex-row lg:justify-center lg:space-x-2 lg:space-y-0">
-							<CardInfoHome
+							<InfoHome
 								title="Transferí dinero"
 								paragraph="Desde Digital Money House vas a poder transferir dinero a otras cuentas, asi como también recibir transferencias y nuclear tu capital en nuestra billetera virtual."
 							/>
-							<CardInfoHome
+							<InfoHome
 								title="Pago de servicios"
 								paragraph="Pagá mensualmente los servicios en 3 simples clicks. Facil, rápido y conveniente. Olvidate de las facturas en papel."
 							/>
