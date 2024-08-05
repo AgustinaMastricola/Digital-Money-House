@@ -1,43 +1,25 @@
 'use client'
-import ButtonSubmit from "../buttons/buttonSubmit";
+import ButtonSubmit from "../buttons/buttonSubmitForm";
 import { FormProvider, useForm } from "react-hook-form";
-import userApi from "@/services/users/users.service";
 import InputText from "../inputs/inputText";
 import { yupResolver } from "@hookform/resolvers/yup"
-import * as yup from "yup"
 import { useState } from "react";
 import SuccessMesage from "../register/SuccessMesage";
 import InputNumber from "../inputs/inputNumber";
-
-type FormData = {
-    "dni": number,
-    "email": string,
-    "firstname": string,
-    "lastname": string,
-    "password": string,
-    "passwordConfirmed": string,
-    "phone"?: string
-}
-
-const schema = yup.object({
-    dni: yup.number().required('Completá los campos requeridos.'),
-    email: yup.string().email('El formato del email es inválido. Ejemplo: email@gmail.com').required('Completá los campos requeridos.'),
-    firstname: yup.string().required('Completá los campos requeridos.'),
-    lastname: yup.string().required('Completá los campos requeridos.'),
-    password: yup.string().required('Completá los campos requeridos.').min(6,'La contraseña debe tener 6 caracteres como mínimo.').max(20),
-    passwordConfirmed: yup.string().oneOf([yup.ref('password')], 'Las contraseñas no coinciden.').required('Completá los campos requeridos.'),
-    phone: yup.string().optional()
-}).required()
+import { signupSchema } from "@/lib/yup";
+import { SignupFormData } from "@/types/formData.types";
+import userApi from "@/services/users/user.service";
 
 const FormularioSignup = () => {
-    const methods = useForm<FormData>({
-        resolver: yupResolver(schema)
+    const methods = useForm<SignupFormData>({
+        resolver: yupResolver(signupSchema)
     });
     const {handleSubmit, reset, formState:{errors}} =  methods;
     const [showSuccessMessage, setShowSuccessMessage] = useState(false)
-    const onSubmit = async (data: FormData) => {
+    
+    const onSubmit = async (data: SignupFormData) => {
         const { passwordConfirmed, ...userData } = data;
-        await userApi.createNewUser(userData)
+        await userApi.newUser(userData)
         reset()
         setShowSuccessMessage(true)
     }

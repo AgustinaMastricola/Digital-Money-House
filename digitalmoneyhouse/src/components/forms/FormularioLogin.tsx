@@ -1,44 +1,41 @@
 'use client'
 import { FormProvider, useForm } from "react-hook-form";
-import ButtonSubmit from "../buttons/buttonSubmit";
+import ButtonSubmit from "../buttons/buttonSubmitForm";
 import InputText from "../inputs/inputText";
 import { yupResolver } from "@hookform/resolvers/yup"
-import * as yup from "yup"
 import { useRouter } from "next/navigation";
-import authApi from "@/services/authorization/auth.service";
 import { useState } from "react";
-import ButtonPrimary from "../buttons/buttonPrimary";
-import ButtonSecondary from "../buttons/buttonSecondary";
-
-type FormData = {
-    "email": string,
-    "password": string,
-}
-
-const schema = yup.object({
-    email: yup.string().required('Completá los campos requeridos.'),
-    password: yup.string().required('Completá campos requeridos.').min(6, 'La contraseña debe tener 6 caracteres como mínimo.'),
-}).required()
+import ButtonPrimary from "../buttons/buttonLogin";
+import ButtonSecondary from "../buttons/buttonSignup";
+import { signIn } from "next-auth/react";
+import { LoginFormData } from "@/types/formData.types";
+import { loginSchema } from "@/lib/yup";
 
 const FormularioLogin = () => {
-    const methods = useForm<FormData>({
-        resolver: yupResolver(schema)
+    const methods = useForm<LoginFormData>({
+        resolver: yupResolver(loginSchema)
     });
     const {handleSubmit, reset, watch, setError, formState:{errors}} =  methods;
-
     const [step, setStep] = useState<number>(1);
+
     const handleEmailSubmit =  () => {
         const isValidEmail = watch('email') 
         if (isValidEmail) {
             setStep(2)
-            console.log(schema.fields.email)
         }
         setError('email', {type: 'required'})
     }
+
     const router = useRouter();
-    const onSubmit = async (data: FormData) => {
-        await authApi.login(data)
-        reset()
+    const onSubmit = async (dataForm: LoginFormData) => {
+        const responseNextAuth = await signIn('credentials', {...dataForm, redirect:false})
+        console.log(responseNextAuth)
+        if (responseNextAuth?.error) {
+            alert('credenciales invalidas')
+            reset()
+            setStep(1)
+            return
+        }
         setTimeout(()=>{
             router.push('/')
         }, 1000)
