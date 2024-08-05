@@ -22,9 +22,9 @@ const ActivityList = ({transactions}:ActivityListProps) => {
       <div className="w-11/12 space-y-4">
         {
           transactions.map((item, index)=>(
-            <div className="space-y-2">
+            <div className="space-y-2" key={`tansaction-${index}`}>
               <hr className="text-medium-gray opacity-30"/>
-              <div key={`tansaction-${index}`} className="grid gap-x-2 grid-cols-12 items-center w-full">
+              <div  className="grid gap-x-2 grid-cols-12 items-center w-full">
                 <Image src={ellipse} alt="icono"/>
                 <p className="col-span-6">{item.description}</p>
                 <div className="flex flex-col col-span-4 items-center ">
