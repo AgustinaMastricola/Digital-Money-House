@@ -2,8 +2,7 @@ import InfoHome from "../banner/InfoHome";
 
 const HomeAnauthenticated = () => {
 	return (
-		<main>
-			<div className="w-full h-full bg-bg-img-mobile sm:bg-bg-img-tablet bg-cover space-y-32 lg:space-y-44 ">
+		<main className="w-full bg-bg-img-mobile sm:bg-bg-img-tablet bg-cover space-y-32 lg:space-y-44 ">
 				<section className="ml-4 sm:ml-12 ">
 					<p className="w-6/12 sm:w-5/12 lg:w-2/6   text-total-white text-2xl sm:text-3xl lg:text-5xl font-semibold sm:font-light pt-8 lg:pt-11">
 						De ahora en adelante, hacés más con tu dinero
@@ -17,8 +16,8 @@ const HomeAnauthenticated = () => {
 						Tu nueva <span className="font-semibold">billetera virtual</span>{" "}
 					</h5>
 				</section>
-				<section className="h-1/2 sm:h-1/3 sm:absolute sm:bottom-14">
-					<div className="h-full bg-total-primary w-full rounded-t-3xl">
+				<section className="bg-total-primary rounded-t-3xl">
+					<div className="h-full w-full">
 						<div className="space-y-4 flex flex-col items-center -translate-y-16 lg:flex-row lg:justify-center lg:space-x-2 lg:space-y-0">
 							<InfoHome
 								title="Transferí dinero"
@@ -31,7 +30,6 @@ const HomeAnauthenticated = () => {
 						</div>
 					</div>
 				</section>
-			</div>
 		</main>
 	);
 };

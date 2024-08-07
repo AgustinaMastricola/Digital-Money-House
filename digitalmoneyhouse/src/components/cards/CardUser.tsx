@@ -1,14 +1,10 @@
-import { AccountData } from '@/types/account.types';
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 type CardUserProps = {
-  account: AccountData
+  amount: string
 }
-
-const CardUser = ({account}:CardUserProps) => {
-  const number = account.available_amount.toLocaleString('de-DE', { maximumSignificantDigits: 2 })
-
+const CardUser = ({amount}:CardUserProps) => {
   return (
     <div className='bg-total-black w-11/12 h-1/4 rounded-lg p-2'>
       <div className='text-total-white text-sm flex justify-end items-center space-x-2'>
@@ -17,7 +13,7 @@ const CardUser = ({account}:CardUserProps) => {
       </div>
       <div className='text-total-white my-8 ml-3 w-max space-y-2'>
         <h2>Dinero disponible</h2>
-        <p className='border rounded-full border-total-primary text-center p-1 py-2 text-2xl'>$ {number}</p>
+        <p className='border rounded-full border-total-primary text-center p-1 py-2 text-2xl'>$ {amount},00</p>
       </div>
     </div>
   )

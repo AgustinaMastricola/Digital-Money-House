@@ -22,7 +22,7 @@ const DashboardPage = () => {
   }
 
   return (
-    <div>
+    <main>
       <NavbarDashboard firstname={'Agustina'} lastname="Mastricola"/>
       
       <h1>
@@ -40,7 +40,7 @@ const DashboardPage = () => {
         {userAccount?.id}
       </p>
       <button onClick={getAccount}>ver cuenta</button>
-    </div>
+    </main>
   )
 }
 
