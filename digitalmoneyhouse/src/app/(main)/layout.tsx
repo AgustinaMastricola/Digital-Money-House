@@ -1,4 +1,4 @@
-import FooterLogin from "@/components/footer/FooterLogin";
+import Footer from "@/components/footer/Footer";
 import NavbarMain from "@/components/navbar/NavbarMain";
 import { FC, PropsWithChildren} from "react";
 
@@ -7,7 +7,7 @@ const LayoutLogin: FC<PropsWithChildren> = ({children}) => {
     <main className="bg-light-black">
       <NavbarMain/>
       <div className="h-full">{children}</div>
-      <FooterLogin/>
+      <Footer styleContainer="bg-total-primary" styleParagraph="text-total-black"/>
     </main>
   )
 }

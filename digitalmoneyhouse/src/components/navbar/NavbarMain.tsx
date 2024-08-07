@@ -7,7 +7,7 @@ const NavbarMain = () => {
   return (
     <nav className="p-3 bg-total-primary ">
       <div className='flex items-center'>
-        <Link href='/' className='col-span-2 col-start-1'>
+        <Link href='/'>
             <Image src={icon} alt="Icono brand" priority/>
         </Link>
       </div>

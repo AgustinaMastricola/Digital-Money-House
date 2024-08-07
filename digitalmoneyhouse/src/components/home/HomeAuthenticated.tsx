@@ -11,6 +11,8 @@ import CardUser from "../cards/CardUser"
 import accountAPI from "@/services/account/account.service"
 import { AccountData } from "@/types/account.types"
 import { TransferenceType } from "@/types/transference.types"
+import MenuMobile from "../menu/MenuMobile"
+import Footer from "../footer/Footer"
 
 const HomeAuthenticated = () => {
   const {data: session, status} = useSession();
@@ -46,22 +48,25 @@ const HomeAuthenticated = () => {
   }, [session, list.length]);
 
   return (
-    <main>
-      <div className="flex flex-col space-y-4 items-center py-5">
-        <div className="flex space-x-2 text-sm w-11/12">
-          <Image src={arrow} alt={"flecha inicio"}/>
-          <span className="underline">Inicio</span>
+    <>
+      <main className="md:w-full md:flex md:justify-between md:h-full">
+        <MenuMobile/>
+        <div className="flex flex-col space-y-4 items-center py-5 md:w-8/12 lg:w-9/12 xl:w-10/12 md:absolute md:right-0">
+          <div className="flex space-x-2 text-sm w-11/12">
+            <Image src={arrow} alt={"flecha inicio"}/>
+            <span className="underline">Inicio</span>
+          </div>
+          <CardUser amount={amountFormated}/>
+          <ButtonHome text={"Ingresar dinero"} href={"/transactions"}/>
+          <ButtonHome text={"Pago de servicios"} href={"/services"}/>
+          <div className="flex items-center w-11/12">
+            <Image src={iconSearch} alt="icono buscar" className="h-min absolute left-10"/>
+            <input placeholder="Buscar en tu actividad" className="hide-arrow p-3 pl-14 w-full border-t border-total-gray border-opacity-15 rounded-lg border-t-1  bg-total-white shadow-lg focus:outline-none"/>
+          </div>
+          <ActivityList transactions={list}/>
         </div>
-        <CardUser amount={amountFormated}/>
-        <ButtonHome text={"Ingresar dinero"} href={"/transactions"}/>
-        <ButtonHome text={"Pago de servicios"} href={"/services"}/>
-        <div className="flex items-center w-11/12">
-          <Image src={iconSearch} alt="icono buscar" className="h-min absolute left-10"/>
-          <input placeholder="Buscar en tu actividad" className="hide-arrow p-3 pl-14 w-full border-t border-total-gray border-opacity-15 rounded-lg border-t-1  bg-total-white shadow-lg focus:outline-none"/>
-        </div>
-        <ActivityList transactions={list}/>
-      </div>
-    </main>
+      </main>
+    </>
   )
 }
 

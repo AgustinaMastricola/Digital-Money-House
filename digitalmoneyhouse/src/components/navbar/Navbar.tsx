@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <nav className="p-3 bg-total-black ">
       <div className='flex items-center justify-between'>
-        <Link href='/' className='col-span-2 col-start-1'>
+        <Link href='/'>
           <Image src={icon} alt="Icono brand" priority/>
         </Link>
         <NavLinks links={links}/>

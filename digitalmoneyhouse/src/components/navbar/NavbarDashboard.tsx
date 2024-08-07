@@ -31,14 +31,17 @@ const NavbarDashboard = ({ firstname, lastname }: NavbarDashProps) => {
 		<>
 			<nav className="p-3 bg-total-black flex flex-col">
 				<div className="flex items-center justify-between w-full">
-					<Link href="/" className="col-span-2 col-start-1">
+					<Link href="/">
 						<Image src={iconBrand} alt="Icono de la marca" priority />
 					</Link>
-					<div className="flex space-x-6 mr-2">
-						<p className="text-total-black bg-total-primary uppercase p-2 rounded-lg font-bold text-lg">
+					<div className="flex space-x-6 mr-2 md:w-max items-center">
+						<p className="text-total-black bg-total-primary uppercase p-2 rounded-lg font-bold md:text-lg">
 							{iniciales}
 						</p>
-						<button onClick={handleClickMenu}>
+						<p className="hidden md:block text-total-primary font-bold text-1xl">
+							Hola, {firstname} {lastname}
+						</p>
+						<button onClick={handleClickMenu} className='block md:hidden'>
 							<Image src={iconMenu} alt="Menu desplegable" />
 						</button>
 					</div>
