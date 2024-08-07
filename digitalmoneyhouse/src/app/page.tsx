@@ -12,7 +12,7 @@ export default function Home() {
     <>
     <NavbarBase bgContainer="bg-total-black" logo="LogoVerde.png" sessionStatus={status}/>
     <div className="h-full md-w-full">
-      {status === 'authenticated'?
+      {status === 'authenticated' || status === 'loading' ?
         <HomeAuthenticated/>
       :
         <HomeAnauthenticated/>

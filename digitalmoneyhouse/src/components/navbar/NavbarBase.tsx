@@ -32,7 +32,7 @@ const NavbarBase = ({ bgContainer, logo, sessionStatus }: NavbarBaseProps) => {
 			</Link>
 			{pathName === "/login" || pathName === "/signup" ? (
 				<></>
-			) : sessionStatus === "authenticated" ? (
+			) : sessionStatus === "authenticated" || sessionStatus === "loading" ? (
 				<div className="flex space-x-6 mr-2 md:w-max items-center">
 					<p className="text-total-black bg-total-primary uppercase p-2 rounded-lg font-bold md:text-lg">
 						AM
