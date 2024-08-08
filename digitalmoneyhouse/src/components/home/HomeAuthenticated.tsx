@@ -53,8 +53,8 @@ const HomeAuthenticated = () => {
           <Menu/>
         </div>
         <div className="flex flex-col space-y-4 items-center py-5 md:w-8/12 lg:w-9/12 xl:w-10/12">
-          <div className="flex space-x-2 text-sm w-11/12">
-            <Image src={arrow} alt={"flecha inicio"}/>
+          <div className="flex space-x-2 text-sm w-11/12 items-center md:hidden">
+            <Image src={arrow} alt={"flecha inicio"} className="h-max"/>
             <span className="underline">Inicio</span>
           </div>
           <CardUser amount={amountFormated}/>
