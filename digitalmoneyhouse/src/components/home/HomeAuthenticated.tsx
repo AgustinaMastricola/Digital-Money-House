@@ -12,13 +12,11 @@ import accountAPI from "@/services/account/account.service"
 import { AccountData } from "@/types/account.types"
 import { TransferenceType } from "@/types/transference.types"
 import Menu from "../menu/Menu"
-import Footer from "../footer/Footer"
 
 const HomeAuthenticated = () => {
   const {data: session, status} = useSession();
   const [list, setList] = useState<TransferenceType[]>([]);
   const [amountFormated, setAmmountFormated] = useState('')
-  const [showMenu, setShowMenu] = useState(false);
   const [myAccount, setMyAccount] = useState<AccountData>({
     "alias":'',
     "available_amount": 0,
@@ -46,7 +44,7 @@ const HomeAuthenticated = () => {
     getDataActivity();
     getDataAccount()
     setAmmountFormated(myAccount.available_amount.toLocaleString('de-DE'))
-  }, [session, list.length]);
+  }, [session, list.length, myAccount.available_amount]);
 
   return (
     <>
@@ -60,8 +58,10 @@ const HomeAuthenticated = () => {
             <span className="underline">Inicio</span>
           </div>
           <CardUser amount={amountFormated}/>
-          <ButtonHome text={"Ingresar dinero"} href={"/transactions"}/>
-          <ButtonHome text={"Pago de servicios"} href={"/services"}/>
+          <div className="flex flex-col items-center w-full space-y-4 md:space-x-4 md:space-y-0 md:flex-row md:w-11/12">
+            <ButtonHome text={"Ingresar dinero"} href={"/transactions"}/>
+            <ButtonHome text={"Pago de servicios"} href={"/services"}/>
+          </div>
           <div className=" w-11/12">
             <div className="w-full flex items-center relative">
               <Image src={iconSearch} alt="icono buscar" className="h-min absolute left-4"/>
