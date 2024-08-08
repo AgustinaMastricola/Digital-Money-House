@@ -13,7 +13,7 @@ const MenuMobile = () => {
     {href:"/tarjetas", name:"Tarjetas"},
   ]
   return (
-		<div className="hidden md:block bg-total-primary z-10 h-full absolute left-0 w-2/3 md:w-4/12 lg:w-3/12 xl:w-2/12">
+		<div className="hidden md:block bg-total-primary z-10 h-full w-2/3 md:w-4/12 lg:w-3/12 xl:w-2/12">
 			<ul className="pl-10 pt-10 space-y-4">
 				{menuLinks.map((link, index) => (
 					<li className="text-total-black" key={`option-menu-${index}`}>

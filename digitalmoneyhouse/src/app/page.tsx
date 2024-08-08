@@ -9,17 +9,15 @@ export default function Home() {
   const { data: session, status } = useSession()
 
   return (
-    <>
+    <main>
     <NavbarBase bgContainer="bg-total-black" logo="LogoVerde.png" sessionStatus={status}/>
-    <div className="h-full md-w-full">
-      {status === 'authenticated' || status === 'loading' ?
+      {status === 'authenticated'?
         <HomeAuthenticated/>
       :
         <HomeAnauthenticated/>
       }
-    </div>
     <Footer styleContainer="bg-total-black" styleParagraph="text-total-primary"/>
-    </>
+    </main>
   );
 }
 
