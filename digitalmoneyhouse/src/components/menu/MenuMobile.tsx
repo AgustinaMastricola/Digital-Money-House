@@ -1,31 +1,25 @@
-import Link from 'next/link';
+import Menu from "./Menu"
 import Image from 'next/image'
-import iconClose from '../../../public/close.png'
-import { signOut } from 'next-auth/react'
 
-const MenuMobile = () => {
-  const menuLinks = [
-    {href:"/", name:"Inicio"},
-    {href:"/dashboard", name:"Actividad"},
-    {href:"/profile", name:"Tu perfil"},
-    {href:"/transactions", name:"Cargar dinero"},
-    {href:"/services", name:"Pagar servicios"},
-    {href:"/tarjetas", name:"Tarjetas"},
-  ]
-  return (
-		<div className="hidden md:block bg-total-primary z-10 w-2/3 md:w-4/12 lg:w-3/12 xl:w-2/12">
-			<ul className="pl-10 pt-10 space-y-4">
-				{menuLinks.map((link, index) => (
-					<li className="text-total-black" key={`option-menu-${index}`}>
-						<Link href={link.href}>{link.name}</Link>
-					</li>
-				))}
-				<button className="text-total-black" onClick={() => signOut()}>
-					Cerrar sesión
-				</button>
-			</ul>
+import { useState } from "react";
+
+type MenuMobileProps= {
+  firstname:string,
+  lastname: string,
+}
+
+const MenuMobile = ({ firstname, lastname }: MenuMobileProps) => {
+
+	return (
+		<div className="bg-total-primary  z-10 h-full absolute right-0 top-0 w-2/3 md:w-5/12">
+			<div className="bg-footer-gray py-14">
+				<p className="text-total-primary font-bold text-2xl pl-10">
+					Hola, <br /> {firstname} {lastname}
+				</p>
+			</div>
+			<Menu />
 		</div>
 	);
-}
+};
 
 export default MenuMobile

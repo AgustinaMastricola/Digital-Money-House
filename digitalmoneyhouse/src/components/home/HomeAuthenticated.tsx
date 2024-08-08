@@ -11,12 +11,14 @@ import CardUser from "../cards/CardUser"
 import accountAPI from "@/services/account/account.service"
 import { AccountData } from "@/types/account.types"
 import { TransferenceType } from "@/types/transference.types"
-import MenuMobile from "../menu/MenuMobile"
+import Menu from "../menu/Menu"
 import Footer from "../footer/Footer"
 
 const HomeAuthenticated = () => {
   const {data: session, status} = useSession();
   const [list, setList] = useState<TransferenceType[]>([]);
+  const [amountFormated, setAmmountFormated] = useState('')
+  const [showMenu, setShowMenu] = useState(false);
   const [myAccount, setMyAccount] = useState<AccountData>({
     "alias":'',
     "available_amount": 0,
@@ -24,7 +26,6 @@ const HomeAuthenticated = () => {
     "id": -1,
     "user_id": -1
   })
-  const [amountFormated, setAmmountFormated] = useState('')
 
   const getDataActivity = async () => {
     if (session?.user?.token) {
@@ -50,7 +51,9 @@ const HomeAuthenticated = () => {
   return (
     <>
       <div className="md:w-full md:flex md:justify-between">
-        <MenuMobile/>
+        <div className="hidden md:block w-4/12 lg:w-3/12 xl:w-2/12">
+          <Menu/>
+        </div>
         <div className="flex flex-col space-y-4 items-center py-5 md:w-8/12 lg:w-9/12 xl:w-10/12">
           <div className="flex space-x-2 text-sm w-11/12">
             <Image src={arrow} alt={"flecha inicio"}/>

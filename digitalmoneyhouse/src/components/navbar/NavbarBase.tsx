@@ -5,6 +5,9 @@ import NavLinks from "./NavLinks"
 import iconMenu from '../../../public/menu.png'
 import Image from 'next/image'
 import { useEffect, useState } from "react"
+import MenuMobile from "../menu/MenuMobile"
+import Menu from "../menu/Menu"
+import iconClose from '../../../public/close.png'
 
 type NavbarBaseProps = {
   bgContainer: string,
@@ -19,13 +22,18 @@ const links = [
 const NavbarBase = ({ bgContainer, logo, sessionStatus }: NavbarBaseProps) => {
 	const [pathName, setPathName] = useState("");
 	const location = usePathname();
+	const [showMenu, setShowMenu] = useState(false);
+
+	const handleClickMenu = () => {
+		setShowMenu(!showMenu);
+	};
 
 	useEffect(() => {
 		setPathName(location);
 		console.log(location, sessionStatus);
 	}, [sessionStatus]);
 
-	return (
+	return (<>
 		<nav className={`p-3 flex justify-between items-center ${bgContainer}`}>
 			<Link href="/">
 				<img src={logo} alt="Icono brand" />
@@ -40,7 +48,7 @@ const NavbarBase = ({ bgContainer, logo, sessionStatus }: NavbarBaseProps) => {
 					<p className="hidden md:block text-total-primary font-bold text-1xl">
 						Hola, Agustina Mastricola
 					</p>
-					<button className="block md:hidden">
+					<button className="block md:hidden" onClick={handleClickMenu}>
 						<Image src={iconMenu} alt="Menu desplegable" />
 					</button>
 				</div>
@@ -48,6 +56,15 @@ const NavbarBase = ({ bgContainer, logo, sessionStatus }: NavbarBaseProps) => {
 				<NavLinks links={links} />
 			)}
 		</nav>
+		{showMenu && 
+			<div>
+				<button className="absolute right-5 top-6 z-30" onClick={() => setShowMenu(false)}>
+					<Image src={iconClose} alt="cerrar menu" />
+				</button>
+				<MenuMobile firstname={"Agustina"} lastname={"Mastricola"}/>
+			</div>	
+		}
+	</>
 	);
 };
 
