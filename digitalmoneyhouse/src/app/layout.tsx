@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function RootLayout( {children,}: Readonly<{children: React.ReactNode;}>) {
   return (
     <html lang="en">
-      <body className="flex flex-col h-full`${openSans.className}`">
+      <body className="flex flex-col h-max `${openSans.className}`">
         <SessionAuthProvider>
           {children}
         </SessionAuthProvider>

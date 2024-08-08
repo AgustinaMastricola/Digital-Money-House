@@ -17,23 +17,19 @@
   }
 }
 html, body {
-  height: 100%;
+  height: max-content;
   margin: 0;
   padding: 0;
-}
-#__next {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 header {
   flex-shrink: 0;
 }
 main {
-  height: 100%;
+  height:max-content;
 }
 .hide-arrow[type="number"]::-webkit-inner-spin-button,
 .hide-arrow[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
