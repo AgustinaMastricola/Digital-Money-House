@@ -4,6 +4,7 @@ import ellipse from "../../../public/Ellipse.png"
 import transformDay from "@/utils/functions"
 import { TransferenceType } from "@/types/transference.types"
 import flecha from "../../../public/Vector1.png"
+import Link from "next/link"
 
 type ActivityListProps = {
   transactions: TransferenceType[]
@@ -39,7 +40,7 @@ const ActivityList = ({transactions}:ActivityListProps) => {
       </div>
         <hr className="text-medium-gray opacity-30 mt-2 w-full"/>
       <div className="flex justify-between w-full pr-5 items-center">
-        <button className="text-sm font-semibold py-3">Ver toda tu actividad</button>
+        <Link href={'/actividad'} className="text-sm font-semibold py-3">Ver toda tu actividad</Link>
         <Image src={flecha} alt="icono" className="h-max"/>
       </div>
     </div>

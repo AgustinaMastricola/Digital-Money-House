@@ -45,9 +45,9 @@ const NavbarBase = ({ bgContainer, logo, sessionStatus }: NavbarBaseProps) => {
 					<p className="text-total-black bg-total-primary uppercase p-2 rounded-lg font-bold md:text-lg">
 						AM
 					</p>
-					<p className="hidden md:block text-total-primary font-bold text-1xl">
+					<Link className="hidden md:block text-total-primary font-bold text-1xl" href={"/perfil"}>
 						Hola, Agustina Mastricola
-					</p>
+					</Link>
 					<button className="block md:hidden" onClick={handleClickMenu}>
 						<Image src={iconMenu} alt="Menu desplegable" />
 					</button>

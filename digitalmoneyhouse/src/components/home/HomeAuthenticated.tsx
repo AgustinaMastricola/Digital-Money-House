@@ -59,8 +59,8 @@ const HomeAuthenticated = () => {
           </div>
           <CardUser amount={amountFormated}/>
           <div className="flex flex-col items-center w-full space-y-4 md:space-x-4 md:space-y-0 md:flex-row md:w-11/12">
-            <ButtonHome text={"Ingresar dinero"} href={"/transactions"}/>
-            <ButtonHome text={"Pago de servicios"} href={"/services"}/>
+            <ButtonHome text={"Ingresar dinero"} href={"/transacciones"}/>
+            <ButtonHome text={"Pago de servicios"} href={"/servicios"}/>
           </div>
           <div className=" w-11/12">
             <div className="w-full flex items-center relative">
