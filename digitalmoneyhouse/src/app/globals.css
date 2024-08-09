@@ -25,7 +25,7 @@ header {
   flex-shrink: 0;
 }
 main {
-  height:max-content;
+  height:100%;
 }
 .hide-arrow[type="number"]::-webkit-inner-spin-button,
 .hide-arrow[type="number"]::-webkit-outer-spin-button {

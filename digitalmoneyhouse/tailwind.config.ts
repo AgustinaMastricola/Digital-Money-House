@@ -16,7 +16,7 @@ const config: Config = {
       "total-gray":"#7F7F7F",
       "medium-gray":"#A6A5A7",
       "footer-gray":"#3A393E",
-      "light-gray":"CECECE",
+      "light-gray":"#CECECE",
       "error-text":"#E91010",
     },
     extend: {
