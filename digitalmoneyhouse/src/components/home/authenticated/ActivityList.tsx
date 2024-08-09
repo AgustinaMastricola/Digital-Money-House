@@ -1,9 +1,9 @@
 
 import Image from "next/image"
-import ellipse from "../../../public/Ellipse.png"
+import ellipse from "../../../../public/Ellipse.png"
 import transformDay from "@/utils/functions"
 import { TransferenceType } from "@/types/transference.types"
-import flecha from "../../../public/Vector1.png"
+import flecha from "../../../../public/Vector1.png"
 import Link from "next/link"
 
 type ActivityListProps = {

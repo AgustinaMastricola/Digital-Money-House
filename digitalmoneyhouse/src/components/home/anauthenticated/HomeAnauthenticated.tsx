@@ -1,4 +1,4 @@
-import InfoHome from "../banner/InfoHome";
+import InfoHome from "./InfoHome";
 
 const HomeAnauthenticated = () => {
 	return (

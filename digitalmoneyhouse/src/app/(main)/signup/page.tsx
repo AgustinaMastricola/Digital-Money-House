@@ -1,4 +1,4 @@
-import FormularioSignup from '@/components/forms/FormularioSignup'
+import FormularioSignup from '@/components/signup/FormularioSignup'
 import React from 'react'
 
 const Signup = () => {

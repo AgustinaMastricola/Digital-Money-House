@@ -2,12 +2,11 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import NavLinks from "./NavLinks"
-import iconMenu from '../../../public/menu.png'
+import iconMenu from '../../../../public/menu.png'
 import Image from 'next/image'
 import { useEffect, useState } from "react"
 import MenuMobile from "../menu/MenuMobile"
-import Menu from "../menu/Menu"
-import iconClose from '../../../public/close.png'
+import iconClose from '../../../../public/close.png'
 
 type NavbarBaseProps = {
   bgContainer: string,

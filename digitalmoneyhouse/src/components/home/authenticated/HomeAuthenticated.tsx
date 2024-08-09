@@ -1,17 +1,17 @@
 'use client'
 import Image from "next/image"
-import ButtonHome from "../buttons/ButtonHome"
-import iconSearch from "../../../public/search.png"
-import arrow from "../../../public/Vector1.png"
-import ActivityList from "../lists/ActivityList"
+import ButtonHome from "../../common/buttons/ButtonHome"
+import iconSearch from "../../../../public/search.png"
+import arrow from "../../../../public/Vector1.png"
+import ActivityList from "./ActivityList"
 import { useEffect, useState } from "react"
 import transactionsAPI from "@/services/transactions/transactions.service"
 import { useSession } from "next-auth/react"
-import CardUser from "../cards/CardUser"
+import CardUser from "./CardUser"
 import accountAPI from "@/services/account/account.service"
 import { AccountData } from "@/types/account.types"
 import { TransferenceType } from "@/types/transference.types"
-import Menu from "../menu/Menu"
+import Menu from "../../common/menu/Menu"
 
 const HomeAuthenticated = () => {
   const {data: session, status} = useSession();
