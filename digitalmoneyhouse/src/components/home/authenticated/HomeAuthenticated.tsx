@@ -21,13 +21,14 @@ const HomeAuthenticated = () => {
     "alias":'',
     "available_amount": 0,
     "cvu": '',
-    "id": -1,
-    "user_id": -1
+    "id": 0,
+    "user_id": 0
   })
 
   const getDataActivity = async () => {
     if (session?.user?.token) {
-      const res = await transactionsAPI.getAllTransactionsUser(`${session.user.token}`, 149);
+      const getAccount = await accountAPI.getMyAccount(`${session.user.token}`)
+      const res = await transactionsAPI.getAllTransactionsUser(`${session.user.token}`, getAccount.id);
       console.log(res)
       setList(res)
     }
@@ -44,7 +45,7 @@ const HomeAuthenticated = () => {
     getDataActivity();
     getDataAccount()
     setAmmountFormated(myAccount.available_amount.toLocaleString('de-DE'))
-  }, [session, list.length, myAccount.available_amount]);
+  }, [session, list.length]);
 
   return (
     <>

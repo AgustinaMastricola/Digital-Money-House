@@ -30,7 +30,7 @@ const NavbarBase = ({ bgContainer, logo, sessionStatus }: NavbarBaseProps) => {
 	useEffect(() => {
 		setPathName(location);
 		console.log(location, sessionStatus);
-	}, [sessionStatus]);
+	}, [sessionStatus==='anauthenticated']);
 
 	return (<>
 		<nav className={`p-3 flex justify-between items-center ${bgContainer}`}>
