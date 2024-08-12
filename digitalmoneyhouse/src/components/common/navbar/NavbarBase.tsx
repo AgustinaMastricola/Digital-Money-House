@@ -32,38 +32,47 @@ const NavbarBase = ({ bgContainer, logo, sessionStatus }: NavbarBaseProps) => {
 		console.log(location, sessionStatus);
 	}, [sessionStatus==='anauthenticated']);
 
-	return (<>
-		<nav className={`p-3 flex justify-between items-center ${bgContainer}`}>
-			<Link href="/">
-				<img src={logo} alt="Icono brand" />
-			</Link>
-			{pathName === "/login" || pathName === "/signup" ? (
-				<></>
-			) : sessionStatus === "authenticated" ? (
-				<div className="flex space-x-6 mr-2 md:w-max items-center">
-					<p className="text-total-black bg-total-primary uppercase p-2 rounded-lg font-bold md:text-lg">
-						AM
-					</p>
-					<Link className="hidden md:block text-total-primary font-bold text-1xl" href={"/perfil"}>
-						Hola, Agustina Mastricola
-					</Link>
-					<button className="block md:hidden" onClick={handleClickMenu}>
-						<Image src={iconMenu} alt="Menu desplegable" />
+	return (
+		<>
+			<nav className={`p-3 flex justify-between items-center ${bgContainer}`}>
+				<Link href="/">
+					<img src={logo} alt="Icono brand" />
+				</Link>
+				{pathName === "/login" || pathName === "/signup" && sessionStatus==="anauthenticated" ?(
+					<></>
+				) : sessionStatus === "authenticated" ? (
+					<div className="flex space-x-6 mr-2 md:w-max items-center">
+						<p className="text-total-black bg-total-primary uppercase p-2 rounded-lg font-bold md:text-lg">
+							AM
+						</p>
+						<Link
+							className="hidden md:block text-total-primary font-bold text-1xl"
+							href={"/perfil"}
+						>
+							Hola, Agustina Mastricola
+						</Link>
+						<button className="block md:hidden" onClick={handleClickMenu}>
+							<Image src={iconMenu} alt="Menu desplegable" />
+						</button>
+					</div>
+				) : sessionStatus === "loading" || sessionStatus==="anauthenticated" ?(
+					<></>
+				) : (
+					<NavLinks links={links} />
+				)}
+			</nav>
+			{showMenu && (
+				<div>
+					<button
+						className="absolute right-5 top-6 z-30"
+						onClick={() => setShowMenu(false)}
+					>
+						<Image src={iconClose} alt="cerrar menu" />
 					</button>
+					<MenuMobile firstname={"Agustina"} lastname={"Mastricola"} />
 				</div>
-			) : (
-				<NavLinks links={links} />
 			)}
-		</nav>
-		{showMenu && 
-			<div>
-				<button className="absolute right-5 top-6 z-30" onClick={() => setShowMenu(false)}>
-					<Image src={iconClose} alt="cerrar menu" />
-				</button>
-				<MenuMobile firstname={"Agustina"} lastname={"Mastricola"}/>
-			</div>	
-		}
-	</>
+		</>
 	);
 };
 

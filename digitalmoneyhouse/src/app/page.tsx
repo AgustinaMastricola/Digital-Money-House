@@ -14,6 +14,9 @@ export default function Home() {
       {status === 'authenticated'?
         <HomeAuthenticated/>
       :
+      status === 'loading'?
+        <></>
+      :  
         <HomeAnauthenticated/>
       }
     <Footer styleContainer="bg-total-black" styleParagraph="text-total-primary"/>
