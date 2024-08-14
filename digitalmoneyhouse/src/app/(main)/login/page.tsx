@@ -1,4 +1,4 @@
-import FormularioLogin from '@/components/forms/FormularioLogin'
+import FormularioLogin from '@/components/login/FormularioLogin'
 import React from 'react'
 
 const Login = () => {

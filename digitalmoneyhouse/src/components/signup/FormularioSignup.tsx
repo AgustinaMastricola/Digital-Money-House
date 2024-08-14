@@ -1,11 +1,11 @@
 'use client'
-import ButtonSubmit from "../buttons/buttonSubmitForm";
+import ButtonSubmit from "../common/buttons/buttonSubmitForm";
 import { FormProvider, useForm } from "react-hook-form";
-import InputText from "../inputs/inputText";
+import InputText from "../common/inputs/inputText";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useState } from "react";
-import SuccessMesage from "../register/SuccessMesage";
-import InputNumber from "../inputs/inputNumber";
+import SuccessMesage from "../signup/SuccessMesage";
+import InputNumber from "../common/inputs/inputNumber";
 import { signupSchema } from "@/lib/yup";
 import { SignupFormData } from "@/types/formData.types";
 import userApi from "@/services/users/user.service";

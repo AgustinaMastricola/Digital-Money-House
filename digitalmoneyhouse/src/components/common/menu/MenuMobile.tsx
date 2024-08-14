@@ -1,7 +1,4 @@
 import Menu from "./Menu"
-import Image from 'next/image'
-
-import { useState } from "react";
 
 type MenuMobileProps= {
   firstname:string,

@@ -1,17 +1,17 @@
 'use client'
 import Image from "next/image"
-import ButtonHome from "../buttons/ButtonHome"
-import iconSearch from "../../../public/search.png"
-import arrow from "../../../public/Vector1.png"
-import ActivityList from "../lists/ActivityList"
+import ButtonHome from "../../common/buttons/ButtonHome"
+import iconSearch from "../../../../public/search.png"
+import arrow from "../../../../public/Vector1.png"
+import ActivityList from "./ActivityList"
 import { useEffect, useState } from "react"
 import transactionsAPI from "@/services/transactions/transactions.service"
 import { useSession } from "next-auth/react"
-import CardUser from "../cards/CardUser"
+import CardUser from "./CardUser"
 import accountAPI from "@/services/account/account.service"
 import { AccountData } from "@/types/account.types"
 import { TransferenceType } from "@/types/transference.types"
-import Menu from "../menu/Menu"
+import Menu from "../../common/menu/Menu"
 
 const HomeAuthenticated = () => {
   const {data: session, status} = useSession();
@@ -21,13 +21,14 @@ const HomeAuthenticated = () => {
     "alias":'',
     "available_amount": 0,
     "cvu": '',
-    "id": -1,
-    "user_id": -1
+    "id": 0,
+    "user_id": 0
   })
 
   const getDataActivity = async () => {
     if (session?.user?.token) {
-      const res = await transactionsAPI.getAllTransactionsUser(`${session.user.token}`, 149);
+      const getAccount = await accountAPI.getMyAccount(`${session.user.token}`)
+      const res = await transactionsAPI.getAllTransactionsUser(`${session.user.token}`, getAccount.id);
       console.log(res)
       setList(res)
     }
@@ -44,7 +45,7 @@ const HomeAuthenticated = () => {
     getDataActivity();
     getDataAccount()
     setAmmountFormated(myAccount.available_amount.toLocaleString('de-DE'))
-  }, [session, list.length, myAccount.available_amount]);
+  }, [session, list.length]);
 
   return (
     <>

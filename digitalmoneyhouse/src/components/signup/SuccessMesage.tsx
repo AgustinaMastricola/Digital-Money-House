@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import check from '../../../public/Check.png'
-import ButtonPrimary from '../buttons/buttonLogin'
+import ButtonPrimary from '../common/buttons/buttonLogin'
 
 type SuccessMesageProps = {
   style: string;

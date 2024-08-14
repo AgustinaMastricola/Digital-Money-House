@@ -1,12 +1,11 @@
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
 
 type CardUserProps = {
   amount: string
 }
 const CardUser = ({amount}:CardUserProps) => {
   return (
-    <div className='bg-total-black w-11/12 h-1/4 rounded-lg p-2'>
+    <div className='bg-total-black w-11/12 h-2/4 rounded-lg p-2'>
       <div className='text-total-white text-sm flex justify-end items-center space-x-2'>
         <Link className='underline' href={'/tarjetas'}>Ver tarjetas</Link>
         <Link className='underline' href={'/perfil'}>Ver CVU</Link>

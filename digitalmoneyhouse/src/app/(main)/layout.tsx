@@ -1,6 +1,6 @@
 'use client'
-import Footer from "@/components/footer/Footer";
-import NavbarBase from "@/components/navbar/NavbarBase";
+import Footer from "@/components/common/footer/Footer";
+import NavbarBase from "@/components/common/navbar/NavbarBase";
 import { FC, PropsWithChildren} from "react";
 
 const LayoutLogin: FC<PropsWithChildren> = ({children}) => {

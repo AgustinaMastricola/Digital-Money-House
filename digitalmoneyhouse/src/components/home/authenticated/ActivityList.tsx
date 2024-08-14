@@ -1,9 +1,9 @@
 
 import Image from "next/image"
-import ellipse from "../../../public/Ellipse.png"
+import ellipse from "../../../../public/Ellipse.png"
 import transformDay from "@/utils/functions"
 import { TransferenceType } from "@/types/transference.types"
-import flecha from "../../../public/Vector1.png"
+import flecha from "../../../../public/Vector1.png"
 import Link from "next/link"
 
 type ActivityListProps = {
@@ -22,7 +22,7 @@ const ActivityList = ({transactions}:ActivityListProps) => {
     <div className="w-11/12 pl-2 pt-3 md:pl-10 lg:pl-4 flex flex-col items-start border border-total-gray border-opacity-15 rounded-lg border-1  bg-total-white drop-shadow-2xl ">
       <h1 className="text-base my-2">Tu actividad</h1>
       <div className="w-11/12 flex flex-col-reverse">
-        {
+        { transactions ?
           transactions.map((item, index)=>(
             <div key={`tansaction-${index}`}>
               <hr className="text-medium-gray opacity-30"/>
@@ -36,6 +36,10 @@ const ActivityList = ({transactions}:ActivityListProps) => {
               </div>
             </div>
           )) 
+          :
+          <>
+          <p>No tienes transacciones en tu cuenta</p>
+          </>
         }
       </div>
         <hr className="text-medium-gray opacity-30 mt-2 w-full"/>

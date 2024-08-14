@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".next/services/**/*.ts","tailwind.config.ts", "src/components/footer/FooterLogin.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".next/services/**/*.ts","tailwind.config.ts", "src/components/common/footer/FooterLogin.tsx"],
   "exclude": ["node_modules"]
 }

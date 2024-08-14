@@ -1,8 +1,8 @@
 'use client'
-import Footer from "@/components/footer/Footer";
-import HomeAnauthenticated from "@/components/home/HomeAnauthenticated";
-import HomeAuthenticated from "@/components/home/HomeAuthenticated";
-import NavbarBase from "@/components/navbar/NavbarBase";
+import Footer from "@/components/common/footer/Footer";
+import HomeAnauthenticated from "@/components/home/anauthenticated/HomeAnauthenticated";
+import HomeAuthenticated from "@/components/home/authenticated/HomeAuthenticated";
+import NavbarBase from "@/components/common/navbar/NavbarBase";
 import { useSession } from "next-auth/react";
 
 export default function Home() {  
@@ -14,6 +14,9 @@ export default function Home() {
       {status === 'authenticated'?
         <HomeAuthenticated/>
       :
+      status === 'loading'?
+        <></>
+      :  
         <HomeAnauthenticated/>
       }
     <Footer styleContainer="bg-total-black" styleParagraph="text-total-primary"/>
