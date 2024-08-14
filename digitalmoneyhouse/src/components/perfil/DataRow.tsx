@@ -12,9 +12,6 @@ const DataRow = ({data, title}:dataProp) => {
 					<span>{title}</span>
 					<p className="text-total-gray">{data}</p>
 				</div>
-				<button className="col-start-4 invisible">
-					<Image src={iconEdit} alt={"Botón editar"} />
-				</button>
 			</li>
 	);
 };

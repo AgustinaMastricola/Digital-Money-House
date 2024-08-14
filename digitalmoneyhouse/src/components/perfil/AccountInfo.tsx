@@ -1,6 +1,9 @@
 import { AccountData } from "@/types/account.types"
 import Image from "next/image"
 import iconCopy from '../../../public/cliboardIcon.png';
+import iconEditAlias from '../../../public/IconoeditarV.png';
+import iconClose from '../../../public/close.png';
+import iconCheck from '../../../public/Check.png';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { useState } from "react";
 
@@ -11,6 +14,7 @@ type DataProps = {
 const AccountInfo = ({ accountData }: DataProps) => {
 	const [cvuCopied, setCvuCopied] = useState(false);
 	const [aliasCopied, setAliasCopied] = useState(false);
+	const [openInputEdit, setOpenInputEdit] = useState(false)
 
 	const copyCvu = () => {
 		setCvuCopied(true);
@@ -24,6 +28,12 @@ const AccountInfo = ({ accountData }: DataProps) => {
 			setAliasCopied(false);
 		}, 10000);
 	};
+	const openInput = () => {
+		setOpenInputEdit(true)
+	}
+	const updateAlias = () => {
+		 
+	}
 	return (
 		<div className="bg-total-black w-11/12 h-2/4 rounded-lg p-2 space-y-8 py-5 md:py-10 px-5">
 			<p className="text-total-white text-sm md:text-base md:font-semibold">
@@ -51,7 +61,19 @@ const AccountInfo = ({ accountData }: DataProps) => {
 			<div className="flex items-center justify-between">
 				<div>
 					<p className="text-total-primary font-bold text-lg">Alias</p>
-					<p className="text-total-white">{accountData.alias}</p>
+					<div className="flex items-center">
+						<p className={`text-total-white mr-3 ${openInputEdit ? 'hidden' : 'block' }`}>{accountData.alias}</p>
+						<input type="text" placeholder={`${accountData.alias}`} className={`rounded p-2 bg-total-gray placeholder:text-total-black ${openInputEdit? 'block' : 'hidden'}`} />
+						<button onClick={openInput} className={`ml-3 ${openInputEdit?'hidden':'block'}`}>
+							<Image src={iconEditAlias} alt={"Editar alias"} className="w-6 h-6"/>
+						</button>
+						<button onClick={updateAlias} className={`ml-3 ${openInputEdit?'block':'hidden'}`}>
+							<Image src={iconCheck} alt={"Editar alias"} className="w-6 h-6"/>
+						</button>
+						<button onClick={()=> setOpenInputEdit(false)} className={`ml-3 ${openInputEdit?'block':'hidden'}`}>
+							<Image src={iconClose} alt={"Cancelar edición"} className="w-4 h-4"/>
+						</button>
+					</div>
 				</div>
 				<CopyToClipboard text={`${accountData.alias}`}>
 					{aliasCopied ? (
