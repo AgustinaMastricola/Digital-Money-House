@@ -57,7 +57,6 @@ const page = () => {
         </div>
       </div>
     </main>
-    <Footer styleContainer="bg-total-black" styleParagraph="text-total-primary"/>
     </>
   )
 }

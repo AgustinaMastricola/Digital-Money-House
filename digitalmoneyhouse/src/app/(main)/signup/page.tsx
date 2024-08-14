@@ -3,11 +3,11 @@ import React from 'react'
 
 const Signup = () => {
   return (
-    <>
-      <div className='bg-light-black h-full flex flex-col items-center'>
+    <main>
+      <div className='bg-light-black h-full flex flex-col items-center pb-28'>
         <FormularioSignup/>
       </div>
-    </>
+    </main>
   )
 }
 

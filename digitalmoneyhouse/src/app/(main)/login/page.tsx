@@ -3,11 +3,11 @@ import React from 'react'
 
 const Login = () => {
   return (
-    <>
-      <div className='bg-light-black h-full flex flex-col justify-start items-center py-20'>
+    <main>
+      <div className='bg-light-black h-full flex flex-col justify-start items-center py-20 pb-52 md:pb-32'>
         <FormularioLogin/>
       </div>
-    </>
+    </main>
   )
 }
 
