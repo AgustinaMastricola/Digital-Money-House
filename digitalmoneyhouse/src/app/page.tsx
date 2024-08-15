@@ -2,9 +2,9 @@
 import Footer from "@/components/common/footer/Footer";
 import HomeAnauthenticated from "@/components/home/anauthenticated/HomeAnauthenticated";
 import HomeAuthenticated from "@/components/home/authenticated/HomeAuthenticated";
-import NavbarBase from "@/components/common/navbar/NavbarBase";
 import { useSession } from "next-auth/react";
 import Header from "@/components/common/navbar/Header";
+
 const links = [
   {href:"/login", name:"Ingresar", outline: true},
   {href:"/signup", name: "Crear cuenta"},

@@ -1,4 +1,3 @@
-import Button from "@/components/common/buttons/Button";
 import Header from "@/components/common/navbar/Header";
 import FormularioLogin from "@/components/login/FormularioLogin";
 import React from "react";
