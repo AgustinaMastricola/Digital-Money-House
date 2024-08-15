@@ -12,6 +12,7 @@ import accountAPI from "@/services/account/account.service"
 import { AccountData } from "@/types/account.types"
 import { TransferenceType } from "@/types/transference.types"
 import Menu from "../../common/menu/Menu"
+import HeaderDashboard from "@/components/common/navbar/HeaderDashboard"
 
 const HomeAuthenticated = () => {
   const {data: session, status} = useSession();
@@ -49,6 +50,7 @@ const HomeAuthenticated = () => {
 
   return (
     <>
+      <HeaderDashboard firstname="Agustina" lastname="Mastricola"/>
       <div className="md:w-full md:flex md:justify-between">
         <div className="hidden md:block w-4/12 lg:w-3/12 xl:w-2/12">
           <Menu/>

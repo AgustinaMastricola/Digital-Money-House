@@ -5,15 +5,14 @@ import clsx from "clsx"
 
 type HeaderProps ={
   logoSrc:string,
-  logoClassName: string,
   headerClassName?: string,
   links?: LinksType[]
 }
 
-function Header({logoSrc, logoClassName, headerClassName, links}:HeaderProps) {
+function Header({logoSrc, headerClassName, links}:HeaderProps) {
   return (
-    <header className={clsx('flex items-center justify-between',headerClassName)}>
-      <LogoHeader src={logoSrc} className={logoClassName}/>
+    <header className={clsx('flex items-center justify-between py-2',headerClassName)}>
+      <LogoHeader src={logoSrc}/>
       <NavLinks links={links}/>
     </header>
   )

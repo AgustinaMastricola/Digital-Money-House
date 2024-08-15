@@ -7,7 +7,7 @@ const Login = () => {
 		<>
 			<Header
 				logoSrc={"LogoNegro.png"}
-				logoClassName={"p-2"}
+				
 				headerClassName="bg-total-primary"
 			/>
 			<main>

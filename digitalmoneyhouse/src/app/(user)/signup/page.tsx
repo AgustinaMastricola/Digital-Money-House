@@ -9,7 +9,6 @@ const Signup = () => {
 		<>
 			<Header
 				logoSrc={"LogoNegro.png"}
-				logoClassName={"p-2"}
 				headerClassName="bg-total-primary"
 				links={links}
 			/>

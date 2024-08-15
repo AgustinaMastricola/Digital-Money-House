@@ -13,7 +13,7 @@ export default function Home() {
   const { data: session, status } = useSession()
   return (
     <>
-      <Header logoSrc={"LogoVerde.png"} logoClassName={"p-2"} headerClassName="bg-total-black" links={links}/>
+      
       <main className="h-full">
         {status === 'authenticated'?
           <HomeAuthenticated/>

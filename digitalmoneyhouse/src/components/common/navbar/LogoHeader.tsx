@@ -4,11 +4,11 @@ type LogoProps = {
   src: string,
   className?:string
 }
-function LogoHeader({src, className}:LogoProps) {
+function LogoHeader({src}:LogoProps) {
   return (
     <Link 
       href="/">
-			<img src={src} alt='Logo de la marca' className={className} />
+			<img src={src} alt='Logo de la marca' className='p-2' />
 		</Link>
   )
 }
