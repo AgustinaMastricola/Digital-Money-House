@@ -1,24 +1,28 @@
 'use client'
 import { LinksType } from "@/types/links.types"
+import clsx from "clsx"
 import Link from "next/link"
 
 type NavbarProps= {
-    links: LinksType[]
+    links?: LinksType[]
 }
 
 const NavLinks = ({links}:NavbarProps) => {
     return (
-        <ul className='w-full grid grid-cols-7 sm:grid-cols-4 md:grid-cols-6 xl:grid-cols-10'>
-            <div className="flex space-x-3 col-span-6 col-start-8 sm:col-start-8 ">
-                {links.map((link, index)=>(
-                    <li 
-                        key={`navbar-link-${index}`} 
-                        className={link.style && `${link.style} px-3 py-2 text-xs rounded-lg border font-bold`}>
-                        <Link href={link.href}>{link.name}</Link>
-                    </li>
-                ))}
-            </div>
-        </ul>
+        <div className="flex space-x-3 mr-2">
+            {links && links.map((link, index)=>(
+                <Link 
+                    key={`navbar-link-${index}`}
+                    className={clsx('px-3 py-2 text-xs rounded-lg border font-bold' ,{
+                        'bg-total-primary text-total-black border-none': !link.outline && !link.solid,
+                        'bg-total-black text-total-primary border-total-primary': link.outline,
+                        'bg-total-gray border-total-gray':link.solid
+                    })} 
+                    href={link.href}>
+                    {link.name}
+                </Link>
+            ))}
+        </div>
     )
 }
 export default NavLinks

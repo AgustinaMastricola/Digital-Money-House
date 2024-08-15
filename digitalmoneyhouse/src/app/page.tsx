@@ -4,14 +4,17 @@ import HomeAnauthenticated from "@/components/home/anauthenticated/HomeAnauthent
 import HomeAuthenticated from "@/components/home/authenticated/HomeAuthenticated";
 import NavbarBase from "@/components/common/navbar/NavbarBase";
 import { useSession } from "next-auth/react";
-
-export default function Home() {  
+import Header from "@/components/common/navbar/Header";
+const links = [
+  {href:"/login", name:"Ingresar", outline: true},
+  {href:"/signup", name: "Crear cuenta"},
+] 
+export default function Home() {
   const { data: session, status } = useSession()
-
   return (
     <>
+      <Header logoSrc={"LogoVerde.png"} logoClassName={"p-2"} headerClassName="bg-total-black" links={links}/>
       <main className="h-full">
-      <NavbarBase bgContainer="bg-total-black" logo="LogoVerde.png" sessionStatus={status}/>
         {status === 'authenticated'?
           <HomeAuthenticated/>
         :
