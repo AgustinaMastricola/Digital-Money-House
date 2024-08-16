@@ -30,6 +30,8 @@ const handler = NextAuth({
       }
     }),
   ],
+  secret:process.env.NEXTAUTH_SECRET,
+  
   callbacks:{
     //Esto sirve para agregarle mas informacion a la sesion que la que viene por defecto
     async jwt({token, user}){
@@ -42,6 +44,7 @@ const handler = NextAuth({
   },
   pages:{
     signIn: '/login',
+    
   }
 })
 
