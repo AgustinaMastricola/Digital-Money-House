@@ -1,6 +1,5 @@
 import Header from "@/components/common/navbar/Header";
 import FormularioSignup from "@/components/signup/FormularioSignup";
-import React from "react";
 
 const links = [{ href: "/login", name: "Ingresar", solid: true }];
 

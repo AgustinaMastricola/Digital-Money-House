@@ -1,13 +1,11 @@
 import Header from "@/components/common/navbar/Header";
 import FormularioLogin from "@/components/login/FormularioLogin";
-import React from "react";
 
 const Login = () => {
 	return (
 		<>
 			<Header
 				logoSrc={"LogoNegro.png"}
-				
 				headerClassName="bg-total-primary"
 			/>
 			<main>
