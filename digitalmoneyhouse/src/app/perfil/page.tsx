@@ -1,7 +1,6 @@
 "use client";
 import Menu from "@/components/common/menu/Menu";
 import HeaderDashboard from "@/components/common/navbar/HeaderDashboard";
-import NavbarBase from "@/components/common/navbar/NavbarBase";
 import AccountInfo from "@/components/perfil/AccountInfo";
 import PaymentGestion from "@/components/perfil/PaymentGestion";
 import UserInfo from "@/components/perfil/UserInfo";
