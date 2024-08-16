@@ -1,3 +1,4 @@
+'use client'
 import LogoHeader from "./LogoHeader";
 import Link from "next/link";
 import Image from "next/image";
