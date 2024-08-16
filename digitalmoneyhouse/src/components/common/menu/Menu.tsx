@@ -12,7 +12,7 @@ const Menu = () => {
   ]
 
   return (
-		<div className="bg-total-primary z-10 md:w-full md:h-full">
+		<div className="bg-total-primary z-10 md:w-full md:h-screen">
 			<ul className="pl-10 py-10 space-y-4 w-full">
 				{menuLinks.map((link, index) => (
 					<li className="text-total-black" key={`option-menu-${index}`}>
