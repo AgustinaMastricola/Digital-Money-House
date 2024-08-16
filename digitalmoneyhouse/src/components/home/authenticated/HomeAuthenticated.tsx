@@ -51,7 +51,7 @@ const HomeAuthenticated = () => {
   return (
     <>
       <HeaderDashboard firstname="Agustina" lastname="Mastricola"/>
-      <div className="md:w-full md:flex md:justify-between">
+      <main className="md:w-full md:flex md:justify-between">
         <div className="hidden md:block w-4/12 lg:w-3/12 xl:w-2/12">
           <Menu/>
         </div>
@@ -73,7 +73,7 @@ const HomeAuthenticated = () => {
           </div>
           <ActivityList transactions={list}/>
         </div>
-      </div>
+      </main>
     </>
   )
 }
