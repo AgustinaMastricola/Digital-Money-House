@@ -8,13 +8,14 @@ export default function Home() {
   const { data: session, status } = useSession()
   return (
     <>
-        {status === 'authenticated'?
-          <HomeAuthenticated/>
-        :
-        status === 'loading'?
-          <></>
-        :  
+        {!session && 
           <HomeAnauthenticated/>
+        }
+        {status === 'authenticated' ?
+          <HomeAuthenticated/>
+          :
+          status === 'loading' &&
+          <></>
         }
       <Footer styleContainer="bg-total-black" styleParagraph="text-total-primary"/>
     </>
