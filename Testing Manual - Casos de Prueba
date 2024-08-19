@@ -1,0 +1,8 @@
+Requisitos del proyecto en el area de Testing y Calidad:
+- Agregar a la planilla de casos de prueba sobre las funcionalidades del sprint 1.
+- En caso de ser necesario, realizar mantenimiento de los casos de prueba manuales generados en el sprint 1.
+- Clasificar los casos de prueba en suite de smoke y regression test.
+- Subir a GitLab la planilla de casos de prueba adjunta o el link al archivo.
+
+Link al registro de pruebas ejecutadas:
+https://docs.google.com/spreadsheets/d/1W8UCHMcSLctExBnqa01GEdmhOp_ByHuq7T6vOxQAra8/edit?usp=sharing
