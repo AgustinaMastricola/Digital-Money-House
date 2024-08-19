@@ -50,7 +50,7 @@ const HomeAuthenticated = () => {
 
   return (
     <>
-      <HeaderDashboard firstname="Agustina" lastname="Mastricola"/>
+      <HeaderDashboard/>
       <main className="md:w-full md:flex md:justify-between">
         <div className="hidden md:block w-4/12 lg:w-3/12 xl:w-2/12">
           <Menu/>
