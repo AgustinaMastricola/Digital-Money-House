@@ -42,8 +42,6 @@ const HeaderDashboard = () => {
 		getDataUser();
 	}, [session]);
 
-
-
 	const handleClickMenu = () => {
 		setShowMenu(!showMenu);
 	};
@@ -52,9 +50,14 @@ const HeaderDashboard = () => {
 		<>
 			<header className="flex items-center justify-between bg-total-black py-2 pr-3 md:hidden">
 				<LogoHeader src="LogoVerde.png" />
-				<button className="block md:hidden" onClick={handleClickMenu}>
-					<Image src={iconMenu} alt="Menu desplegable" />
-				</button>
+				<div className="flex space-x-5 items-center">
+					<Link className="text-total-black bg-total-primary uppercase p-2 rounded-lg font-bold md:text-lg" href={"/perfil"}>
+						{initalsName}
+					</Link>
+					<button className="block md:hidden" onClick={handleClickMenu}>
+						<Image src={iconMenu} alt="Menu desplegable" />
+					</button>
+				</div>
 			</header>
       {showMenu && (
 				<div>
