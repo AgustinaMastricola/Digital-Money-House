@@ -14,3 +14,17 @@ export const loginSchema = yup.object({
   email: yup.string().required('Completá los campos requeridos.'),
   password: yup.string().required('Completá campos requeridos.').min(6, 'La contraseña debe tener 6 caracteres como mínimo.'),
 }).required()
+
+export const updateUserSchema = yup.object({
+  dni: yup.number(),
+  email: yup.string().email('El formato del email es inválido. Ejemplo: email@gmail.com'),
+  firstname: yup.string(),
+  lastname: yup.string(),
+  password: yup.string(),
+  phone: yup.string()
+}).required()
+
+const aliasRegex = /^[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+$/
+export const updateAliasSchema = yup.object({
+  alias: yup.string().matches(aliasRegex, "El alias debe contener 3 palabras separadas por un punto. Ej.: PALABRA.PALABRA.PALABRA")
+})
