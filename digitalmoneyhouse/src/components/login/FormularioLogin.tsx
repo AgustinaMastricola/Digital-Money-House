@@ -49,6 +49,7 @@ const FormularioLogin = () => {
                         <div className={step === 1? '':'hidden'}>
                             <h1 className='text-total-white mb-4 text-center'>¡Hola! Ingresá tu e-mail</h1>
                             <InputText 
+                                className="w-full p-4"
                                 type='email'
                                 placeholder={'Correo electrónico'}
                                 fieldName={"email"}
@@ -62,6 +63,7 @@ const FormularioLogin = () => {
                         <div className={step === 2? 'visible':'hidden'}>
                             <h1 className='text-total-white mb-4 text-center'>Ingresá tu contraseña</h1>
                             <InputText 
+                                className="w-full p-4"
                                 type='password'
                                 placeholder={'Contraseña'} 
                                 fieldName={"password"}/>
