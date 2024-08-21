@@ -42,7 +42,7 @@ const page = () => {
 	};
 	useEffect(() => {
 		getDataUser();
-	}, [session]);
+	}, [session, userData]);
 
 	return (
 		<>

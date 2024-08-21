@@ -28,14 +28,19 @@ const FormUpdate = ({userInfo, atribut}:FormUpdateProp) => {
 
 	const onSubmit = async (data: UpdateUserData) => {
 		if (session?.user?.token) {
-			const getAccount = await accountAPI.getMyAccount(`${session.user.token}`);
-			const res = await userApi.updateUserData(
-				session?.user.token,
-				getAccount.user_id,
-				data
-			);
-			reset();
-			setShowInput(false)
+			try{
+				const getAccount = await accountAPI.getMyAccount(`${session.user.token}`);
+				const res = await userApi.updateUserData(
+					session?.user.token,
+					getAccount.user_id,
+					data
+				);
+				reset();
+				setShowInput(false)
+			}
+			catch(error){
+				console.log("no se pudo modificar el usuario")
+			}
 		}
 	};
 
