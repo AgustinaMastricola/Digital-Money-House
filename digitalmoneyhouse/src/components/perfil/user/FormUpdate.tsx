@@ -1,5 +1,5 @@
 import { useState } from "react";
-import iconEdit from "../../../public/IconoEditar.png";
+import iconEdit from "../../../../public/IconoEditar.png";
 import Image from "next/image";
 import clsx from "clsx";
 import { useSession } from "next-auth/react";
@@ -37,6 +37,7 @@ const FormUpdate = ({userInfo, atribut}:FormUpdateProp) => {
 				);
 				reset();
 				setShowInput(false)
+				window.location.reload()
 			}
 			catch(error){
 				console.log("no se pudo modificar el usuario")

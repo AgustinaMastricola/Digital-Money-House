@@ -40,7 +40,7 @@ const HeaderDashboard = () => {
 	};
 	useEffect(() => {
 		getDataUser();
-	}, [session, userData]);
+	}, [session?.user?.token]);
 
 	const handleClickMenu = () => {
 		setShowMenu(!showMenu);

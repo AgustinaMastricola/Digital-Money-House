@@ -1,4 +1,4 @@
-import FormUpdate from "./FormUpdate";
+import FormUpdate from "./FormUpdate"
 
 type DataRowProps = {
   title: string, 
@@ -6,7 +6,6 @@ type DataRowProps = {
   atribut: string[],
 }
 const DataRow = ({title, userInfo, atribut}:DataRowProps) => {
-  
   return (
     <div className="lg:grid lg:grid-cols-4 items-center">
       <div className="w-full lg:col-span-1">
@@ -15,9 +14,7 @@ const DataRow = ({title, userInfo, atribut}:DataRowProps) => {
       <div className="col-span-3">
         <FormUpdate userInfo={userInfo} atribut={atribut}/>
       </div>
-    
     </div>
   )
 }
-
 export default DataRow
