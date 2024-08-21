@@ -1,19 +1,23 @@
-import Image from "next/image"
-import iconEdit from '../../../public/IconoEditar.png'
-type dataProp = {
-  data: string | number | undefined;
-  title: string
-}
+import FormUpdate from "./FormUpdate";
 
-const DataRow = ({data, title}:dataProp) => {
-	return (
-			<li className="w-full grid grid-cols-3">
-				<div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 col-span-2">
-					<span>{title}</span>
-					<p className="text-total-gray">{data}</p>
-				</div>
-			</li>
-	);
-};
+type DataRowProps = {
+  title: string, 
+  userInfo: string[],
+  atribut: string[],
+}
+const DataRow = ({title, userInfo, atribut}:DataRowProps) => {
+  
+  return (
+    <div className="lg:grid lg:grid-cols-4 items-center">
+      <div className="w-full lg:col-span-1">
+        <span>{title}</span>
+      </div>
+      <div className="col-span-3">
+        <FormUpdate userInfo={userInfo} atribut={atribut}/>
+      </div>
+    
+    </div>
+  )
+}
 
 export default DataRow

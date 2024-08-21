@@ -3,13 +3,13 @@ import Menu from "@/components/common/menu/Menu";
 import HeaderDashboard from "@/components/common/navbar/HeaderDashboard";
 import AccountInfo from "@/components/perfil/AccountInfo";
 import PaymentGestion from "@/components/perfil/PaymentGestion";
-import UserInfo from "@/components/perfil/UserInfo";
 import accountAPI from "@/services/account/account.service";
 import userApi from "@/services/users/user.service";
 import { AccountData } from "@/types/account.types";
 import { UserType } from "@/types/users.types";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import ContainerData from "@/components/perfil/ContainerData";
 
 const page = () => {
 	const { data: session, status, update } = useSession();
@@ -53,7 +53,7 @@ const page = () => {
 						<Menu />
 					</div>
 					<div className="flex flex-col space-y-4 items-center py-5 md:w-8/12 lg:w-9/12 xl:w-10/12">
-						<UserInfo user={userData} />
+						<ContainerData user={userData}/>
 						<PaymentGestion />
 						<AccountInfo accountData={accountData} />
 					</div>
