@@ -1,6 +1,4 @@
 import { useState } from "react";
-import iconEdit from "../../../../public/IconoEditar.png";
-import Image from "next/image";
 import clsx from "clsx";
 import { useSession } from "next-auth/react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -11,6 +9,7 @@ import accountAPI from "@/services/account/account.service";
 import userApi from "@/services/users/user.service";
 import InputText from "@/components/common/inputs/inputText";
 import Button from "@/components/common/buttons/Button";
+import EditIcon from "@/components/common/icons/EditIcon";
 
 type FormUpdateProp = {
   userInfo: string[],
@@ -58,7 +57,7 @@ const FormUpdate = ({userInfo, atribut}:FormUpdateProp) => {
 						'hidden':atribut[0] === 'email' || atribut[0] === 'dni'
 					})}
 					>
-          <Image src={iconEdit} alt={"Botón editar"} />
+          <EditIcon/>
         </button>
       </div>
 
