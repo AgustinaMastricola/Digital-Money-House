@@ -4,49 +4,19 @@ import Menu from "@/components/common/menu/Menu";
 import HeaderDashboard from "@/components/common/navbar/HeaderDashboard";
 import ActivityList from "@/components/home/authenticated/ActivityList";
 import CardUser from "@/components/home/authenticated/CardUser";
-import { AccountData } from "@/types/account.types";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image"
-import { TransferenceType } from "@/types/transference.types";
 import accountAPI from "@/services/account/account.service";
 import transactionsAPI from "@/services/transactions/transactions.service";
 import iconSearch from "../../../public/search.png"
 import arrow from "../../../public/Vector1.png"
 
-const DashboardPage = () => {
+const DashboardPage = async () => {
 	const {data: session, status} = useSession();
-  const [list, setList] = useState<TransferenceType[]>([]);
-  const [amountFormated, setAmmountFormated] = useState('')
-  const [myAccount, setMyAccount] = useState<AccountData>({
-    "alias":'',
-    "available_amount": 0,
-    "cvu": '',
-    "id": 0,
-    "user_id": 0
-  })
-
-  const getDataActivity = async () => {
-    if (session?.user?.token) {
-      const getAccount = await accountAPI.getMyAccount(`${session.user.token}`)
-      const res = await transactionsAPI.getAllTransactionsUser(`${session.user.token}`, getAccount.id);
-      console.log(res)
-      setList(res)
-    }
-  };
-  
-  const getDataAccount = async () => {
-    if (session?.user?.token) {
-      const res = await accountAPI.getMyAccount(`${session.user.token}`);
-      console.log(res)
-      setMyAccount(res)
-    }
-  }
-  useEffect(() => {
-    getDataActivity();
-    getDataAccount()
-    setAmmountFormated(myAccount.available_amount.toLocaleString('de-DE'))
-  }, [session, list.length]);
+  const token = session?.user.token;
+  const getAccount = await accountAPI.getMyAccount(token)
+  const activitiesList = await transactionsAPI.getAllTransactionsUser(token, getAccount.id)
 
   return (
     <>
@@ -60,7 +30,7 @@ const DashboardPage = () => {
             <Image src={arrow} alt={"flecha inicio"} className="h-max"/>
             <span className="underline">Inicio</span>
           </div>
-          <CardUser amount={amountFormated}/>
+          <CardUser amount={`${getAccount.available_amount}`}/>
           <div className="flex flex-col items-center w-full space-y-4 md:space-x-4 md:space-y-0 md:flex-row md:w-11/12">
             <ButtonHome text={"Ingresar dinero"} href={"/transacciones"}/>
             <ButtonHome text={"Pago de servicios"} href={"/servicios"}/>
@@ -71,7 +41,7 @@ const DashboardPage = () => {
               <input placeholder="Buscar en tu actividad" className="hide-arrow p-3 pl-10 w-full border-t border-total-gray border-opacity-15 rounded-lg border-t-1  bg-total-white shadow-lg focus:outline-none"/>
             </div>
           </div>
-          <ActivityList transactions={list}/>
+          <ActivityList transactions={activitiesList}/>
         </div>
       </main>
     </>

@@ -5,7 +5,6 @@ import transformDay from "@/utils/functions"
 import { TransferenceType } from "@/types/transference.types"
 import flecha from "../../../../public/Vector1.png"
 import Link from "next/link"
-import { useEffect, useState } from "react"
 
 type ActivityListProps = {
   transactions: TransferenceType[]
@@ -18,14 +17,8 @@ const ActivityList = ({transactions}:ActivityListProps) => {
     const day = transformDay(dayName)
     return day
   }  
-  const [lastTenResults, setLastTenResults] = useState<TransferenceType[]>([])
-
-  useEffect(() => {
-    const last10 = transactions.slice(0,10)
-    setLastTenResults(last10)
-  }, [transactions.length])
+  const lastTenResults = transactions.slice(0,10)
   
-
   return (
     <div className="w-11/12 pl-2 pt-3 md:pl-10 lg:pl-4 flex flex-col items-start border border-total-gray border-opacity-15 rounded-lg border-1  bg-total-white drop-shadow-2xl ">
       <h1 className="text-base my-2">Tu actividad</h1>
