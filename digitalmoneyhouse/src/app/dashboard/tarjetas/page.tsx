@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "@/components/common/footer/Footer";
 import Menu from "@/components/common/menu/Menu";
 import HeaderDashboard from "@/components/common/navbar/HeaderDashboard";
 
@@ -17,6 +18,7 @@ const page = () => {
 					</div>
 				</div>
 			</main>
+			<Footer styleContainer="bg-total-black" styleParagraph="text-total-primary"/>
 		</>
 	);
 };

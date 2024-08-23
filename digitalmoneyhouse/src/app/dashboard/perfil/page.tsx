@@ -4,6 +4,7 @@ import HeaderDashboard from "@/components/common/navbar/HeaderDashboard";
 import PaymentGestion from "@/components/perfil/PaymentGestion";
 import ContainerDataUser from "@/components/perfil/user/ContainerDataUser";
 import ContainterDataAccount from "@/components/perfil/account/ContainterDataAccount";
+import Footer from "@/components/common/footer/Footer";
 
 const page = () => {
 	return (
@@ -21,6 +22,7 @@ const page = () => {
 					</div>
 				</div>
 			</main>
+			<Footer styleContainer="bg-total-black" styleParagraph="text-total-primary"/>
 		</>
 	);
 };

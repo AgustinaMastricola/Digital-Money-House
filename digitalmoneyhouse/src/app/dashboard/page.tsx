@@ -9,6 +9,7 @@ import accountAPI from "@/services/account/account.service";
 import transactionsAPI from "@/services/transactions/transactions.service";
 import SearchIcon from "@/components/common/icons/SearchIcon";
 import ArrowRightIcon from "@/components/common/icons/ArrowRight";
+import Footer from "@/components/common/footer/Footer";
 
 const DashboardPage = async () => {
 	const {data: session, status} = useSession();
@@ -42,6 +43,7 @@ const DashboardPage = async () => {
           <ActivityList transactions={activitiesList}/>
         </div>
       </main>
+      <Footer styleContainer="bg-total-black" styleParagraph="text-total-primary"/>
     </>
   )
 }
