@@ -8,8 +8,8 @@ import { useSession } from "next-auth/react";
 import Image from "next/image"
 import accountAPI from "@/services/account/account.service";
 import transactionsAPI from "@/services/transactions/transactions.service";
-import iconSearch from "../../../public/search.png"
 import arrow from "../../../public/Vector1.png"
+import SearchIcon from "@/components/common/icons/SearchIcon";
 
 const DashboardPage = async () => {
 	const {data: session, status} = useSession();
@@ -36,7 +36,7 @@ const DashboardPage = async () => {
           </div>
           <div className=" w-11/12">
             <div className="w-full flex items-center relative">
-              <Image src={iconSearch} alt="icono buscar" className="h-min absolute left-4"/>
+              <SearchIcon className="h-min absolute left-2"/>
               <input placeholder="Buscar en tu actividad" className="hide-arrow p-3 pl-10 w-full border-t border-total-gray border-opacity-15 rounded-lg border-t-1  bg-total-white shadow-lg focus:outline-none"/>
             </div>
           </div>
