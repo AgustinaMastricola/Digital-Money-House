@@ -53,8 +53,8 @@ const HeaderDashboard = () => {
 		<>
 			<header className="flex items-center justify-between bg-total-black md:hidden">
 				<LogoBrand href={"/dashboard"} className="fill-total-primary"/>
-				<div className="flex space-x-5 items-center">
-					<Link className="text-total-black bg-total-primary uppercase p-2 rounded-lg font-bold md:text-lg" href={"/dashboard/perfil"}>
+				<div className="flex space-x-4 items-center pr-3">
+					<Link className="text-total-black bg-total-primary uppercase p-[0.4rem] rounded-lg font-bold md:text-lg" href={"/dashboard/perfil"}>
 						{initalsName}
 					</Link>
 					<button className="block md:hidden" onClick={handleClickMenu}>
