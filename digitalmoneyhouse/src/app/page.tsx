@@ -9,7 +9,7 @@ const links = [
 export default function Home() {
 	return (
 		<>
-			<Header logoSrc={"LogoVerde.png"} headerClassName="bg-total-black" links={links}/>
+			<Header colorLogo="fill-total-primary" headerClassName="bg-total-black" links={links}/>
 			<main className="w-full bg-bg-img-mobile sm:bg-bg-img-tablet bg-cover space-y-32 lg:space-y-44 ">
 					<section className="ml-4 sm:ml-12 ">
 						<p className="w-6/12 sm:w-5/12 lg:w-2/6   text-total-white text-2xl sm:text-3xl lg:text-5xl font-semibold sm:font-light pt-8 lg:pt-11">

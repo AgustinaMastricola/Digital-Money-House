@@ -10,6 +10,7 @@ import { UserType } from "@/types/users.types";
 import { useSession } from "next-auth/react";
 import accountAPI from "@/services/account/account.service";
 import userApi from "@/services/users/user.service";
+import LogoBrand from "../icons/LogoBrand";
 
 const HeaderDashboard = () => {
 	const {data: session, status} = useSession();
@@ -48,8 +49,8 @@ const HeaderDashboard = () => {
 
 	return (
 		<>
-			<header className="flex items-center justify-between bg-total-black py-2 pr-3 md:hidden">
-				<LogoHeader src="LogoVerde.png" />
+			<header className="flex items-center justify-between bg-total-black md:hidden">
+				<LogoBrand href={"/dashboard"} className="fill-total-primary"/>
 				<div className="flex space-x-5 items-center">
 					<Link className="text-total-black bg-total-primary uppercase p-2 rounded-lg font-bold md:text-lg" href={"/dashboard/perfil"}>
 						{initalsName}
@@ -71,8 +72,8 @@ const HeaderDashboard = () => {
 				</div>
 			)}
 
-			<header className="md:flex items-center justify-between bg-total-black py-2 pr-3 hidden">
-				<LogoHeader src="LogoVerde.png" />
+			<header className="md:flex items-center justify-between bg-total-black hidden">
+				<LogoBrand href={"/dashboard"} className="fill-total-primary"/>
 				<Link href={"/dashboard/perfil"} className="flex items-center space-x-2">
 					<p className="text-total-black bg-total-primary uppercase p-2 rounded-lg font-bold md:text-lg">
 						{initalsName}

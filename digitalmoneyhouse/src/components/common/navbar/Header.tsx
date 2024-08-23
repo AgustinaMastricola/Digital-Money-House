@@ -1,18 +1,18 @@
 import { LinksType } from "@/types/links.types"
-import LogoHeader from "./LogoHeader"
 import NavLinks from "./NavLinks"
 import clsx from "clsx"
+import LogoBrand from "../icons/LogoBrand"
 
 type HeaderProps ={
-  logoSrc:string,
+  colorLogo:string,
   headerClassName?: string,
   links?: LinksType[]
 }
 
-function Header({logoSrc, headerClassName, links}:HeaderProps) {
+function Header({colorLogo, headerClassName, links}:HeaderProps) {
   return (
-    <header className={clsx('flex items-center justify-between py-2',headerClassName)}>
-      <LogoHeader src={logoSrc}/>
+    <header className={clsx('flex items-center justify-between', headerClassName)}>
+			<LogoBrand href={"/dashboard"} className={colorLogo}/>
       <NavLinks links={links}/>
     </header>
   )

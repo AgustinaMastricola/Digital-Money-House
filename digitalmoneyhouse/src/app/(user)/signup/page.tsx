@@ -7,7 +7,7 @@ const Signup = () => {
 	return (
 		<>
 			<Header
-				logoSrc={"LogoNegro.png"}
+				colorLogo="fill-total-black"
 				headerClassName="bg-total-primary"
 				links={links}
 			/>
