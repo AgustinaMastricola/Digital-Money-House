@@ -12,6 +12,7 @@ import accountAPI from "@/services/account/account.service";
 import userApi from "@/services/users/user.service";
 import LogoBrand from "../icons/LogoBrand";
 import CloseIcon from "../icons/CloseIcon";
+import MenuIcon from "../icons/MenuIcon";
 
 const HeaderDashboard = () => {
 	const {data: session, status} = useSession();
@@ -57,7 +58,7 @@ const HeaderDashboard = () => {
 						{initalsName}
 					</Link>
 					<button className="block md:hidden" onClick={handleClickMenu}>
-						<Image src={iconMenu} alt="Menu desplegable" />
+						<MenuIcon/>
 					</button>
 				</div>
 			</header>
