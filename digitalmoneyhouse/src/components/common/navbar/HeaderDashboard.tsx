@@ -11,6 +11,7 @@ import { useSession } from "next-auth/react";
 import accountAPI from "@/services/account/account.service";
 import userApi from "@/services/users/user.service";
 import LogoBrand from "../icons/LogoBrand";
+import CloseIcon from "../icons/CloseIcon";
 
 const HeaderDashboard = () => {
 	const {data: session, status} = useSession();
@@ -66,7 +67,7 @@ const HeaderDashboard = () => {
 						className="absolute right-5 top-6 z-30"
 						onClick={() => setShowMenu(false)}
 					>
-						<Image src={iconClose} alt="cerrar menu" />
+						<CloseIcon className={"fill-total-primary"}/>
 					</button>
 					<MenuMobile firstname={userData.firstname} lastname={userData.lastname} />
 				</div>
