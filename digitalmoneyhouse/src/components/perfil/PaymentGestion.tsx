@@ -1,6 +1,4 @@
 import Link from 'next/link'
-import arrow from "../../../public/flechaNegra.png"
-import Image from "next/image"
 import ArrowRightIcon from '../common/icons/ArrowRight'
 
 const PaymentGestion = () => {
