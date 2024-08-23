@@ -7,7 +7,6 @@ const links = [
 ] 
 
 export default function Home() {
-
 	return (
 		<>
 			<Header logoSrc={"LogoVerde.png"} headerClassName="bg-total-black" links={links}/>
