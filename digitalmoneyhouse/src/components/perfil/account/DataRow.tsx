@@ -1,7 +1,6 @@
 import { useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
-import Image from "next/image"
-import iconCopy from '../../../../public/cliboardIcon.png';
+import CopyIcon from "@/components/common/icons/CopyIcon";
 
 type DataRowProps = {
 	accountData: string,
@@ -27,11 +26,7 @@ const DataRow = ({ accountData, title }: DataRowProps) => {
 					<p className="text-total-primary text-xs md:text-base">Copiado</p>
 				) : (
 					<button onClick={copyToClipboard}>
-						<Image
-							src={iconCopy}
-							alt={"Copiar en el portapapeles"}
-							className="w-6 h-6 md:w-auto md:h-auto"
-						/>
+						<CopyIcon className="w-6 h-6 md:w-auto md:h-auto"/>
 					</button>
 				)}
 			</CopyToClipboard>
