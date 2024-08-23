@@ -5,7 +5,6 @@ import HeaderDashboard from "@/components/common/navbar/HeaderDashboard";
 import ActivityList from "@/components/home/authenticated/ActivityList";
 import CardUser from "@/components/home/authenticated/CardUser";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
 import Image from "next/image"
 import accountAPI from "@/services/account/account.service";
 import transactionsAPI from "@/services/transactions/transactions.service";

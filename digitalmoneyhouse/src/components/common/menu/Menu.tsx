@@ -3,12 +3,12 @@ import { signOut } from 'next-auth/react'
 
 const Menu = () => {
   const menuLinks = [
-    {href:"/", name:"Inicio"},
-    {href:"/actividad", name:"Actividad"},
-    {href:"/perfil", name:"Tu perfil"},
-    {href:"/transacciones", name:"Cargar dinero"},
-    {href:"/servicios", name:"Pagar servicios"},
-    {href:"/tarjetas", name:"Tarjetas"},
+    {href:"/dashboard", name:"Inicio"},
+    {href:"/dashboard/actividad", name:"Actividad"},
+    {href:"/dashboard/perfil", name:"Tu perfil"},
+    {href:"/dashboard/transacciones", name:"Cargar dinero"},
+    {href:"/dashboard/servicios", name:"Pagar servicios"},
+    {href:"/dashboard/tarjetas", name:"Tarjetas"},
   ]
 
   return (

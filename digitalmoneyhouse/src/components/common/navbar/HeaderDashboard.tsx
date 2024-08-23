@@ -51,7 +51,7 @@ const HeaderDashboard = () => {
 			<header className="flex items-center justify-between bg-total-black py-2 pr-3 md:hidden">
 				<LogoHeader src="LogoVerde.png" />
 				<div className="flex space-x-5 items-center">
-					<Link className="text-total-black bg-total-primary uppercase p-2 rounded-lg font-bold md:text-lg" href={"/perfil"}>
+					<Link className="text-total-black bg-total-primary uppercase p-2 rounded-lg font-bold md:text-lg" href={"/dashboard/perfil"}>
 						{initalsName}
 					</Link>
 					<button className="block md:hidden" onClick={handleClickMenu}>
@@ -73,7 +73,7 @@ const HeaderDashboard = () => {
 
 			<header className="md:flex items-center justify-between bg-total-black py-2 pr-3 hidden">
 				<LogoHeader src="LogoVerde.png" />
-				<Link href={"/perfil"} className="flex items-center space-x-2">
+				<Link href={"/dashboard/perfil"} className="flex items-center space-x-2">
 					<p className="text-total-black bg-total-primary uppercase p-2 rounded-lg font-bold md:text-lg">
 						{initalsName}
 					</p>
