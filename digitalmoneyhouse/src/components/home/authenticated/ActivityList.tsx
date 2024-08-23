@@ -1,10 +1,10 @@
 
 import Image from "next/image"
-import ellipse from "../../../../public/Ellipse.png"
 import transformDay from "@/utils/functions"
 import { TransferenceType } from "@/types/transference.types"
 import flecha from "../../../../public/Vector1.png"
 import Link from "next/link"
+import ElipseIcon from "@/components/common/icons/ElipseIcon"
 
 type ActivityListProps = {
   transactions: TransferenceType[]
@@ -28,8 +28,8 @@ const ActivityList = ({transactions}:ActivityListProps) => {
             <div key={`tansaction-${index}`}>
               <hr className="text-medium-gray opacity-30"/>
               <div  className="grid gap-x-2 grid-cols-12 items-center my-3 w-full text-sm md:text-base">
-                <Image src={ellipse} alt="icono"/>
-                <p className="col-span-6">{item.description}</p>
+                <ElipseIcon className={"fill-total-primary"}/>
+                <p className="col-span-6 ml-2">{item.description}</p>
                 <div className="flex flex-col col-span-5 items-start col-start-9 lg:col-start-11 xl:col-start-12">
                   <p>{item.description.match('transfriste')? `$ ${item.amount}`: `$ ${item.amount.toLocaleString('de-DE')}` }</p>
                   <p className="text-sm text-medium-gray">{transformDate(item.dated)}</p>
