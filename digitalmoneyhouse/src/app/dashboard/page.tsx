@@ -5,11 +5,10 @@ import HeaderDashboard from "@/components/common/navbar/HeaderDashboard";
 import ActivityList from "@/components/home/authenticated/ActivityList";
 import CardUser from "@/components/home/authenticated/CardUser";
 import { useSession } from "next-auth/react";
-import Image from "next/image"
 import accountAPI from "@/services/account/account.service";
 import transactionsAPI from "@/services/transactions/transactions.service";
-import arrow from "../../../public/Vector1.png"
 import SearchIcon from "@/components/common/icons/SearchIcon";
+import ArrowRightIcon from "@/components/common/icons/ArrowRight";
 
 const DashboardPage = async () => {
 	const {data: session, status} = useSession();
@@ -26,7 +25,7 @@ const DashboardPage = async () => {
         </div>
         <div className="flex flex-col space-y-4 items-center py-5 md:w-8/12 lg:w-9/12 xl:w-10/12">
           <div className="flex space-x-2 text-sm w-11/12 items-center md:hidden">
-            <Image src={arrow} alt={"flecha inicio"} className="h-max"/>
+            <ArrowRightIcon/>
             <span className="underline">Inicio</span>
           </div>
           <CardUser amount={`${getAccount.available_amount}`}/>

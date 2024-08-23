@@ -1,10 +1,8 @@
-
-import Image from "next/image"
 import transformDay from "@/utils/functions"
 import { TransferenceType } from "@/types/transference.types"
-import flecha from "../../../../public/Vector1.png"
 import Link from "next/link"
 import ElipseIcon from "@/components/common/icons/ElipseIcon"
+import ArrowRightIcon from "@/components/common/icons/ArrowRight"
 
 type ActivityListProps = {
   transactions: TransferenceType[]
@@ -46,7 +44,7 @@ const ActivityList = ({transactions}:ActivityListProps) => {
         <hr className="text-medium-gray opacity-30 mt-2 w-full"/>
       <div className="flex justify-between w-full pr-5 items-center">
         <Link href={'/actividad'} className="text-sm font-semibold py-3">Ver toda tu actividad</Link>
-        <Image src={flecha} alt="icono" className="h-max"/>
+        <ArrowRightIcon/>
       </div>
     </div>
   )
