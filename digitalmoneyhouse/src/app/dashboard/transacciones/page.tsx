@@ -1,10 +1,10 @@
-"use client";
-import Menu from "@/components/common/menu/Menu";
-import HeaderDashboard from "@/components/common/navbar/HeaderDashboard";
-import React from "react";
+'use client'
+
+import Menu from "@/components/common/menu/Menu"
+import HeaderDashboard from "@/components/common/navbar/HeaderDashboard"
 
 const page = () => {
-	return (
+  return (
 		<>
 			<HeaderDashboard/>
 			<main>
@@ -13,12 +13,12 @@ const page = () => {
 						<Menu />
 					</div>
 					<div className="flex flex-col space-y-4 items-center py-5 md:w-8/12 lg:w-9/12 xl:w-10/12">
-						TARJETAS
+						TRANSACCIONES
 					</div>
 				</div>
 			</main>
 		</>
-	);
-};
+  )
+}
 
-export default page;
+export default page

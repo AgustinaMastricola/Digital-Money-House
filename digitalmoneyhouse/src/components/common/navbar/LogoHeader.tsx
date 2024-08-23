@@ -7,7 +7,7 @@ type LogoProps = {
 function LogoHeader({src}:LogoProps) {
   return (
     <Link 
-      href="/">
+      href="/dashboard">
 			<img src={src} alt='Logo de la marca' className='p-2' />
 		</Link>
   )

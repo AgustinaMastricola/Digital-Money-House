@@ -10,6 +10,9 @@ import { UserType } from "@/types/users.types";
 import { useSession } from "next-auth/react";
 import accountAPI from "@/services/account/account.service";
 import userApi from "@/services/users/user.service";
+import LogoBrand from "../icons/LogoBrand";
+import CloseIcon from "../icons/CloseIcon";
+import MenuIcon from "../icons/MenuIcon";
 
 const HeaderDashboard = () => {
 	const {data: session, status} = useSession();
@@ -48,14 +51,14 @@ const HeaderDashboard = () => {
 
 	return (
 		<>
-			<header className="flex items-center justify-between bg-total-black py-2 pr-3 md:hidden">
-				<LogoHeader src="LogoVerde.png" />
-				<div className="flex space-x-5 items-center">
-					<Link className="text-total-black bg-total-primary uppercase p-2 rounded-lg font-bold md:text-lg" href={"/perfil"}>
+			<header className="flex items-center justify-between bg-total-black md:hidden">
+				<LogoBrand href={"/dashboard"} className="fill-total-primary"/>
+				<div className="flex space-x-4 items-center pr-3">
+					<Link className="text-total-black bg-total-primary uppercase p-[0.4rem] rounded-lg font-bold md:text-lg" href={"/dashboard/perfil"}>
 						{initalsName}
 					</Link>
 					<button className="block md:hidden" onClick={handleClickMenu}>
-						<Image src={iconMenu} alt="Menu desplegable" />
+						<MenuIcon/>
 					</button>
 				</div>
 			</header>
@@ -65,15 +68,15 @@ const HeaderDashboard = () => {
 						className="absolute right-5 top-6 z-30"
 						onClick={() => setShowMenu(false)}
 					>
-						<Image src={iconClose} alt="cerrar menu" />
+						<CloseIcon className={"fill-total-primary"}/>
 					</button>
 					<MenuMobile firstname={userData.firstname} lastname={userData.lastname} />
 				</div>
 			)}
 
-			<header className="md:flex items-center justify-between bg-total-black py-2 pr-3 hidden">
-				<LogoHeader src="LogoVerde.png" />
-				<Link href={"/perfil"} className="flex items-center space-x-2">
+			<header className="md:flex items-center justify-between bg-total-black hidden">
+				<LogoBrand href={"/dashboard"} className="fill-total-primary"/>
+				<Link href={"/dashboard/perfil"} className="flex items-center space-x-2">
 					<p className="text-total-black bg-total-primary uppercase p-2 rounded-lg font-bold md:text-lg">
 						{initalsName}
 					</p>

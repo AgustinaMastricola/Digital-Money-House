@@ -6,7 +6,7 @@ const NotFound = () => {
       <h1 className="text-center font- text-sm">
         No se encontró la página a la que intenta acceder.
       </h1>
-      <Link href={"/"} className="text-center text-xl uppercase bg-total-black text-total-white p-5 rounded-2xl">Volver al inicio</Link>
+      <Link href={"/dashboard"} className="text-center text-xl uppercase bg-total-black text-total-white p-5 rounded-2xl">Volver al inicio</Link>
     </div>
   )
 }
