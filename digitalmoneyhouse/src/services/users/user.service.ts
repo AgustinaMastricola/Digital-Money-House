@@ -1,4 +1,3 @@
-import { TokenType } from "@/types/token.types";
 import { UserData, UserType } from "@/types/users.types";
 
 class UserAPI {

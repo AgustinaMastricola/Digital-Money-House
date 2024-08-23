@@ -1,7 +1,5 @@
-import { UserType } from '@/types/users.types';
 import DataRow from './DataRow';
 import { useSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
 import accountAPI from '@/services/account/account.service';
 import userApi from '@/services/users/user.service';
 
