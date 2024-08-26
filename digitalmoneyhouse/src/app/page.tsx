@@ -1,3 +1,4 @@
+import Footer from "@/components/common/footer/Footer";
 import Header from "@/components/common/navbar/Header";
 import InfoHome from "@/components/home/anauthenticated/InfoHome";
 
@@ -39,6 +40,7 @@ export default function Home() {
 						</div>
 					</section>
 			</main>
+			<Footer styleContainer="bg-total-black" styleParagraph="text-total-primary"/>
 		</>
 	);
 }

@@ -12,7 +12,7 @@ type HeaderProps ={
 function Header({colorLogo, headerClassName, links}:HeaderProps) {
   return (
     <header className={clsx('flex items-center justify-between', headerClassName)}>
-			<LogoBrand href={"/dashboard"} className={colorLogo}/>
+			<LogoBrand href={"/"} className={colorLogo}/>
       <NavLinks links={links}/>
     </header>
   )

@@ -1,35 +1,13 @@
-import { UserType } from '@/types/users.types';
 import DataRow from './DataRow';
 import { useSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
 import accountAPI from '@/services/account/account.service';
 import userApi from '@/services/users/user.service';
 
-const ContainerDataUser = () => {
+const ContainerDataUser = async () => {
   const { data: session, status, update } = useSession();
-  const [userData, setUserData] = useState<UserType>({
-		dni: 0,
-		email: "",
-		firstname: "",
-		lastname: "",
-		password: "",
-		phone: "",
-	});
-
-  const getDataUser = async () => {
-		if (session?.user?.token) {
-			const getAccount = await accountAPI.getMyAccount(`${session.user.token}`);
-			const res = await userApi.getUserData(
-				`${session.user.token}`,
-				getAccount.user_id
-			);
-			console.log(res);
-			setUserData(res);
-		}
-	};
-	useEffect(() => {
-		getDataUser();
-	}, [session?.user?.token]);
+  const token = session?.user.token;
+  const getAccount = await accountAPI.getMyAccount(token)
+  const userData = await userApi.getUserData(token, getAccount.user_id)
 
   return (
     <div  className='w-11/12 px-2 pt-3 md:px-10 lg:px-4 flex flex-col items-start border border-total-gray border-opacity-15 rounded-lg border-1  bg-total-white drop-shadow-2xl'>
