@@ -28,3 +28,10 @@ const aliasRegex = /^[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+$/
 export const updateAliasSchema = yup.object({
   alias: yup.string().matches(aliasRegex, "El alias debe contener 3 palabras separadas por un punto. Ej.: PALABRA.PALABRA.PALABRA")
 })
+
+export const addCardPaySchema = yup.object({
+  cod: yup.number().required(),
+  expiration_date: yup.string().required(),
+  first_last_name: yup.string().required(),
+  number_id: yup.number().required()
+}).required()
