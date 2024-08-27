@@ -1,11 +1,7 @@
 'use client'
-import LogoHeader from "./LogoHeader";
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import iconMenu from "../../../../public/menu.png";
 import MenuMobile from "../menu/MenuMobile";
-import iconClose from '../../../../public/close.png'
 import { UserType } from "@/types/users.types";
 import { useSession } from "next-auth/react";
 import accountAPI from "@/services/account/account.service";
@@ -43,6 +39,7 @@ const HeaderDashboard = () => {
 	};
 	useEffect(() => {
 		getDataUser();
+		setShowMenu(false)
 	}, [session?.user?.token]);
 
 	const handleClickMenu = () => {
