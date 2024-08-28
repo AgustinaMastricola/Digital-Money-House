@@ -16,6 +16,7 @@ const ListCards = async ({cardsList}:ListCardsProps) => {
 
   const deleteCard = async (card_id:number) => {
     const res = await cardsAPI.deleteCard(token, getAccount.id, card_id)
+    window.location.reload()
   }
   
   return (
