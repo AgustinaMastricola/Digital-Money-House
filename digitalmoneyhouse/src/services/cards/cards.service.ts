@@ -44,7 +44,7 @@ class CardsAPI {
     return res.json();
   }
 
-  deleteCard = async (token: string, account_id: number, card_id:number): Promise<any> => {
+  deleteCard = async (token: string | undefined, account_id: number, card_id:number): Promise<any> => {
     const res = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/cards/${card_id}`, {
       method: 'DELETE',
       headers: {
