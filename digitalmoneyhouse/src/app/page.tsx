@@ -11,8 +11,8 @@ export default function Home() {
 	return (
 		<>
 			<Header colorLogo="fill-total-primary" headerClassName="bg-total-black" links={links}/>
-			<main className="w-full bg-bg-img-mobile sm:bg-bg-img-tablet bg-cover space-y-32 lg:space-y-44 ">
-					<section className="ml-4 sm:ml-12 ">
+			<main className="relative bg-bg-img-mobile md:bg-bg-img-tablet bg-cover bg-center bg-no-repeat">
+					<section className="ml-4 sm:ml-12 h-5/12 md: pt-8">
 						<p className="w-8/12 md:hidden text-total-white text-2xl pt-8">
 							De ahora <br/>en adelante, <br/>hacés más <br/>con tu dinero
 						</p>
@@ -28,9 +28,8 @@ export default function Home() {
 							Tu nueva <span className="font-semibold">billetera virtual</span>{" "}
 						</h5>
 					</section>
-					<section className="bg-total-primary rounded-t-3xl">
-						<div className="h-full w-full">
-							<div className="space-y-4 flex flex-col items-center -translate-y-16 lg:flex-row lg:justify-center lg:space-x-2 lg:space-y-0">
+					<section className="bg-total-primary rounded-t-3xl absolute bottom-0 h-7/12">
+							<div className="space-y-4 flex flex-col items-center -translate-y-8 lg:flex-row lg:justify-center lg:space-x-2 lg:space-y-0">
 								<InfoHome
 									title="Transferí dinero"
 									paragraph="Desde Digital Money House vas a poder transferir dinero a otras cuentas, asi como también recibir transferencias y nuclear tu capital en nuestra billetera virtual."
@@ -40,7 +39,6 @@ export default function Home() {
 									paragraph="Pagá mensualmente los servicios en 3 simples clicks. Facil, rápido y conveniente. Olvidate de las facturas en papel."
 									/>
 							</div>
-						</div>
 					</section>
 			</main>
 			<Footer styleContainer="bg-total-black" styleParagraph="text-total-primary"/>
