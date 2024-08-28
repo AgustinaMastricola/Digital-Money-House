@@ -8,7 +8,7 @@ import transactionsAPI from "@/services/transactions/transactions.service";
 import SearchIcon from "@/components/common/icons/SearchIcon";
 import ArrowRightIcon from "@/components/common/icons/ArrowRight";
 
-const DashboardPage = async () => {
+export default async function DashboardPage() {
 	const {data: session, status} = useSession();
   const token = session?.user.token;
   const getAccount = await accountAPI.getMyAccount(token)
@@ -35,5 +35,3 @@ const DashboardPage = async () => {
     </>
   )
 }
-
-export default DashboardPage;
