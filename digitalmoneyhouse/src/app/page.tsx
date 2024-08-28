@@ -13,15 +13,18 @@ export default function Home() {
 			<Header colorLogo="fill-total-primary" headerClassName="bg-total-black" links={links}/>
 			<main className="w-full bg-bg-img-mobile sm:bg-bg-img-tablet bg-cover space-y-32 lg:space-y-44 ">
 					<section className="ml-4 sm:ml-12 ">
-						<p className="w-6/12 sm:w-5/12 lg:w-2/6   text-total-white text-2xl sm:text-3xl lg:text-5xl font-semibold sm:font-light pt-8 lg:pt-11">
-							De ahora en adelante, hacés más con tu dinero
+						<p className="w-8/12 md:hidden text-total-white text-2xl pt-8">
+							De ahora <br/>en adelante, <br/>hacés más <br/>con tu dinero
+						</p>
+						<p className="hidden md:block md:w-8/12 lg:text-5xl text-total-white md:text-4xl lg:pt-11 md:pt-8 md:font-light">
+							De ahora en <br/> adelante, hacés <br/>más con tu dinero
 						</p>
 						<hr className="underline my-2 w-5 text-total-primary border-2 sm:hidden" />
-						<h5 className="text-total-primary text-lg sm:hidden">
+						<h5 className="text-total-primary text-lg sm:hidden mt-2">
 							Tu nueva <br />
 							<span className="font-semibold">billetera virtual</span>{" "}
 						</h5>
-						<h5 className="text-total-primary text-lg hidden sm:block lg:text-2xl">
+						<h5 className="text-total-primary text-xl hidden sm:block lg:text-2xl mt-1">
 							Tu nueva <span className="font-semibold">billetera virtual</span>{" "}
 						</h5>
 					</section>
