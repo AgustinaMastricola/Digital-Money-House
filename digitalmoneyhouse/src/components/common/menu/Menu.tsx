@@ -3,16 +3,16 @@ import { signOut } from 'next-auth/react'
 
 const Menu = () => {
   const menuLinks = [
-    {href:"/", name:"Inicio"},
-    {href:"/actividad", name:"Actividad"},
-    {href:"/perfil", name:"Tu perfil"},
-    {href:"/transacciones", name:"Cargar dinero"},
-    {href:"/servicios", name:"Pagar servicios"},
-    {href:"/tarjetas", name:"Tarjetas"},
+    {href:"/dashboard", name:"Inicio"},
+    {href:"/dashboard/actividad", name:"Actividad"},
+    {href:"/dashboard/perfil", name:"Tu perfil"},
+    {href:"/dashboard/transacciones", name:"Cargar dinero"},
+    {href:"/dashboard/servicios", name:"Pagar servicios"},
+    {href:"/dashboard/tarjetas", name:"Tarjetas"},
   ]
 
   return (
-		<div className="bg-total-primary z-10 md:w-full md:h-screen">
+		<div className="bg-total-primary z-10 md:w-full md:h-full">
 			<ul className="pl-10 py-10 space-y-4 w-full">
 				{menuLinks.map((link, index) => (
 					<li className="text-total-black" key={`option-menu-${index}`}>

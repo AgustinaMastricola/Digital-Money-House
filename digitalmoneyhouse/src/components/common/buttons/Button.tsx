@@ -15,7 +15,7 @@ function Button({children, className, href, asLink = false, onClick, type}:Butto
     return (
       <Link 
         href={href}
-        className={clsx( "text-center font-bold p-3 border rounded-lg text-lg", className )}>
+        className={clsx( "text-center font-bold p-3 border rounded-lg", className )}>
         {children}
       </Link>
     )
@@ -23,7 +23,7 @@ function Button({children, className, href, asLink = false, onClick, type}:Butto
   
   return (
     <button 
-      className={clsx("text-center font-bold p-3 border rounded-lg text-lg", className )}
+      className={clsx("text-center font-bold border rounded-lg", className )}
       onClick={onClick}
       type={type}
       >

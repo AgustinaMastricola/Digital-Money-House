@@ -1,18 +1,25 @@
+import clsx from "clsx";
 import { useFormContext } from "react-hook-form";
+
 type InputTextProps = {
     type:'text' | 'password' | 'email' | 'number';
     fieldName: string;
     placeholder?: string;
+    className?:string;
+    onChange?:(e: React.ChangeEvent<HTMLInputElement>) => void;
+    onFocus?:(e: React.FocusEvent<HTMLInputElement>) => void;
 }
-const InputText = ({type, fieldName, placeholder }:InputTextProps) => {
+const InputText = ({type, fieldName, placeholder, className, onChange, onFocus}:InputTextProps) => {
     const {register} = useFormContext()
     return (
         <input 
             type={type} 
             placeholder={placeholder}
             {...register(fieldName)} 
-            className="p-3 my-3 md:my-4 w-full rounded-lg bg-total-white border border-light-primary" 
+            className={clsx("bg-total-white border border-medium-gray rounded-lg outline-none", className)}
             autoFocus={true}
+            onChange={onChange}
+            onFocus={onFocus}
         />
     )
 }

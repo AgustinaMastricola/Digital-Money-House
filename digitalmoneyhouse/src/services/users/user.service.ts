@@ -1,4 +1,3 @@
-import { TokenType } from "@/types/token.types";
 import { UserData, UserType } from "@/types/users.types";
 
 class UserAPI {
@@ -17,7 +16,7 @@ class UserAPI {
     return res.json();
   }
 
-  getUserData = async(token: string, id: number):Promise<UserType> => {
+  getUserData = async(token: string | undefined, id: number):Promise<UserType> => {
     const res = await fetch(`https://digitalmoney.digitalhouse.com/api/users/${id}`, {
       method: 'GET',
       headers: {

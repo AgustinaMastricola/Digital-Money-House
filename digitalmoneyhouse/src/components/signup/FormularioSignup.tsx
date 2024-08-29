@@ -1,14 +1,13 @@
 'use client'
-import ButtonSubmit from "../common/buttons/buttonSubmitForm";
 import { FormProvider, useForm } from "react-hook-form";
 import InputText from "../common/inputs/inputText";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useState } from "react";
 import SuccessMesage from "../signup/SuccessMesage";
-import InputNumber from "../common/inputs/inputNumber";
 import { signupSchema } from "@/lib/yup";
 import { SignupFormData } from "@/types/formData.types";
 import userApi from "@/services/users/user.service";
+import Button from "../common/buttons/Button";
 
 const FormularioSignup = () => {
     const methods = useForm<SignupFormData>({
@@ -23,46 +22,54 @@ const FormularioSignup = () => {
         reset()
         setShowSuccessMessage(true)
     }
+
     return (
         <>
             {showSuccessMessage ? <SuccessMesage style="visible"/> : <SuccessMesage style="hidden"/>}
-            <h1 className={`${!showSuccessMessage ? 'text-total-white mt-4 md:mt-10 md:mb-4 visible': 'hidden'}`}>Crear Cuenta</h1>
+            <h1 className={`${!showSuccessMessage ? 'text-total-white text-base md:text-lg mt-4 md:mt-10 md:mb-4 visible': 'hidden'}`}>Crear Cuenta</h1>
             <div className={`${!showSuccessMessage ? 'w-full flex flex-col items-center visible': 'hidden'}`}>
                 <FormProvider {...methods}>
                     <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col items-center mb-4">
                         <div className="w-10/12 md:w-9/12 lg:w-8/12 xl:w-6/12 md:grid md:grid-cols-2 gap-x-4 md:gap-x-6">
                             <InputText 
+                                className="p-3 my-3 md:my-4 w-full"
                                 type='text'
                                 placeholder='Nombre*'
                                 fieldName='firstname'/>
                             <InputText 
+                                className="p-3 my-3 md:my-4 w-full"
                                 type='text'
                                 placeholder='Apellido*'
                                 fieldName='lastname'/>
-                            <InputNumber 
+                            <InputText
+                                className="hide-arrow p-3 my-3 md:my-4 w-full"
                                 type='number'
                                 placeholder='DNI*'
                                 fieldName='dni'/> 
                             <InputText
+                                className="p-3 my-3 md:my-4 w-full"
                                 type='email'
                                 placeholder='Correo electrónico*'
                                 fieldName='email'/>  
                         </div>
-                        <h5 className="text-light-primary text-sm w-10/12 md:w-9/12 lg:w-8/12 xl:w-6/12">Usa entre 6 y 20 carácteres (debe contener al menos 1 caracter especial, 1 letra mayúscula y un número).</h5>
+                        <h5 className="text-light-primary text-xs w-10/12 md:w-9/12 lg:w-8/12 xl:w-6/12">Usa entre 6 y 20 carácteres (debe contener al menos 1 caracter especial, 1 letra mayúscula y un número).</h5>
                         <div className="w-10/12 md:w-9/12 lg:w-8/12 xl:w-6/12 md:grid md:grid-cols-2 gap-x-4 md:gap-x-6">
                             <InputText 
+                                className="p-3 my-3 md:my-4 w-full"
                                 type='password'
                                 placeholder='Contraseña*'
                                 fieldName='password'/>
-                            <InputText 
+                            <InputText
+                                className="p-3 my-3 md:my-4 w-full" 
                                 type='password'
                                 placeholder='Confirmar contraseña*'
                                 fieldName='passwordConfirmed'/>    
-                            <InputNumber 
+                            <InputText
+                                className="hide-arrow p-3 my-3 md:my-4 w-full"
                                 type='number'
                                 placeholder='Teléfono (opcional)'
                                 fieldName='phone'/>
-                            <ButtonSubmit text={"Crear cuenta"} onSubmit={onSubmit}/>                            
+                            <Button children={"Crear cuenta"} type="submit" className="p-3 w-full my-4 bg-total-primary border-total-primary"/>                            
                             {errors.password &&
                                 <div className="text-error-text italic">{errors.password.message}</div>} 
                             {errors.firstname &&

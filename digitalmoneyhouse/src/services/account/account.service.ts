@@ -2,7 +2,7 @@ import { AccountData } from "@/types/account.types";
 
 class AccountAPI {
 
-  getMyAccount = async (token: string):Promise<AccountData> => {
+  getMyAccount = async (token: string | undefined):Promise<AccountData> => {
     const res = await fetch(`https://digitalmoney.digitalhouse.com/api/account`, {
       method: 'GET',
       headers: {
