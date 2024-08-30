@@ -11,7 +11,7 @@ export default function Home() {
 	return (
 		<>
 			<Header colorLogo="fill-total-primary" headerClassName="bg-total-black" links={links}/>
-			<main className="relative w-full flex flex-col grow justify-between bg-bg-img-mobile md:bg-bg-img-tablet bg-cover bg-center bg-no-repeat">
+			<main className="w-full flex flex-col grow justify-between bg-bg-img-mobile md:bg-bg-img-tablet bg-cover bg-center bg-no-repeat">
 					<section className="ml-4 sm:ml-12 h-1/2 md:h-5/12 pt-8">
 						<p className="w-8/12 md:hidden text-total-white text-2xl">
 							De ahora <br/>en adelante, <br/>hacés más <br/>con tu dinero
@@ -28,8 +28,8 @@ export default function Home() {
 							Tu nueva <span className="font-semibold">billetera virtual</span>
 						</h5>
 					</section>
-					<section className="bg-total-primary rounded-t-3xl w-full absolute bottom-0 md:h-7/12 mt-20 2xl:h-1/3">
-							<div className="space-y-4 flex flex-col items-center -translate-y-8 2xl:-translate-y-16  lg:flex-row lg:justify-center lg:space-x-2 2xl:space-x-4 lg:space-y-0">
+					<section className="bg-total-primary rounded-t-3xl w-full md:h-7/12 mt-20 2xl:h-1/3">
+							<div className="space-y-4 flex flex-col items-center -translate-y-8 2xl:-translate-y-16 lg:flex-row lg:justify-center lg:space-x-2 2xl:space-x-4 lg:space-y-0">
 								<InfoHome
 									title="Transferí dinero"
 									paragraph="Desde Digital Money House vas a poder transferir dinero a otras cuentas, asi como también recibir transferencias y nuclear tu capital en nuestra billetera virtual."

@@ -1,5 +1,4 @@
 "use client";
-import ButtonHome from "@/components/common/buttons/ButtonHome";
 import ActivityList from "@/components/home/authenticated/ActivityList";
 import CardUser from "@/components/home/authenticated/CardUser";
 import { useSession } from "next-auth/react";
@@ -7,6 +6,7 @@ import accountAPI from "@/services/account/account.service";
 import transactionsAPI from "@/services/transactions/transactions.service";
 import SearchIcon from "@/components/common/icons/SearchIcon";
 import ArrowRightIcon from "@/components/common/icons/ArrowRight";
+import Button from "@/components/common/buttons/Button";
 
 export default async function DashboardPage() {
 	const {data: session, status} = useSession();
@@ -21,9 +21,9 @@ export default async function DashboardPage() {
         <span className="underline">Inicio</span>
       </div>
       <CardUser amount={`${getAccount.available_amount}`}/>
-      <div className="flex flex-col items-center w-full space-y-4 md:space-x-4 md:space-y-0 md:flex-row md:w-11/12">
-        <ButtonHome text={"Ingresar dinero"} href={"/transacciones"}/>
-        <ButtonHome text={"Pago de servicios"} href={"/servicios"}/>
+      <div className="flex flex-col items-center w-full space-y-4 lg:space-x-4 lg:space-y-0 lg:flex-row lg:w-11/12">
+        <Button children={"Ingresar dinero"} asLink={true} href={"/transacciones"} className="bg-total-primary border border-total-primary text-total-black w-11/12 text-center py-4 md:py-5 lg:py-6 font-bold rounded-lg md:h-18 lg:text-xl"/>
+        <Button children={"Pago de servicios"} asLink={true} href={"/servicios"} className="bg-total-primary border border-total-primary text-total-black w-11/12 text-center py-4 md:py-5 lg:py-6 font-bold rounded-lg md:h-18 lg:text-xl"/>
       </div>
       <div className=" w-11/12">
         <div className="w-full flex items-center relative">
