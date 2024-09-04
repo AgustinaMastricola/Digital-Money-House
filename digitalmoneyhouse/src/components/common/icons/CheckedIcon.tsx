@@ -14,9 +14,9 @@ export default function CheckedIcon({ className }: CheckedIconProps) {
 			<path
 				d="M8.5 12.5L10.5 14.5L15.5 9.5"
 				stroke="#0AEB8C"
-				stroke-width="1.5"
-				stroke-linecap="round"
-				stroke-linejoin="round"
+				strokeWidth="1.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
 			/>
 		</svg>
 	);

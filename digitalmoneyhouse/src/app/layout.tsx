@@ -10,10 +10,10 @@ export const metadata: Metadata = {
   description: "Desde Digital Money House vas a poder transferir dinero a otras cuentas, asi como también recibir transferencias y nuclear tu capital en nuestra billetera virtual",
 };
 
-export default function RootLayout( {children,}: Readonly<{children: React.ReactNode;}>) {
+export default function RootLayout( {children}: Readonly<{children: React.ReactNode;}>) {
   return (
     <html lang="en">
-      <body className="flex flex-col h-max `${openSans.className}`">
+      <body className="flex flex-col `${openSans.className}`">
         <SessionAuthProvider>
           {children}
         </SessionAuthProvider>

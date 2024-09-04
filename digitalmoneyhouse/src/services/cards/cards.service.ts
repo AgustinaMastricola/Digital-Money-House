@@ -1,7 +1,7 @@
 import { CardType } from "@/types/card.types";
 
 class CardsAPI {
-  getCardsByAccountID = async (token: string, account_id: number):Promise<CardType[]> =>  {
+  getCardsByAccountID = async (token: string | undefined, account_id: number):Promise<CardType[]> =>  {
     const res = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/cards`, {
       method: 'GET',
       headers: {

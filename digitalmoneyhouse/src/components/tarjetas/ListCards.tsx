@@ -1,4 +1,3 @@
-'use client'
 import ElipseIcon from "@/components/common/icons/ElipseIcon"
 import { CardType } from "@/types/card.types"
 import Button from "../common/buttons/Button"

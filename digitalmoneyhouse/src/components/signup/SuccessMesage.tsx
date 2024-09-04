@@ -1,4 +1,4 @@
-import ButtonPrimary from '../common/buttons/buttonLogin'
+import Button from '../common/buttons/Button';
 import CheckedIcon from '../common/icons/CheckedIcon';
 
 type SuccessMesageProps = {
@@ -11,7 +11,7 @@ const SuccessMesage = ({style}:SuccessMesageProps) => {
       <h2 className='text-total-white text-3xl text-center'>Registro exitoso</h2>
       <CheckedIcon/>
       <p className='text-total-white text-center'>Usted se registró correctamente.<br/> Haga click en el siguiente botón para ingresar a su cuenta.</p>
-      <ButtonPrimary text={'Iniciar sesión'}/>
+      <Button children={'Iniciar sesión'} asLink={true} href='/login' className='bg-total-primary border-total-primary'/>
     </div>
   )
 }

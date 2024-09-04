@@ -13,7 +13,7 @@ export default function CloseIcon({ className }: CloseIconProps) {
 			<g
 				id="Page-1"
 				stroke="none"
-				stroke-width="1"
+				strokeWidth="1"
 				fill="none"
 				className={className}
 			>
@@ -25,8 +25,8 @@ export default function CloseIcon({ className }: CloseIconProps) {
 						y2="16.9999"
 						id="Path"
 						stroke="#0AEB8C"
-						stroke-width="2"
-						stroke-linecap="round"
+						strokeWidth="2"
+						strokeLinecap="round"
             className={className}
 					></line>
 					<line
@@ -36,8 +36,8 @@ export default function CloseIcon({ className }: CloseIconProps) {
 						y2="16.9999"
 						id="Path"
 						stroke="#0AEB8C"
-						stroke-width="2"
-						stroke-linecap="round"
+						strokeWidth="2"
+						strokeLinecap="round"
 					></line>
 				</g>
 			</g>
