@@ -7,7 +7,7 @@ import ArrowRightIcon from "@/components/common/icons/ArrowRight";
 const page = () => {
 	return (
 		<>
-			<div className="flex space-x-2 text-sm w-11/12 items-center md:hidden">
+			<div className="flex space-x-2 text-sm w-11/12 items-center md:hidden my-2">
         <ArrowRightIcon/>
         <span className="underline">Perfil</span>
       </div>

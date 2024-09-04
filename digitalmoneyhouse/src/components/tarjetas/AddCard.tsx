@@ -5,7 +5,7 @@ import ArrowRightIcon from "../common/icons/ArrowRight";
 
 const AddCard = () => {
 	return (
-		<div className="bg-total-black w-11/12 h-2/4 rounded-lg p-3 flex flex-col py-8 md:px-5 space-y-8">
+		<div className="mb-4 bg-total-black w-11/12 md:mt-4 rounded-lg p-3 flex flex-col py-6 md:px-5 space-y-8">
 			<h2 className="text-total-white text-center md:text-start">
 				Agregá tu tarjeta de débito o crédito
 			</h2>

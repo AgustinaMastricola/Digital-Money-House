@@ -16,17 +16,17 @@ export default async function DashboardPage() {
 
   return (
     <>
-      <div className="flex space-x-2 text-sm w-11/12 items-center md:hidden">
+      <div className="flex space-x-2 text-sm w-11/12 items-center md:hidden my-2">
         <ArrowRightIcon/>
         <span className="underline">Inicio</span>
       </div>
       <CardUser amount={`${getAccount.available_amount}`}/>
-      <div className="flex flex-col items-center w-full space-y-4 lg:space-x-4 lg:space-y-0 lg:flex-row lg:w-11/12">
-        <Button children={"Ingresar dinero"} asLink={true} href={"/transacciones"} className="bg-total-primary border border-total-primary text-total-black w-11/12 text-center py-4 md:py-5 lg:py-6 font-bold rounded-lg md:h-18 lg:text-xl"/>
-        <Button children={"Pago de servicios"} asLink={true} href={"/servicios"} className="bg-total-primary border border-total-primary text-total-black w-11/12 text-center py-4 md:py-5 lg:py-6 font-bold rounded-lg md:h-18 lg:text-xl"/>
+      <div className="flex flex-col items-center space-y-4 w-full lg:flex-row lg:items-center lg:space-x-4 lg:w-11/12">
+        <Button children={"Ingresar dinero"} asLink={true} href={"/transacciones"} className="bg-total-primary border border-total-primary text-total-black w-11/12 lg:w-10/12 text-center py-4 md:py-5 lg:py-6 font-bold rounded-lg md:h-18 lg:text-xl mt-4"/>
+        <Button children={"Pago de servicios"} asLink={true} href={"/servicios"} className="bg-total-primary border border-total-primary text-total-black w-11/12 lg:w-10/12 text-center py-4 md:py-5 lg:py-6 font-bold rounded-lg md:h-18 lg:text-xl"/>
       </div>
       <div className=" w-11/12">
-        <div className="w-full flex items-center relative">
+        <div className="w-full flex items-center relative my-4">
           <SearchIcon className="h-min absolute left-2"/>
           <input placeholder="Buscar en tu actividad" className="hide-arrow p-3 pl-10 w-full border-t border-total-gray border-opacity-15 rounded-lg border-t-1  bg-total-white shadow-lg focus:outline-none"/>
         </div>
