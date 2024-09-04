@@ -45,6 +45,9 @@ const HeaderDashboard = () => {
 	const handleClickMenu = () => {
 		setShowMenu(!showMenu);
 	};
+	const handleCloseMenu = () => {
+		setShowMenu(false);
+};
 
 	return (
 		<>
@@ -60,14 +63,14 @@ const HeaderDashboard = () => {
 				</div>
 			</header>
       {showMenu && (
-				<div>
+				<div className="md:hidden">
 					<button
 						className="absolute right-5 top-6 z-30"
-						onClick={() => setShowMenu(false)}
+						onClick={handleClickMenu}
 					>
 						<CloseIcon className={"fill-total-primary"}/>
 					</button>
-					<MenuMobile firstname={userData.firstname} lastname={userData.lastname} />
+					<MenuMobile firstname={userData.firstname} lastname={userData.lastname} onClickLink={handleCloseMenu}/>
 				</div>
 			)}
 
@@ -77,7 +80,7 @@ const HeaderDashboard = () => {
 					<p className="text-total-black bg-total-primary uppercase p-2 rounded-lg font-bold md:text-lg">
 						{initalsName}
 					</p>
-					<p className="text-total-primary">
+					<p className="text-total-primary pr-5">
 						Hola, {userData.firstname} {userData.lastname}
 					</p>
 				</Link>
