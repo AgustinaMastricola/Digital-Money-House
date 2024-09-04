@@ -25,7 +25,9 @@ const FormularioSignup = () => {
 
     return (
         <>
-            {showSuccessMessage ? <SuccessMesage style="visible"/> : <SuccessMesage style="hidden"/>}
+            {showSuccessMessage &&
+                <SuccessMesage style="visible" textH2={"Registro exitoso"} textP={'Usted se registró correctamente. Haga click en el siguiente botón para ingresar a su cuenta.'} buttonText={"Iniciar sesión"} buttonHREF={'/login'} styleH2={"text-total-white"} styleP={"text-total-white md:w-6/12"}/> 
+            }
             <h1 className={`${!showSuccessMessage ? 'text-total-white text-base md:text-lg mt-4 md:mt-10 md:mb-4 visible': 'hidden'}`}>Crear Cuenta</h1>
             <div className={`${!showSuccessMessage ? 'w-full flex flex-col items-center visible': 'hidden'}`}>
                 <FormProvider {...methods}>
