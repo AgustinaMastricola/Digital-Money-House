@@ -15,7 +15,7 @@ const page = async () => {
 	
 	return (
 		<>
-			<div className="flex space-x-2 text-sm w-11/12 items-center md:hidden">
+			<div className="flex space-x-2 text-sm w-11/12 items-center md:hidden my-2">
         <ArrowRightIcon/>
         <span className="underline">Tarjetas</span>
       </div>

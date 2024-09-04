@@ -18,7 +18,7 @@ const ActivityList = ({transactions}:ActivityListProps) => {
   const lastTenResults = Array.isArray(transactions) ? transactions.slice(0, 10) : []
   
   return (
-    <div className="w-11/12 pl-2 pt-3 md:pl-10 lg:pl-4 flex flex-col items-start border border-total-gray border-opacity-15 rounded-lg border-1  bg-total-white drop-shadow-2xl ">
+    <div className="w-11/12 mb-4 pl-2 pt-3 md:pl-10 lg:pl-4 flex flex-col items-start border border-total-gray border-opacity-15 rounded-lg border-1  bg-total-white drop-shadow-2xl ">
       <h1 className="text-base my-2">Tu actividad</h1>
       <div className="w-11/12 flex flex-col-reverse">
         { lastTenResults ?

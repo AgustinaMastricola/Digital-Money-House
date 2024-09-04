@@ -9,11 +9,11 @@ const LayoutDashboard: FC<PropsWithChildren> = ({children}) => {
 		<>
 			<HeaderDashboard/>
 			<main>
-				<div className="md:w-full md:flex md:justify-between">
+				<div className="md:w-full md:flex md:justify-between h-full">
 					<div className="hidden md:block w-4/12 lg:w-3/12 xl:w-2/12">
 						<Menu />
 					</div>
-					<div className="flex flex-col space-y-4 items-center py-5 md:w-8/12 lg:w-9/12 xl:w-10/12">
+					<div className="h-full w-full flex flex-col items-center">
 						{children}
 					</div>
 				</div>

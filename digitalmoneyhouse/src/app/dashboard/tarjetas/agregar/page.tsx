@@ -1,13 +1,16 @@
-import CardPicture from '@/components/tarjetas/CardPicture'
+import ArrowRightIcon from '@/components/common/icons/ArrowRight'
 import FormAddCard from '@/components/tarjetas/FormAddCard'
 import React from 'react'
 
 const CargarTarjeta = () => {
   return (
-    <div className='flex flex-col items-center w-full h-full'>
-      <CardPicture/>
+    <>
+      <div className="flex space-x-2 text-sm w-11/12 items-center md:hidden my-2">
+        <ArrowRightIcon/>
+        <span className="underline">Tarjetas / Agregar</span>
+      </div>
       <FormAddCard/>
-    </div>
+    </>
   )
 }
 
