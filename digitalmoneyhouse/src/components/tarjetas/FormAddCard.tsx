@@ -29,10 +29,10 @@ const FormAddCard = () => {
 		if (session?.user?.token) {
 			try {
 				const getAccount = await accountAPI.getMyAccount(
-					`${session.user.token}`
+					`${session?.user?.token}`
 				);
 				const res = await cardsAPI.createCard(
-					session.user.token,
+					session?.user?.token,
 					getAccount.id,
 					data
 				);
