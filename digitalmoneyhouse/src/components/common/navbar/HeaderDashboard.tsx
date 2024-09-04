@@ -39,6 +39,7 @@ const HeaderDashboard = () => {
 	};
 	useEffect(() => {
 		getDataUser();
+		setShowMenu(false)
 	}, [session?.user?.token]);
 
 	const handleClickMenu = () => {
