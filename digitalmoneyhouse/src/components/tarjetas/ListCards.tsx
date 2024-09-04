@@ -23,7 +23,7 @@ const ListCards = async ({cardsList}:ListCardsProps) => {
     <div className="mb-4 w-11/12 pl-2 pt-3 md:pl-10 lg:pl-4 flex flex-col items-start border border-total-gray border-opacity-15 rounded-lg border-1  bg-total-white drop-shadow-2xl ">
       <h1 className="text-base my-2">Tus tarjetas</h1>
       <div className="w-11/12 flex flex-col-reverse items-center">
-        { cardsList ?
+        { Array.isArray(cardsList) && cardsList.length > 0 ?
           cardsList.map((item, index)=>(
             <div key={`card-${index}`} className="w-full">
               <hr className="text-medium-gray opacity-30"/>
@@ -38,7 +38,7 @@ const ListCards = async ({cardsList}:ListCardsProps) => {
           )) 
           :
           <>
-          <p>No tienes tarjetas agregadas en tu cuenta</p>
+          <p className="py-6">No tienes tarjetas agregadas en tu cuenta</p>
           </>
         }
       </div>
