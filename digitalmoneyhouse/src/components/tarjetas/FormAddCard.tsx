@@ -145,7 +145,7 @@ const FormAddCard = () => {
 							className={clsx(
 								"p-3 text-xs lg:text-sm md:col-span-2 lg:col-span-1 lg:col-start-2 xl:col-start-3",
 								{
-									"bg-light-gray border-light-gray ":
+									"bg-light-gray border-light-gray cursor-not-allowed":
 										!cardData.cod ||
 										!cardData.expiration_date ||
 										!cardData.first_last_name ||
