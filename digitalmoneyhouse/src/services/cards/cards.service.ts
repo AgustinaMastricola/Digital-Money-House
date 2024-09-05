@@ -10,7 +10,7 @@ class CardsAPI {
       },
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al obtener las tarjetas')
     }
     return res.json();
   }
@@ -24,7 +24,7 @@ class CardsAPI {
       },
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al obtener la tarjeta')
     }
     return res.json();
   }
@@ -39,7 +39,7 @@ class CardsAPI {
       body: JSON.stringify(cardData)
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al crear la tarjeta')
     }
     return res.json();
   }
@@ -53,7 +53,7 @@ class CardsAPI {
       },
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al eliminar la tarjeta')
     }
     return res.json();
   }

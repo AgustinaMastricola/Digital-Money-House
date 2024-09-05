@@ -10,7 +10,7 @@ class TransactionsAPI {
       },
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al obtener las transacciones')
     }
     return res.json();
   }
@@ -23,7 +23,7 @@ class TransactionsAPI {
       },
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al obtener la transaccion')
     }
     return res.json();
   }
@@ -37,7 +37,7 @@ class TransactionsAPI {
       body: JSON.stringify(body)
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al crear una transaccion')
     }
     return res.json();
   }

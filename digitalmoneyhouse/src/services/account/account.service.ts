@@ -11,7 +11,7 @@ class AccountAPI {
       },
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al obtener la cuenta')
     }
     return res.json();
   }
@@ -26,7 +26,7 @@ class AccountAPI {
       body: JSON.stringify(alias)
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al actualizar el alias')
     }
     return res.json();
   } 

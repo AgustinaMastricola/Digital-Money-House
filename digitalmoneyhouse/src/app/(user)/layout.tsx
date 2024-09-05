@@ -1,4 +1,3 @@
-'use client'
 import Footer from "@/components/common/footer/Footer";
 import { FC, PropsWithChildren} from "react";
 

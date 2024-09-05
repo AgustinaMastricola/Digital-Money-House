@@ -13,7 +13,7 @@ class TransferencesAPI {
       body: JSON.stringify(data)
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al crear un deposito')
     }
     return res.json();
   }
@@ -26,7 +26,7 @@ class TransferencesAPI {
       },
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al obtener las transferencias')
     }
     return res.json();
   }
@@ -40,7 +40,7 @@ class TransferencesAPI {
       body: JSON.stringify(data)
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al crear una transferencia')
     }
     return res.json();
   }
