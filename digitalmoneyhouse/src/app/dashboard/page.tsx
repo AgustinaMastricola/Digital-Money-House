@@ -1,4 +1,4 @@
-import ActivityList from "@/components/home/authenticated/ActivityList";
+import ActivityContainer from "@/components/home/authenticated/ActivityContainer";
 import CardUser from "@/components/home/authenticated/CardUser";
 import SearchIcon from "@/components/common/icons/SearchIcon";
 import ArrowRightIcon from "@/components/common/icons/ArrowRight";
@@ -22,7 +22,7 @@ export default function DashboardPage() {
           <input placeholder="Buscar en tu actividad" className="hide-arrow p-3 pl-10 w-full border-t border-total-gray border-opacity-15 rounded-lg border-t-1  bg-total-white shadow-lg focus:outline-none"/>
         </div>
       </div>
-      {/* <ActivityList/> */}
+      <ActivityContainer/>
     </>
   )
 }
