@@ -4,8 +4,8 @@ import { memo, useRef } from "react";
 
 const UserName = () => {
 	const { firstname, lastname } = useUserContext();
-	const renderCount = useRef(0);
-	renderCount.current += 1;
+	// const renderCount = useRef(0);
+	// renderCount.current += 1;
 
 	function getInitialsName(firstname: string, lastname: string) {
 		const f = firstname.charAt(0).toUpperCase();
@@ -20,7 +20,7 @@ const UserName = () => {
 				href={"/dashboard/perfil"}
 			>
 				{getInitialsName(firstname, lastname)}
-				me renderice : {renderCount.current} veces
+				{/* me renderice : {renderCount.current} veces */}
 			</Link>
 			<Link
 				className="hidden md:items-center md:space-x-2 md:text-total-primary md:pr-5 md:flex"
