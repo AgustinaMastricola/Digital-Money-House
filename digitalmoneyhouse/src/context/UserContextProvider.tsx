@@ -11,7 +11,10 @@ const UserContext = createContext<UserContextType>({
   lastname: '',
   token: '',
   user_id: null,
-  account_id: null
+  account_id: null,
+  email: '',
+  dni: null,
+  phone: ''
 });
 
 export default function UserProvider({children}:{children: React.ReactNode}) {
@@ -21,7 +24,10 @@ export default function UserProvider({children}:{children: React.ReactNode}) {
     lastname: '',
     token: '',
     user_id: null,
-    account_id: null
+    account_id: null,
+    email: '',
+    dni: null,
+    phone: ''
   });
 
   useEffect(() => {
@@ -37,7 +43,10 @@ export default function UserProvider({children}:{children: React.ReactNode}) {
                 lastname: userData.lastname,
                 token: token,
                 user_id: accountData.user_id,
-                account_id: accountData.id
+                account_id: accountData.id,
+                email: userData.email,
+                dni: userData.dni,
+                phone: userData.phone 
               });
             });
         })
@@ -53,7 +62,10 @@ export default function UserProvider({children}:{children: React.ReactNode}) {
       lastname: user.lastname,
       token: user.token,
       user_id: user.user_id,
-      account_id: user.account_id
+      account_id: user.account_id,
+      email: user.email,
+      dni: user.dni,
+      phone: user.phone
     }), [user])
 
   return (
