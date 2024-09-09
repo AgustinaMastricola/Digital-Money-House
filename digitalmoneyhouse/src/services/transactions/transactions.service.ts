@@ -1,7 +1,6 @@
 import { TransferenceType } from "@/types/transference.types";
 class TransactionsAPI {
-
-  getAllTransactionsUser = async (token: string | undefined, account_id: number):Promise<TransferenceType[]> =>  {
+  getAllTransactionsUser = async (token: string | null, account_id: number | null):Promise<TransferenceType[]> =>  {
     const res = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/activity`, {
       method: 'GET',
       headers: {
