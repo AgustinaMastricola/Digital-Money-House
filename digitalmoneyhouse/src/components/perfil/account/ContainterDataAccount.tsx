@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { memo } from "react";
 import DataRow from "./DataRow";
-import { useSession } from "next-auth/react";
-import accountAPI from "@/services/account/account.service";
+import { useAccountContext } from "@/context/AccountContextProvider";
 
-const ContainterDataAccount = async () => {
-	const { data: session, status, update } = useSession();
-	const token = session?.user.token;
-  const getAccount = await accountAPI.getMyAccount(token)
+const ContainterDataAccount = () => {
+	const {cvu, alias} = useAccountContext()
 
 	return (
 		<div className="bg-total-black w-11/12 h-2/4 rounded-lg p-2 space-y-8 py-5 md:py-10 px-5 mb-4">
@@ -14,11 +11,11 @@ const ContainterDataAccount = async () => {
 				Copia tu cvu o alias para ingresar o transferir dinero desde otra cuenta
 			</p>
       <div>
-        <DataRow accountData={getAccount.cvu} title={'CVU'}/>
-        <DataRow accountData={getAccount.alias} title={'ALIAS'}/>
+        <DataRow accountData={cvu} title={'CVU'}/>
+        <DataRow accountData={alias} title={'ALIAS'}/>
       </div>
 		</div>
 	);
 };
 
-export default ContainterDataAccount;
+export default memo(ContainterDataAccount);
