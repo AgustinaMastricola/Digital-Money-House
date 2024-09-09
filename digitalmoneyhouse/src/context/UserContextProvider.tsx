@@ -3,7 +3,7 @@ import accountAPI from "@/services/account/account.service";
 import userApi from "@/services/users/user.service";
 import { UserContextType } from "@/types/users.types";
 import { useSession } from "next-auth/react";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 // Definir el contexto
 const UserContext = createContext<UserContextType>({
@@ -23,14 +23,11 @@ export default function UserProvider({children}:{children: React.ReactNode}) {
     user_id: null,
     account_id: null
   });
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Solo proceder si el estado de la sesión es autenticado
     if (status === "authenticated" && session?.user?.token) {
       const token = session.user.token;
       
-      // Realizar la llamada a la API de forma secuencial usando Promises
       accountAPI.getMyAccount(token)
         .then(accountData => {
           return userApi.getUserData(token, accountData.user_id)
@@ -47,21 +44,20 @@ export default function UserProvider({children}:{children: React.ReactNode}) {
         .catch(error => {
           console.error("Error fetching user data:", error);
         })
-        .finally(() => {
-          setLoading(false);
-        });
-    } else {
-      // Si no está autenticado, simplemente detener la carga
-      setLoading(false);
-    }
-  }, [session, status]);
+  }}, [session]);
 
-  if (loading) {
-    return <div>Loading...</div>; // O puedes retornar un componente de carga
-  }
+
+  const value = useMemo(() => 
+    ({
+      firstname: user.firstname,
+      lastname: user.lastname,
+      token: user.token,
+      user_id: user.user_id,
+      account_id: user.account_id
+    }), [user])
 
   return (
-    <UserContext.Provider value={user}>
+    <UserContext.Provider value={value}>
       {children}
     </UserContext.Provider>
   );
