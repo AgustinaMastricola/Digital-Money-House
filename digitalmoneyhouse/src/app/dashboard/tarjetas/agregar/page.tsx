@@ -6,7 +6,7 @@ import cardsAPI from "@/services/cards/cards.service";
 import { useSession } from "next-auth/react";
 import React from "react";
 
-const CargarTarjeta = async () => {
+const AddNewCardPage = async () => {
 	const { data: session, status } = useSession();
 	const token = session?.user.token;
 	const getAccount = await accountAPI.getMyAccount(token);
@@ -30,4 +30,4 @@ const CargarTarjeta = async () => {
 	);
 };
 
-export default CargarTarjeta;
+export default AddNewCardPage;

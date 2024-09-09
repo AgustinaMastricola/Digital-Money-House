@@ -7,7 +7,7 @@ import accountAPI from "@/services/account/account.service";
 import cardsAPI from "@/services/cards/cards.service";
 import { useSession } from "next-auth/react";
 
-const page = async () => {
+const CardsPage = async () => {
 	const {data: session, status} = useSession();
   const token = session?.user.token;
   const getAccount = await accountAPI.getMyAccount(token)
@@ -25,4 +25,4 @@ const page = async () => {
 	);
 };
 
-export default page;
+export default CardsPage;
