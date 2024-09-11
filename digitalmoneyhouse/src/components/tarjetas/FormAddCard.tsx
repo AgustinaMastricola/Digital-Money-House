@@ -7,7 +7,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import InputText from "../common/inputs/inputText";
 import Button from "../common/buttons/Button";
 import Cards from "react-credit-cards-2";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import clsx from "clsx";
 import SuccessMesage from "../signup/SuccessMesage";
@@ -18,19 +18,21 @@ const FormAddCard = () => {
 	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 	const [lengthCardList, setLengthCardList] = useState(0);
 
+	const CardList = useCallback(async () => {
+    if(token && account_id) {
+		try {
+			const res = await cardsAPI.getCardsByAccountID(token, account_id);
+			setLengthCardList(res.length);
+		} catch (error) {
+			console.error("Error fetching cards:", error);
+		}}
+	}, [account_id]);
+
 	useEffect(() => {
 		CardList();
 	}, [account_id])
 	
 
-	const CardList = async () => {
-		try {
-			const res = await cardsAPI.getCardsByAccountID(token, account_id);
-			setLengthCardList(res.length);
-		} catch (error) {
-			console.error('Error fetching cards:', error);
-		}
-	}
 	const methods = useForm<NewCardPay>({
 		resolver: yupResolver(addCardPaySchema),
 	});
@@ -50,6 +52,7 @@ const FormAddCard = () => {
 				);
 				reset();
 				setShowSuccessMessage(true);
+				CardList()
 			} catch (error) {
 				console.log("no se pudo cargar la tarjeta");
 			}
@@ -77,6 +80,8 @@ const FormAddCard = () => {
 		});
 	};
 
+	const memoizedLengthCardList = useMemo(() => lengthCardList, [lengthCardList]);
+
 	return (
 		<>
 			{showSuccessMessage && (
@@ -93,8 +98,8 @@ const FormAddCard = () => {
 			<div className={clsx(
 				"w-11/12 md:mt-4 mb-4 xl:w-10/12 p-4 md:w-10/12 border border-total-primary border-opacity-15 rounded-lg border-1 bg-total-primary drop-shadow-2xl",
 				{
-					hidden: lengthCardList < 10 || lengthCardList === null || lengthCardList === undefined,
-					block: lengthCardList >= 10,
+					hidden: memoizedLengthCardList < 10 || memoizedLengthCardList === null || memoizedLengthCardList === undefined,
+					block: memoizedLengthCardList >= 10,
 				}
 				)}>
 				<p>El límite máximo de tarjetas asociadas a una cuenta es de 10. <br/> Para poder cargar una tarjeta nueva, deberás eliminar alguna de la lista.</p>
@@ -103,8 +108,8 @@ const FormAddCard = () => {
 				className={clsx(
 					"w-11/12 md:mt-4 h-full mb-4 xl:w-10/12 pt-8 md:w-10/12 border border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-2xl",
 					{
-						hidden: showSuccessMessage || lengthCardList >= 10,
-						block: !showSuccessMessage || lengthCardList < 10,
+						hidden: showSuccessMessage || memoizedLengthCardList >= 10,
+						block: !showSuccessMessage || memoizedLengthCardList < 10,
 					}
 				)}
 			>
