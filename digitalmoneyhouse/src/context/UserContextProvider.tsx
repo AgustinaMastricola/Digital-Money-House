@@ -33,7 +33,7 @@ export default function UserProvider({children}:{children: React.ReactNode}) {
   useEffect(() => {
     if (status === "authenticated" && session?.user?.token) {
       const token = session.user.token;
-      
+      console.log('useEffect del Usercontext')
       accountAPI.getMyAccount(token)
         .then(accountData => {
           return userApi.getUserData(token, accountData.user_id)
