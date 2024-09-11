@@ -1,12 +1,13 @@
 import Menu from "./Menu"
+import { useUserContext } from "@/context/UserContextProvider";
 
 type MenuMobileProps= {
-  firstname:string,
-  lastname: string,
 	onClickLink?: () => void 
 }
 
-const MenuMobile = ({ firstname, lastname, onClickLink }: MenuMobileProps) => {
+const MenuMobile = ({ onClickLink }: MenuMobileProps) => {
+	const {firstname,lastname,token,user_id,account_id} = useUserContext()
+
 	return (
 		<div className="bg-total-primary z-10 h-screen absolute right-0 top-0 w-3/5 md:hidden">
 			<div className="bg-footer-gray py-14">

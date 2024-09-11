@@ -1,22 +1,37 @@
 "use client";
 import { addCardPaySchema } from "@/lib/yup";
-import accountAPI from "@/services/account/account.service";
 import cardsAPI from "@/services/cards/cards.service";
 import { NewCardPay } from "@/types/card.types";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useSession } from "next-auth/react";
 import { FormProvider, useForm } from "react-hook-form";
 import InputText from "../common/inputs/inputText";
 import Button from "../common/buttons/Button";
 import Cards from "react-credit-cards-2";
-import { useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import clsx from "clsx";
 import SuccessMesage from "../signup/SuccessMesage";
+import { useUserContext } from "@/context/UserContextProvider";
 
 const FormAddCard = () => {
-	const { data: session, status } = useSession();
+	const {token, account_id} = useUserContext();
 	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+	const [lengthCardList, setLengthCardList] = useState(0);
+
+	const CardList = useCallback(async () => {
+    if(token && account_id) {
+		try {
+			const res = await cardsAPI.getCardsByAccountID(token, account_id);
+			setLengthCardList(res.length);
+		} catch (error) {
+			console.error("Error fetching cards:", error);
+		}}
+	}, [account_id]);
+
+	useEffect(() => {
+		CardList();
+	}, [account_id])
+	
 
 	const methods = useForm<NewCardPay>({
 		resolver: yupResolver(addCardPaySchema),
@@ -28,18 +43,16 @@ const FormAddCard = () => {
 	} = methods;
 
 	const onSubmit = async (data: NewCardPay) => {
-		if (session?.user?.token) {
+		if (token && account_id) {
 			try {
-				const getAccount = await accountAPI.getMyAccount(
-					`${session?.user?.token}`
-				);
 				const res = await cardsAPI.createCard(
-					session?.user?.token,
-					getAccount.id,
+					token,
+					account_id,
 					data
 				);
 				reset();
 				setShowSuccessMessage(true);
+				CardList()
 			} catch (error) {
 				console.log("no se pudo cargar la tarjeta");
 			}
@@ -67,6 +80,8 @@ const FormAddCard = () => {
 		});
 	};
 
+	const memoizedLengthCardList = useMemo(() => lengthCardList, [lengthCardList]);
+
 	return (
 		<>
 			{showSuccessMessage && (
@@ -79,22 +94,32 @@ const FormAddCard = () => {
 					styleH2={"text-total-black"} 
 					styleP={"text-total-black"}				
 				/>
-			)}
+			)}				
+			<div className={clsx(
+				"w-11/12 md:mt-4 mb-4 xl:w-10/12 p-4 md:w-10/12 border border-total-primary border-opacity-15 rounded-lg border-1 bg-total-primary drop-shadow-2xl",
+				{
+					hidden: memoizedLengthCardList < 10 || memoizedLengthCardList === null || memoizedLengthCardList === undefined,
+					block: memoizedLengthCardList >= 10,
+				}
+				)}>
+				<p>El límite máximo de tarjetas asociadas a una cuenta es de 10. <br/> Para poder cargar una tarjeta nueva, deberás eliminar alguna de la lista.</p>
+			</div>
 			<div
 				className={clsx(
-					"w-11/12 md:mt-4 mb-4 h-full xl:w-10/12 pt-8 md:w-10/12 border border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-2xl",
+					"w-11/12 md:mt-4 h-full mb-4 xl:w-10/12 pt-8 md:w-10/12 border border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-2xl",
 					{
-						hidden: showSuccessMessage,
-						block: !showSuccessMessage,
+						hidden: showSuccessMessage || memoizedLengthCardList >= 10,
+						block: !showSuccessMessage || memoizedLengthCardList < 10,
 					}
 				)}
 			>
+
 				<Cards
 					cvc={cardData.cod}
 					expiry={cardData.expiration_date}
 					name={cardData.first_last_name}
-					number={cardData.number_id}
-				/>
+					number={cardData.number_id} 
+					/>
 				<FormProvider {...methods}>
 					<form
 						onSubmit={handleSubmit(onSubmit)}

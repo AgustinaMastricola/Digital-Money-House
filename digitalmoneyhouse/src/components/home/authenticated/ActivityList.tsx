@@ -1,14 +1,28 @@
-import transformDay from "@/utils/functions"
-import { TransferenceType } from "@/types/transference.types"
-import Link from "next/link"
+'use client'
 import ElipseIcon from "@/components/common/icons/ElipseIcon"
-import ArrowRightIcon from "@/components/common/icons/ArrowRight"
+import { useUserContext } from "@/context/UserContextProvider";
+import transactionsAPI from "@/services/transactions/transactions.service"
+import { TransferenceType } from "@/types/transference.types";
+import transformDay from "@/utils/functions"
+import { memo, useEffect, useState } from "react"
 
-type ActivityListProps = {
-  transactions: TransferenceType[]
-}
+const ActivityList = () => {
+  const {token, account_id} = useUserContext();
+  const [transactions, setTransactions] = useState<TransferenceType[]>([]);
 
-const ActivityList = ({transactions}:ActivityListProps) => {
+  useEffect(() => {
+    const fetchTransactions = () => {
+      transactionsAPI.getAllTransactionsUser(token, account_id)
+        .then(result => {
+          setTransactions(result.slice(0, 10));
+        })
+        .catch(error => {
+          console.error('Error fetching transactions:', error);
+        });
+    };
+    fetchTransactions();
+  }, []);
+  
   const transformDate = (date:string) => {
     const fecha = new Date(date)
     const dayName = fecha.getDay()
@@ -16,12 +30,10 @@ const ActivityList = ({transactions}:ActivityListProps) => {
     return day
   }  
   const lastTenResults = Array.isArray(transactions) ? transactions.slice(0, 10) : []
-  
+
   return (
-    <div className="w-11/12 mb-4 pl-2 pt-3 md:pl-10 lg:pl-4 flex flex-col items-start border border-total-gray border-opacity-15 rounded-lg border-1  bg-total-white drop-shadow-2xl ">
-      <h1 className="text-base my-2">Tu actividad</h1>
-      <div className="w-11/12 flex flex-col-reverse">
-        { lastTenResults ?
+    <div className="w-11/12 flex flex-col-reverse">
+        { lastTenResults.length > 0 ?
           lastTenResults.map((item, index)=>(
             <div key={`tansaction-${index}`}>
               <hr className="text-medium-gray opacity-30"/>
@@ -41,13 +53,7 @@ const ActivityList = ({transactions}:ActivityListProps) => {
           </>
         }
       </div>
-        <hr className="text-medium-gray opacity-30 mt-2 w-full"/>
-      <div className="flex justify-between w-full pr-5 items-center">
-        <Link href={'/actividad'} className="text-sm font-semibold py-3">Ver toda tu actividad</Link>
-        <ArrowRightIcon/>
-      </div>
-    </div>
   )
 }
 
-export default ActivityList
+export default memo(ActivityList)

@@ -1,7 +1,6 @@
 import { TransferenceType } from "@/types/transference.types";
 class TransactionsAPI {
-
-  getAllTransactionsUser = async (token: string | undefined, account_id: number):Promise<TransferenceType[]> =>  {
+  getAllTransactionsUser = async (token: string | null, account_id: number | null):Promise<TransferenceType[]> =>  {
     const res = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/activity`, {
       method: 'GET',
       headers: {
@@ -10,7 +9,7 @@ class TransactionsAPI {
       },
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al obtener las transacciones')
     }
     return res.json();
   }
@@ -23,7 +22,7 @@ class TransactionsAPI {
       },
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al obtener la transaccion')
     }
     return res.json();
   }
@@ -37,7 +36,7 @@ class TransactionsAPI {
       body: JSON.stringify(body)
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al crear una transaccion')
     }
     return res.json();
   }

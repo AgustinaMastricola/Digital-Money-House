@@ -15,3 +15,13 @@ export type UserLoginType = {
   "email": string,
   "password": string
 }
+export type UserContextType = {
+  firstname: string,
+  lastname: string,
+  token: string,
+  user_id: number,
+  account_id: number,
+  email: string,
+  dni: number,
+  phone?: string
+}

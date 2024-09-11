@@ -4,7 +4,7 @@ import ContainerDataUser from "@/components/perfil/user/ContainerDataUser";
 import ContainterDataAccount from "@/components/perfil/account/ContainterDataAccount";
 import ArrowRightIcon from "@/components/common/icons/ArrowRight";
 
-const page = () => {
+const ProfilePage = () => {
 	return (
 		<>
 			<div className="flex space-x-2 text-sm w-11/12 items-center md:hidden my-2">
@@ -18,4 +18,4 @@ const page = () => {
 	);
 };
 
-export default page;
+export default ProfilePage;

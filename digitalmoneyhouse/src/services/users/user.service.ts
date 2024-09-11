@@ -11,7 +11,7 @@ class UserAPI {
       body: JSON.stringify(data)
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al crear nuevo usuario')
     }
     return res.json();
   }
@@ -25,7 +25,7 @@ class UserAPI {
       },
     })
     if(!res.ok){
-      console.log('error')
+      console.log('error al obtener la data del usuario')
     }
     return res.json()
   }
@@ -40,7 +40,7 @@ class UserAPI {
       body: JSON.stringify(data)
     })
     if(!res.ok){
-      console.log('error')
+      console.log('error al actualizar el usuario')
     }
     return res.json()
   }

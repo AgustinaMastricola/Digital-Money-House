@@ -10,7 +10,7 @@ class ServicesAPI {
       },
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al obtener los servicios')
     }
     return res.json();
   }
@@ -23,7 +23,7 @@ class ServicesAPI {
       },
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al obtener el servicio')
     }
     return res.json();
   }
@@ -35,7 +35,7 @@ class ServicesAPI {
       },
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al obtener el servicio por query')
     }
     return res.json();
   }

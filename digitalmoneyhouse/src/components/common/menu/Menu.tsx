@@ -31,6 +31,7 @@ const Menu = ({ onClickLink }: MenuProps) => {
 					<li
 						className={clsx("text-footer-gray hover:text-total-black", {
 							"font-bold": currentPath === link.href,
+							"font-bold ": currentPath === "/dashboard/tarjetas/agregar" && link.href === "/dashboard/tarjetas",
 						})}
 						key={`option-menu-${index}`}
 					>

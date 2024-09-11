@@ -1,7 +1,7 @@
 import { CardType } from "@/types/card.types";
 
 class CardsAPI {
-  getCardsByAccountID = async (token: string | undefined, account_id: number):Promise<CardType[]> =>  {
+  getCardsByAccountID = async (token: string, account_id: number):Promise<CardType[]> =>  {
     const res = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/cards`, {
       method: 'GET',
       headers: {
@@ -10,7 +10,7 @@ class CardsAPI {
       },
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al obtener las tarjetas')
     }
     return res.json();
   }
@@ -24,7 +24,7 @@ class CardsAPI {
       },
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al obtener la tarjeta')
     }
     return res.json();
   }
@@ -39,12 +39,12 @@ class CardsAPI {
       body: JSON.stringify(cardData)
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al crear la tarjeta')
     }
     return res.json();
   }
 
-  deleteCard = async (token: string | undefined, account_id: number, card_id:number): Promise<any> => {
+  deleteCard = async (token: string | null, account_id: number | null, card_id:number): Promise<any> => {
     const res = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/cards/${card_id}`, {
       method: 'DELETE',
       headers: {
@@ -53,7 +53,7 @@ class CardsAPI {
       },
     })
     if (!res.ok) {
-      console.log('error')
+      console.log('error al eliminar la tarjeta')
     }
     return res.json();
   }
