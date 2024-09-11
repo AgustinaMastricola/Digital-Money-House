@@ -19,9 +19,9 @@ export type UserContextType = {
   firstname: string,
   lastname: string,
   token: string,
-  user_id: number | null,
-  account_id: number | null,
+  user_id: number,
+  account_id: number,
   email: string,
-  dni: number | null,
-  phone?: string | null
+  dni: number,
+  phone?: string
 }
