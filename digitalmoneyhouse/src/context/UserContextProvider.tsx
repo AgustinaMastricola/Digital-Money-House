@@ -10,10 +10,10 @@ const UserContext = createContext<UserContextType>({
   firstname: '',
   lastname: '',
   token: '',
-  user_id: null,
-  account_id: null,
+  user_id: -1,
+  account_id: -1,
   email: '',
-  dni: null,
+  dni: -1,
   phone: ''
 });
 
@@ -23,10 +23,10 @@ export default function UserProvider({children}:{children: React.ReactNode}) {
     firstname: '',
     lastname: '',
     token: '',
-    user_id: null,
-    account_id: null,
+    user_id: -1,
+    account_id: -1,
     email: '',
-    dni: null,
+    dni: -1,
     phone: ''
   });
 
