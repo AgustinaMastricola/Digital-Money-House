@@ -8,7 +8,7 @@ export async function GET() {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjUxNSIsImVtYWlsIjoiZW1haWxAZW1haWwuY29tIiwiZXhwIjoxNzI2MjUyMzM1fQ.tUQbaoh_zIBi9ag_kOf7WyDbRIN4nqJd4RvEweGZABc`,
+        Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjUxNSIsImVtYWlsIjoiZW1haWxAZW1haWwuY29tIiwiZXhwIjoxNzI2MjY1MDQzfQ.KC7gK_nMZd0IMfkX_wRvk7cozFEgQhvZMzWT99ucX2o`,
       },
     });
     if (!response.ok) {
