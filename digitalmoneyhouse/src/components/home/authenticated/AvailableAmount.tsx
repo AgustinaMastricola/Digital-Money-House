@@ -12,7 +12,6 @@ const AvailableAmount = () => {
       const data = await accountAPI.getMyAccount(`${session?.user.token}`);
       setAmount(data.available_amount);
     };
-
     fetchData();
   }, [session?.user.token]); 
 
