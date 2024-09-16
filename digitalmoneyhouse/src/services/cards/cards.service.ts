@@ -1,60 +1,43 @@
 import { CardType } from "@/types/card.types";
-
+const API_URL = process.env.NEXT_PUBLIC_API_URL
 class CardsAPI {
   getCardsByAccountID = async (token: string, account_id: number):Promise<CardType[]> =>  {
-    const res = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/cards`, {
-      method: 'GET',
+    const res = await fetch(`${API_URL}account/${account_id}/cards`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization : `${token}`
+        Authorization : token
       },
     })
-    if (!res.ok) {
-      console.log('error al obtener las tarjetas')
-    }
     return res.json();
   }
-
   getCardByCardID = async (token: string, account_id: number, card_id:number):Promise<CardType> =>  {
-    const res = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/cards/${card_id}`, {
-      method: 'GET',
+    const res = await fetch(`${API_URL}account/${account_id}/cards/${card_id}`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization : `${token}`
+        Authorization : token
       },
     })
-    if (!res.ok) {
-      console.log('error al obtener la tarjeta')
-    }
     return res.json();
   }
-
   createCard = async (token: string, account_id: number, cardData:object): Promise<CardType> => {
-    const res = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/cards`, {
+    const res = await fetch(`${API_URL}account/${account_id}/cards`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization : `${token}`
+        Authorization : token
       },
       body: JSON.stringify(cardData)
     })
-    if (!res.ok) {
-      console.log('error al crear la tarjeta')
-    }
     return res.json();
   }
-
-  deleteCard = async (token: string | null, account_id: number | null, card_id:number): Promise<any> => {
-    const res = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/cards/${card_id}`, {
+  deleteCard = async (token: string, account_id: number, card_id:number): Promise<any> => {
+    const res = await fetch(`${API_URL}account/${account_id}/cards/${card_id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        Authorization : `${token}`
+        Authorization : token
       },
     })
-    if (!res.ok) {
-      console.log('error al eliminar la tarjeta')
-    }
     return res.json();
   }
 }
