@@ -1,26 +1,22 @@
 'use client'
 import ElipseIcon from "@/components/common/icons/ElipseIcon"
-import { useUserContext } from "@/context/UserContextProvider";
 import transactionsAPI from "@/services/transactions/transactions.service"
 import { TransferenceType } from "@/types/transference.types";
 import transformDay from "@/utils/functions"
-import { memo, useEffect, useState } from "react"
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react"
 
 const ActivityList = () => {
-  const {token, account_id} = useUserContext();
-  const [transactions, setTransactions] = useState<TransferenceType[]>([]);
+  const {data: session} = useSession();
+  const [activityList, setActivityList] = useState<TransferenceType[]>([]);
 
   useEffect(() => {
-    const fetchTransactions = () => {
-      transactionsAPI.getAllTransactionsUser(token, account_id)
-        .then(result => {
-          setTransactions(result.slice(0, 10));
-        })
-        .catch(error => {
-          console.error('Error fetching transactions:', error);
-        });
+    const fetchData = async () => {
+      const data = await transactionsAPI.getAllTransactionsUser(149, `${session?.user.token}`);
+      setActivityList(data);
     };
-    fetchTransactions();
+
+    fetchData();
   }, []);
   
   const transformDate = (date:string) => {
@@ -29,7 +25,7 @@ const ActivityList = () => {
     const day = transformDay(dayName)
     return day
   }  
-  const lastTenResults = Array.isArray(transactions) ? transactions.slice(0, 10) : []
+  const lastTenResults = Array.isArray(activityList) ? activityList.slice(0, 10) : []
 
   return (
     <div className="w-11/12 flex flex-col-reverse">
@@ -56,4 +52,4 @@ const ActivityList = () => {
   )
 }
 
-export default memo(ActivityList)
+export default ActivityList
