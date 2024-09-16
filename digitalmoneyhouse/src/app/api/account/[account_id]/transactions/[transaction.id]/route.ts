@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-// Este endpoint devuelve los datos de la cuenta del usuario
-
-export const GET = async (req: NextRequest) => {
+interface Params {
+  transaction_id: string;
+  account_id: string;
+}
+//Este endpoint busca una transaccion especifica en la cuenta del usuario
+export const GET = async (req: NextRequest, {params} : {params: Params}) => {
+  const transaction_id = params.transaction_id;
+  const account_id = params.account_id;
   const token = req.headers.get('Authorization');
 
   if (!token) {
@@ -10,7 +15,7 @@ export const GET = async (req: NextRequest) => {
   }
 
   try{
-    const response = await fetch(`https://digitalmoney.digitalhouse.com/api/account`, {
+    const response = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/transactions/${transaction_id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -26,7 +31,7 @@ export const GET = async (req: NextRequest) => {
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {
-    console.error("Error fetching account data:", error);
-    return NextResponse.json({ error: "Error fetching account data" }, { status: 500 });
+    console.error("Error al encontrar la transaccion: ", error);
+    return NextResponse.json({ error: "Error al encontrar la transaccion: " }, { status: 500 });
   }
 }
