@@ -1,7 +1,8 @@
 import { TransferenceType } from "@/types/transference.types";
+const API_URL = process.env.NEXT_PUBLIC_API_URL
 class TransactionsAPI {
   getAllTransactionsUser = async (account_id: number, token: string):Promise<TransferenceType[]> =>  {
-    const res = await fetch(`http://localhost:3000/api/account/${account_id}/activity`,
+    const res = await fetch(`${API_URL}account/${account_id}/activity`,
       {
         headers:{
           'Content-Type': 'application/json',
@@ -11,30 +12,23 @@ class TransactionsAPI {
     return res.json();
   }
   getASpecificTransactionUser = async (token: string, account_id: number, transaction_id: number ):Promise<TransferenceType[]> =>  {
-    const res = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/transactions/${transaction_id}`, {
-      method: 'GET',
+    const res = await fetch(`${API_URL}account/${account_id}/transactions/${transaction_id}`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization : `${token}`
+        Authorization : token
       },
     })
-    if (!res.ok) {
-      console.log('error al obtener la transaccion')
-    }
     return res.json();
   }
   createTransaction = async (token: string, account_id: number, body: object):Promise<TransferenceType> => {
-    const res = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/transactions`, {
-      method: 'PATCH',
+    const res = await fetch(`${API_URL}account/${account_id}/transactions`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization : `${token}`
+        Authorization : token
       },
       body: JSON.stringify(body)
     })
-    if (!res.ok) {
-      console.log('error al crear una transaccion')
-    }
     return res.json();
   }
 }
