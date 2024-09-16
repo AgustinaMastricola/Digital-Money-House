@@ -1,3 +1,4 @@
+import { DepositType } from "@/types/deposit.types";
 import { TransferenceType } from "@/types/transference.types";
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 class TransactionsAPI {
@@ -5,7 +6,6 @@ class TransactionsAPI {
     const res = await fetch(`${API_URL}account/${account_id}/activity`,
       {
         headers:{
-          'Content-Type': 'application/json',
           Authorization: token
         }
       })
@@ -14,7 +14,6 @@ class TransactionsAPI {
   getASpecificTransactionUser = async (token: string, account_id: number, transaction_id: number ):Promise<TransferenceType[]> =>  {
     const res = await fetch(`${API_URL}account/${account_id}/transactions/${transaction_id}`, {
       headers: {
-        'Content-Type': 'application/json',
         Authorization : token
       },
     })
@@ -24,10 +23,19 @@ class TransactionsAPI {
     const res = await fetch(`${API_URL}account/${account_id}/transactions`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
         Authorization : token
       },
       body: JSON.stringify(body)
+    })
+    return res.json();
+  }
+  createDeposit = async (token: string, account_id: number, data:object):Promise<DepositType> =>  {
+    const res = await fetch(`${API_URL}account/${account_id}/deposits`, {
+      method: 'POST',
+      headers: {
+        Authorization : token
+      },
+      body: JSON.stringify(data)
     })
     return res.json();
   }

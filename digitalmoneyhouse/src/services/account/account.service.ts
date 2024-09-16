@@ -4,7 +4,6 @@ class AccountAPI {
   getMyAccount = async (token: string):Promise<AccountData> => {
     const res = await fetch(`${API_URL}/account`, {
       headers: {
-        'Content-Type': 'application/json',
         Authorization : token
       },
     })

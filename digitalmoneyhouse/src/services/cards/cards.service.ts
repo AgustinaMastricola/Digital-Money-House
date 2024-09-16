@@ -4,7 +4,6 @@ class CardsAPI {
   getCardsByAccountID = async (token: string, account_id: number):Promise<CardType[]> =>  {
     const res = await fetch(`${API_URL}account/${account_id}/cards`, {
       headers: {
-        'Content-Type': 'application/json',
         Authorization : token
       },
     })
@@ -13,7 +12,6 @@ class CardsAPI {
   getCardByCardID = async (token: string, account_id: number, card_id:number):Promise<CardType> =>  {
     const res = await fetch(`${API_URL}account/${account_id}/cards/${card_id}`, {
       headers: {
-        'Content-Type': 'application/json',
         Authorization : token
       },
     })
@@ -23,7 +21,6 @@ class CardsAPI {
     const res = await fetch(`${API_URL}account/${account_id}/cards`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
         Authorization : token
       },
       body: JSON.stringify(cardData)
@@ -34,7 +31,6 @@ class CardsAPI {
     const res = await fetch(`${API_URL}account/${account_id}/cards/${card_id}`, {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json',
         Authorization : token
       },
     })
