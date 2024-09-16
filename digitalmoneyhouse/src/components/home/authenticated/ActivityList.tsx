@@ -1,5 +1,6 @@
 'use client'
 import ElipseIcon from "@/components/common/icons/ElipseIcon"
+import accountAPI from "@/services/account/account.service";
 import transactionsAPI from "@/services/transactions/transactions.service"
 import { TransferenceType } from "@/types/transference.types";
 import transformDay from "@/utils/functions"
@@ -12,12 +13,13 @@ const ActivityList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await transactionsAPI.getAllTransactionsUser(149, `${session?.user.token}`);
+      const account_data = await accountAPI.getMyAccount(`${session?.user.token}`);
+      const data = await transactionsAPI.getAllTransactionsUser(account_data.id, `${session?.user.token}`);
       setActivityList(data);
     };
 
     fetchData();
-  }, []);
+  }, [session?.user.token]);
   
   const transformDate = (date:string) => {
     const fecha = new Date(date)
