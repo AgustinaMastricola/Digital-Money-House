@@ -2,7 +2,6 @@ import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 
 const handler = NextAuth({
-
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -12,21 +11,29 @@ const handler = NextAuth({
       },
 
       async authorize(credentials, req) {
-        const res = await fetch(`https://digitalmoney.digitalhouse.com/api/login`, {
+        console.log(req.body);
+        try {
+          const res = await fetch(`http://localhost:3000/api/authorization/login`, {
             method: 'POST',
-            body: JSON.stringify({
-              email: credentials?.email,
-              password: credentials?.password,
-            }),
+            body: JSON.stringify(credentials),
             headers: {
-              'Content-Type':'application/json'
+              'Content-Type': 'application/json'
             }
+          });
+
+          if (!res.ok) {
+            // Si la respuesta no es exitosa, lanzar un error
+            const errorResponse = await res.text();
+            throw new Error(`Error al iniciar sesión: ${errorResponse}`);
           }
-        )
-        const user = await res.json();
-        
-        if(user.error) throw user;
-        return user;
+
+          const user = await res.json();
+          if (user.error) throw user;
+          return user;
+        } catch (error) {
+          console.error("Error en la autorización:", error);
+          throw new Error("Error en la autorización");
+        }
       }
     }),
   ],
