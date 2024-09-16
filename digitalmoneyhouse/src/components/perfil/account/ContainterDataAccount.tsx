@@ -1,9 +1,22 @@
-import { memo } from "react";
+import { useSession } from "next-auth/react";
 import DataRow from "./DataRow";
-import { useAccountContext } from "@/context/AccountContextProvider";
+import { useEffect, useState } from "react";
+import accountAPI from "@/services/account/account.service";
 
 const ContainterDataAccount = () => {
-	const {cvu, alias} = useAccountContext()
+  const {data: session} = useSession();
+  const [cvu, setCvu] = useState('');
+	const [alias, setAlias] = useState('');
+
+	useEffect(() => {
+    const fetchData = async () => {
+      const data = await accountAPI.getMyAccount(`${session?.user.token}`);
+      setCvu(data.cvu);
+			setAlias(data.alias);
+    };
+
+    fetchData();
+  }, [session?.user.token]); 
 
 	return (
 		<div className="bg-total-black w-11/12 h-2/4 rounded-lg p-2 space-y-8 py-5 md:py-10 px-5 mb-4">
@@ -18,4 +31,4 @@ const ContainterDataAccount = () => {
 	);
 };
 
-export default memo(ContainterDataAccount);
+export default ContainterDataAccount;
