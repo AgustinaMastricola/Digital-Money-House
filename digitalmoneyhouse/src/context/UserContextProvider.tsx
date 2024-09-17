@@ -9,12 +9,10 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 const UserContext = createContext<UserContextType>({
   firstname: '',
   lastname: '',
-  token: '',
-  user_id: -1,
-  account_id: -1,
   email: '',
   dni: -1,
-  phone: ''
+  phone: '',
+  token: ''
 });
 
 export default function UserProvider({children}:{children: React.ReactNode}) {
@@ -22,47 +20,39 @@ export default function UserProvider({children}:{children: React.ReactNode}) {
   const [user, setUser] = useState<UserContextType>({
     firstname: '',
     lastname: '',
-    token: '',
-    user_id: -1,
-    account_id: -1,
     email: '',
     dni: -1,
-    phone: ''
+    phone: '',
+    token: ''
   });
-
   useEffect(() => {
     if (status === "authenticated" && session?.user?.token) {
       const token = session.user.token;
-      console.log('useEffect del Usercontext')
-      accountAPI.getMyAccount(token)
-        .then(accountData => {
-          return userApi.getUserData(token, accountData.user_id)
-            .then(userData => {
-              setUser({
-                firstname: userData.firstname,
-                lastname: userData.lastname,
-                token: token,
-                user_id: accountData.user_id,
-                account_id: accountData.id,
-                email: userData.email,
-                dni: userData.dni,
-                phone: userData.phone 
-              });
-            });
+      accountAPI.getMyAccount(`${token}`)
+      .then(accountData => {
+        userApi.getUserData(`${token}`, accountData.user_id)
+        .then( userData => {
+          setUser({
+            firstname: userData.firstname,
+            lastname: userData.lastname,
+            email: userData.email,
+            dni: userData.dni,
+            phone: userData.phone,
+            token: token
+          });
         })
         .catch(error => {
           console.error("Error fetching user data:", error);
         })
-  }}, [session]);
-
+      })      
+    }
+  }, [session]);
 
   const value = useMemo(() => 
     ({
       firstname: user.firstname,
       lastname: user.lastname,
       token: user.token,
-      user_id: user.user_id,
-      account_id: user.account_id,
       email: user.email,
       dni: user.dni,
       phone: user.phone
