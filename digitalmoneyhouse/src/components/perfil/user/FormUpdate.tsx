@@ -1,15 +1,15 @@
 import { useState } from "react";
 import clsx from "clsx";
-import { useSession } from "next-auth/react";
 import { FormProvider, useForm } from "react-hook-form";
 import { UpdateUserData } from "@/types/formData.types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { updateUserSchema } from "@/lib/yup";
-import accountAPI from "@/services/account/account.service";
 import userApi from "@/services/users/user.service";
 import InputText from "@/components/common/inputs/inputText";
 import Button from "@/components/common/buttons/Button";
 import EditIcon from "@/components/common/icons/EditIcon";
+import { useUserContext } from "@/context/UserContextProvider";
+import { useAccountContext } from "@/context/AccountContextProvider";
 
 type FormUpdateProp = {
   userInfo: string[],
@@ -17,7 +17,8 @@ type FormUpdateProp = {
 }
 const FormUpdate = ({userInfo, atribut}:FormUpdateProp) => {
   const [showInput, setShowInput] = useState(false);
-  const { data: session, status } = useSession();
+	const {token} = useUserContext()
+	const {user_id} = useAccountContext()
 
   const methods = useForm<UpdateUserData>({
 		resolver: yupResolver(updateUserSchema),
@@ -26,14 +27,9 @@ const FormUpdate = ({userInfo, atribut}:FormUpdateProp) => {
   const { handleSubmit, reset, formState: { errors }} = methods;
 
 	const onSubmit = async (data: UpdateUserData) => {
-		if (session?.user?.token) {
+		if (token) {
 			try{
-				const getAccount = await accountAPI.getMyAccount(`${session.user.token}`);
-				const res = await userApi.updateUserData(
-					session?.user.token,
-					getAccount.user_id,
-					data
-				);
+				await userApi.updateUserData(token, user_id, data);
 				reset();
 				setShowInput(false)
 				window.location.reload()
