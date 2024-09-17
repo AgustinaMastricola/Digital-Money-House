@@ -21,5 +21,6 @@ export type UserContextType = {
   "firstname": string,
   "lastname": string,
   "token": string,
-  "phone"?: string
+  "phone"?: string,
+  "loading": boolean
 }

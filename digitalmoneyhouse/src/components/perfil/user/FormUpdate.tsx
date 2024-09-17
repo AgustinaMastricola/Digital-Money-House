@@ -17,7 +17,7 @@ type FormUpdateProp = {
 }
 const FormUpdate = ({userInfo, atribut}:FormUpdateProp) => {
   const [showInput, setShowInput] = useState(false);
-	const {token} = useUserContext()
+	const {token, loading} = useUserContext()
 	const {user_id} = useAccountContext()
 
   const methods = useForm<UpdateUserData>({
@@ -29,7 +29,7 @@ const FormUpdate = ({userInfo, atribut}:FormUpdateProp) => {
 	const onSubmit = async (data: UpdateUserData) => {
 		if (token) {
 			try{
-				await userApi.updateUserData(token, user_id, data);
+				await userApi.updateUserData(token, user_id, data)
 				reset();
 				setShowInput(false)
 				window.location.reload()
@@ -47,7 +47,9 @@ const FormUpdate = ({userInfo, atribut}:FormUpdateProp) => {
           "flex justify-between w-full":!showInput,
           "hidden":showInput
         })}>
-        <p className="text-total-gray ">{userInfo}</p>
+        <p className="text-total-gray ">
+					{loading? ' Cargando... ' : userInfo}
+				</p>
         <button onClick={()=>setShowInput(true)}
 					className={clsx({
 						'hidden':atribut[0] === 'email' || atribut[0] === 'dni'
@@ -95,6 +97,7 @@ const FormUpdate = ({userInfo, atribut}:FormUpdateProp) => {
 							<Button
 								children={"Cancelar"}
 								className="p-2 text-xs lg:text-sm text-total-black"
+								type="button"
 								onClick={() => setShowInput(false)}
 							/>
 						</div>

@@ -12,7 +12,8 @@ const UserContext = createContext<UserContextType>({
   email: '',
   dni: -1,
   phone: '',
-  token: ''
+  token: '',
+  loading: true
 });
 
 export default function UserProvider({children}:{children: React.ReactNode}) {
@@ -23,7 +24,8 @@ export default function UserProvider({children}:{children: React.ReactNode}) {
     email: '',
     dni: -1,
     phone: '',
-    token: ''
+    token: '',
+    loading: true
   });
   useEffect(() => {
     if (status === "authenticated" && session?.user?.token) {
@@ -38,7 +40,8 @@ export default function UserProvider({children}:{children: React.ReactNode}) {
             email: userData.email,
             dni: userData.dni,
             phone: userData.phone,
-            token: token
+            token: token,
+            loading: false
           });
         })
         .catch(error => {
@@ -55,7 +58,8 @@ export default function UserProvider({children}:{children: React.ReactNode}) {
       token: user.token,
       email: user.email,
       dni: user.dni,
-      phone: user.phone
+      phone: user.phone,
+      loading: user.loading
     }), [user])
 
   return (

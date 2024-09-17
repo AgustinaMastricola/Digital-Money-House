@@ -13,11 +13,11 @@ const ContainerDataUser = ({user}: ContainerProps) => {
         <hr className="text-medium-gray opacity-30" />
         <DataRow title={'Nombre y apellido'} atribut={['firstname','lastname']} userInfo={[`${user.firstname}`, ` ${user.lastname}`]}/>
         <hr className="text-medium-gray opacity-30" />
-        <DataRow title={'DNI'} atribut={['dni']} userInfo={[`${user.dni}`]}/>
+        <DataRow title={'DNI'} atribut={['dni']} userInfo={[`${user.dni}`]} />
         <hr className="text-medium-gray opacity-30" />
-        <DataRow title={'Teléfono'} atribut={['phone']} userInfo={[`${user.phone}`]}/>
+        <DataRow title={'Teléfono'} atribut={['phone']} userInfo={[`${user.phone}`]} />
         <hr className="text-medium-gray opacity-30" />
-        <DataRow title={'Contraseña'} atribut={['password']} userInfo={['*******']}/>
+        <DataRow title={'Contraseña'} atribut={['password']} userInfo={['*******']} />
         <hr className="text-medium-gray opacity-30" />
       </div>
     </div>
