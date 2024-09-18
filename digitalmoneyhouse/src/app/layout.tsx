@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import SessionAuthProvider from "../context/SessionAuthProvider";
+import AccountProvider from "@/context/AccountContextProvider";
+import UserProvider from "@/context/UserContextProvider";
 
 const openSans = Open_Sans({subsets: ["latin"], style: ['normal']});
 
@@ -15,7 +17,11 @@ export default function RootLayout( {children}: Readonly<{children: React.ReactN
     <html lang="en">
       <body className="flex flex-col `${openSans.className}`">
         <SessionAuthProvider>
-          {children}
+          <AccountProvider>
+            <UserProvider>
+              {children}
+            </UserProvider>
+          </AccountProvider>
         </SessionAuthProvider>
       </body>
     </html>

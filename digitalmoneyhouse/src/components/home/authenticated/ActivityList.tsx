@@ -1,23 +1,25 @@
 'use client'
 import ElipseIcon from "@/components/common/icons/ElipseIcon"
+import { useAccountContext } from "@/context/AccountContextProvider";
+import { useUserContext } from "@/context/UserContextProvider";
 import transactionsAPI from "@/services/transactions/transactions.service"
 import { TransferenceType } from "@/types/transference.types";
 import transformDay from "@/utils/functions"
-import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react"
+import { memo, useEffect, useState } from "react"
 
 const ActivityList = () => {
-  const {data: session} = useSession();
+  const {token} = useUserContext()
+  const {id} = useAccountContext() 
   const [activityList, setActivityList] = useState<TransferenceType[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await transactionsAPI.getAllTransactionsUser(149, `${session?.user.token}`);
+      const data = await transactionsAPI.getAllTransactionsUser(id, token);
       setActivityList(data);
     };
 
     fetchData();
-  }, []);
+  }, [token, id]);
   
   const transformDate = (date:string) => {
     const fecha = new Date(date)
@@ -52,4 +54,4 @@ const ActivityList = () => {
   )
 }
 
-export default ActivityList
+export default memo(ActivityList)

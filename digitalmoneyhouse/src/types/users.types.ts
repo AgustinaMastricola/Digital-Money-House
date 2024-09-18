@@ -16,12 +16,11 @@ export type UserLoginType = {
   "password": string
 }
 export type UserContextType = {
-  firstname: string,
-  lastname: string,
-  token: string,
-  user_id: number,
-  account_id: number,
-  email: string,
-  dni: number,
-  phone?: string
+  "dni": number,
+  "email": string,
+  "firstname": string,
+  "lastname": string,
+  "token": string,
+  "phone"?: string,
+  "loading": boolean
 }

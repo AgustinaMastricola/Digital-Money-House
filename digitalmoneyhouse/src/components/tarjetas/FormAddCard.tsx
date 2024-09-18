@@ -12,25 +12,27 @@ import "react-credit-cards-2/dist/es/styles-compiled.css";
 import clsx from "clsx";
 import SuccessMesage from "../signup/SuccessMesage";
 import { useUserContext } from "@/context/UserContextProvider";
+import { useAccountContext } from "@/context/AccountContextProvider";
 
 const FormAddCard = () => {
-	const {token, account_id} = useUserContext();
+	const {token} = useUserContext();
+	const {id} = useAccountContext()
 	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 	const [lengthCardList, setLengthCardList] = useState(0);
 
 	const CardList = useCallback(async () => {
-    if(token && account_id) {
+    if(token && id) {
 		try {
-			const res = await cardsAPI.getCardsByAccountID(token, account_id);
+			const res = await cardsAPI.getCardsByAccountID(token, id);
 			setLengthCardList(res.length);
 		} catch (error) {
 			console.error("Error fetching cards:", error);
 		}}
-	}, [account_id]);
+	}, [token]);
 
 	useEffect(() => {
 		CardList();
-	}, [account_id])
+	}, [id])
 	
 
 	const methods = useForm<NewCardPay>({
@@ -43,11 +45,11 @@ const FormAddCard = () => {
 	} = methods;
 
 	const onSubmit = async (data: NewCardPay) => {
-		if (token && account_id) {
+		if (token && id) {
 			try {
 				const res = await cardsAPI.createCard(
 					token,
-					account_id,
+					id,
 					data
 				);
 				reset();
