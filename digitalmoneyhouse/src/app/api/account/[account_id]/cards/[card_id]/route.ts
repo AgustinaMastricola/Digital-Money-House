@@ -48,7 +48,6 @@ export const GET = async (req: NextRequest, {params} : {params: Params}) => {
 export const DELETE = async (req: NextRequest, {params} : {params: Params}) => {
   const account_id = params.account_id;
   const card_id = params.card_id;
-  const cardData = await req.json();
   const token = req.headers.get('Authorization');
 
   if (!token) {
@@ -56,17 +55,13 @@ export const DELETE = async (req: NextRequest, {params} : {params: Params}) => {
     return NextResponse.json({ error: "No se obtuvo un Token " }, { status: 401 });
   }
   try{
-  const results = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/cards/${card_id}`,{ 
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization : token
-    },
-    body: JSON.stringify(cardData)
-  }
-  ) 
-  const transaction = await results.json();
-  return NextResponse.json(transaction);
+    await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/cards/${card_id}`,{ 
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization : token
+      },
+    }) 
   }
   catch (error) {
     console.error("Error al eliminar la tarjeta: ", error);

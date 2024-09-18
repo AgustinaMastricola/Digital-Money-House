@@ -5,47 +5,33 @@ import { useUserContext } from "@/context/UserContextProvider";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { CardType } from "@/types/card.types";
 import clsx from "clsx";
+import { useAccountContext } from "@/context/AccountContextProvider";
 
 const ListCards = () => {
-	const { token, account_id } = useUserContext();
+	const {token} = useUserContext();
+	const {id} = useAccountContext();
 	const [cardsList, setCardsList] = useState<CardType[]>([]);
 
 	useEffect(() => {
-		CardList();
-	}, [account_id]);
+    const fetchData = async () => {
+      const data = await cardsAPI.getCardsByAccountID(token, id);
+      setCardsList(data);
+    };
+    fetchData();
+  }, [token]);
 
-	const CardList = useCallback(async () => {
-    if(token && account_id) {
-		try {
-			const res = await cardsAPI.getCardsByAccountID(token, account_id);
-			setCardsList(res);
-		} catch (error) {
-			console.error("Error fetching cards:", error);
-		}}
-	}, [account_id]);
-
-	const deleteCard = useCallback(
-		(card_id: number) => {
-			cardsAPI
-				.deleteCard(token, account_id, card_id)
-				.then((result) => {
-					CardList();
-				})
-				.catch((error) => {
-					console.error("Error eliminando tarjeta:", error);
-				});
-		},
-		[account_id]
-	);
-
-	const memoizedCardsList = useMemo(() => cardsList, [cardsList]);
+	const deleteCard = async (card_id: number) => {
+		const newCardsList = cardsList.filter((card) => card.id !== card_id);
+		setCardsList(newCardsList);
+		await cardsAPI.deleteCard( token, id, card_id);
+	}
 
 	return (
 		<div className="mb-4 w-11/12 pl-2 pt-3 md:pl-10 lg:pl-4 flex flex-col items-start border border-total-gray border-opacity-15 rounded-lg border-1  bg-total-white drop-shadow-2xl ">
 			<h1 className="text-base my-2">Tus tarjetas</h1>
 			<div className="w-11/12 flex flex-col-reverse items-center">
-				{memoizedCardsList.length > 0 ? (
-					memoizedCardsList.map((item, index) => (
+				{cardsList.length > 0 ? (
+					cardsList.map((item, index) => (
 						<div key={`card-${index}`} className="w-full">
 							<hr className="text-medium-gray opacity-30" />
 							<div className="grid gap-x-2 grid-cols-12 items-center my-3 w-full text-sm md:text-base">
@@ -67,7 +53,7 @@ const ListCards = () => {
 				) : (
 					<p
 						className={clsx("py-6", {
-							'hidden':	memoizedCardsList === undefined || memoizedCardsList === null,
+							'hidden':	cardsList === undefined || cardsList === null,
 						})}
 					>
 						No tienes tarjetas agregadas en tu cuenta

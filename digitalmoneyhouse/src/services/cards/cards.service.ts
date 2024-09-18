@@ -27,14 +27,14 @@ class CardsAPI {
     })
     return res.json();
   }
-  deleteCard = async (token: string, account_id: number, card_id:number): Promise<any> => {
+  deleteCard = async (token: string, account_id: number, card_id:number) => {
     const res = await fetch(`${API_URL}account/${account_id}/cards/${card_id}`, {
       method: 'DELETE',
       headers: {
         Authorization : token
       },
     })
-    return res.json();
+    return res;
   }
 }
 const cardsAPI = new CardsAPI();
