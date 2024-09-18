@@ -19,7 +19,7 @@ const ActivityList = () => {
     };
 
     fetchData();
-  }, [token]);
+  }, [token, id]);
   
   const transformDate = (date:string) => {
     const fecha = new Date(date)

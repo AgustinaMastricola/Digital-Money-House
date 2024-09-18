@@ -2,7 +2,7 @@ import ElipseIcon from "@/components/common/icons/ElipseIcon";
 import Button from "../common/buttons/Button";
 import cardsAPI from "@/services/cards/cards.service";
 import { useUserContext } from "@/context/UserContextProvider";
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { CardType } from "@/types/card.types";
 import clsx from "clsx";
 import { useAccountContext } from "@/context/AccountContextProvider";
@@ -18,7 +18,7 @@ const ListCards = () => {
       setCardsList(data);
     };
     fetchData();
-  }, [token]);
+  }, [token, id]);
 
 	const deleteCard = async (card_id: number) => {
 		const newCardsList = cardsList.filter((card) => card.id !== card_id);

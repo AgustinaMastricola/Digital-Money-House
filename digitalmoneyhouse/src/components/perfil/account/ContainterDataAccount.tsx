@@ -1,7 +1,4 @@
-import { useSession } from "next-auth/react";
 import DataRow from "./DataRow";
-import { useEffect, useState } from "react";
-import accountAPI from "@/services/account/account.service";
 import { AccountData } from "@/types/account.types";
 
 type ContainerProps = {
