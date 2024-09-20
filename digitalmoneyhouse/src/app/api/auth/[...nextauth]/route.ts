@@ -1,6 +1,6 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-
+const API_URL = process.env.NEXT_PUBLIC_API_URL
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
@@ -13,7 +13,7 @@ const handler = NextAuth({
       async authorize(credentials, req) {
         console.log(req.body);
         try {
-          const res = await fetch(`http://localhost:3000/api/authorization/login`, {
+          const res = await fetch(`${API_URL}authorization/login`, {
             method: 'POST',
             body: JSON.stringify(credentials),
             headers: {
