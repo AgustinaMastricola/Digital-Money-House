@@ -13,6 +13,7 @@ import clsx from "clsx";
 import SuccessMesage from "../signup/SuccessMesage";
 import { useUserContext } from "@/context/UserContextProvider";
 import { useAccountContext } from "@/context/AccountContextProvider";
+import Container from "../common/containers/Container";
 
 const FormAddCard = () => {
 	const {token} = useUserContext();
@@ -28,11 +29,11 @@ const FormAddCard = () => {
 		} catch (error) {
 			console.error("Error fetching cards:", error);
 		}}
-	}, [token]);
+	}, [token, id]);
 
 	useEffect(() => {
 		CardList();
-	}, [id])
+	}, [id, CardList])
 	
 
 	const methods = useForm<NewCardPay>({
@@ -63,9 +64,9 @@ const FormAddCard = () => {
 
 	const [cardData, setCardData] = useState({
 		cod: "",
-		expiration_date: "",
-		first_last_name: "NOMBRE APELLIDO",
-		number_id: "",
+		expiration_date: "MM/AA",
+		first_last_name: "NOMBRE DEL TITULAR",
+		number_id: "**** **** **** ****",
 		focus: "",
 	});
 
@@ -98,7 +99,7 @@ const FormAddCard = () => {
 				/>
 			)}				
 			<div className={clsx(
-				"w-11/12 md:mt-4 mb-4 xl:w-10/12 p-4 md:w-10/12 border border-total-primary border-opacity-15 rounded-lg border-1 bg-total-primary drop-shadow-2xl",
+				"w-full md:mt-4 mb-4 xl:w-10/12 p-4 md:w-10/12 border border-total-primary border-opacity-15 rounded-lg border-1 bg-total-primary drop-shadow-2xl",
 				{
 					hidden: memoizedLengthCardList < 10 || memoizedLengthCardList === null || memoizedLengthCardList === undefined,
 					block: memoizedLengthCardList >= 10,
@@ -106,89 +107,96 @@ const FormAddCard = () => {
 				)}>
 				<p>El límite máximo de tarjetas asociadas a una cuenta es de 10. <br/> Para poder cargar una tarjeta nueva, deberás eliminar alguna de la lista.</p>
 			</div>
-			<div
+			<Container
 				className={clsx(
-					"w-11/12 md:mt-4 h-full mb-4 xl:w-10/12 pt-8 md:w-10/12 border border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-2xl",
+					"md:mt-6 w-11/12 md:w-10/12 border border-total-gray border-opacity-15 border-1 bg-total-white drop-shadow-2xl",
 					{
 						hidden: showSuccessMessage || memoizedLengthCardList >= 10,
 						block: !showSuccessMessage || memoizedLengthCardList < 10,
 					}
 				)}
 			>
-
-				<Cards
-					cvc={cardData.cod}
-					expiry={cardData.expiration_date}
-					name={cardData.first_last_name}
-					number={cardData.number_id} 
-					/>
+				<div className="custom-card-size">
+					<Cards
+						cvc={cardData.cod}
+						expiry={cardData.expiration_date}
+						name={cardData.first_last_name}
+						number={cardData.number_id} 
+						
+						/>
+				</div>
 				<FormProvider {...methods}>
 					<form
 						onSubmit={handleSubmit(onSubmit)}
-						className="grid grid-cols-1 grid-rows-5 items-center justify-center gap-y-4 p-4 md:grid-cols-2 md:grid-rows-4 md:gap-4 xl:grid-cols-4"
+						className="mt-4 items-center justify-center md:p-4 flex flex-col space-y-4 
+						lg:flex-row lg:space-y-0 lg:space-x-16 lg:items-start"
 					>
-						<InputText
-							type="number"
-							fieldName={"number_id"}
-							placeholder="Número de la tarjeta*"
-							className="p-3 border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-lg hide-arrow
-						md:col-span-2
-						lg:col-span-1
-						xl:col-start-2"
-							onChange={handleInputChange}
-							onFocus={handleInputFocus}
-						/>
-						<InputText
-							type="text"
-							fieldName={"first_last_name"}
-							placeholder="Nombre y apellido*"
-							className="p-3 border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-lg
-						md:col-span-2
-						lg:col-span-1
-						xl:col-start-3"
-							onChange={handleInputChange}
-							onFocus={handleInputFocus}
-						/>
-						<InputText
-							type="number"
-							fieldName={"cod"}
-							placeholder="Código de seguridad*"
-							className="p-3 hide-arrow border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-lg
-						xl:col-start-2"
-							onChange={handleInputChange}
-							onFocus={handleInputFocus}
-						/>
-						<InputText
-							type="text"
-							fieldName={"expiration_date"}
-							placeholder="Fecha de vencimiento*"
-							className="p-3 border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-lg
-						"
-							onChange={handleInputChange}
-							onFocus={handleInputFocus}
-						/>
-						<Button
-							children={"Continuar"}
-							className={clsx(
-								"p-3 text-xs lg:text-sm md:col-span-2 lg:col-span-1 lg:col-start-2 xl:col-start-3",
-								{
-									"bg-light-gray border-light-gray cursor-not-allowed":
-										!cardData.cod ||
-										!cardData.expiration_date ||
-										!cardData.first_last_name ||
-										!cardData.number_id,
-									"bg-total-primary border-total-primary":
-										cardData.cod &&
-										cardData.expiration_date &&
-										cardData.first_last_name &&
-										cardData.number_id,
-								}
-							)}
-							onClick={() => handleSubmit(onSubmit)}
-						/>
+						<div className="w-full flex flex-col space-y-4 lg:items-end">
+							<InputText
+								type="number"
+								fieldName={"number_id"}
+								placeholder="Número de la tarjeta*"
+								className="p-3 w-full lg:w-10/12 border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-lg hide-arrow"
+								onChange={handleInputChange}
+								onFocus={handleInputFocus}
+							/>
+							<InputText
+								type="text"
+								fieldName={"first_last_name"}
+								placeholder="Nombre y apellido*"
+								className="p-3 w-full lg:w-10/12 border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-lg"
+								onChange={handleInputChange}
+								onFocus={handleInputFocus}
+							/>
+						</div>
+						<div className="w-full flex-col space-y-4 items-start lg:items-start">
+							<div className="flex flex-col space-y-4 md:flex-row-reverse md:space-y-0 lg:flex-col-reverse lg:space-y-0">
+								<InputText
+									type="number"
+									fieldName={"cod"}
+									placeholder="Código de seguridad*"
+									className="p-3 w-full lg:w-10/12 hide-arrow border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-lg
+									md:ml-2
+									lg:ml-0 lg:mt-4"
+									onChange={handleInputChange}
+									onFocus={handleInputFocus}
+								/>
+								<InputText
+									type="text"
+									fieldName={"expiration_date"}
+									placeholder="Fecha de vencimiento*"
+									className="p-3 w-full lg:w-10/12 border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-lg
+									md:mr-2
+									lg:mr-0 lg:mb-2"
+									onChange={handleInputChange}
+									onFocus={handleInputFocus}
+								/>
+							</div>
+							<div className="w-full lg:w-10/12">
+								<Button
+									title={"Continuar"}
+									className={clsx(
+										"p-3 w-full rounded-lg text-xs lg:text-sm",
+										{
+											"bg-light-gray border-light-gray cursor-not-allowed":
+												!cardData.cod ||
+												!cardData.expiration_date ||
+												!cardData.first_last_name ||
+												!cardData.number_id,
+											"bg-total-primary border-total-primary":
+												cardData.cod &&
+												cardData.expiration_date &&
+												cardData.first_last_name &&
+												cardData.number_id,
+										}
+									)}
+									onClick={() => handleSubmit(onSubmit)}
+								/>
+							</div>
+						</div>						
 					</form>
 				</FormProvider>
-			</div>
+			</Container>
 		</>
 	);
 };

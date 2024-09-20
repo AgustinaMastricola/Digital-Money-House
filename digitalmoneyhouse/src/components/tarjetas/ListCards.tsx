@@ -6,6 +6,7 @@ import { memo, useEffect, useState } from "react";
 import { CardType } from "@/types/card.types";
 import clsx from "clsx";
 import { useAccountContext } from "@/context/AccountContextProvider";
+import Container from "../common/containers/Container";
 
 const ListCards = () => {
 	const {token} = useUserContext();
@@ -27,8 +28,8 @@ const ListCards = () => {
 	}
 
 	return (
-		<div className="mb-4 w-11/12 pl-2 pt-3 md:pl-10 lg:pl-4 flex flex-col items-start border border-total-gray border-opacity-15 rounded-lg border-1  bg-total-white drop-shadow-2xl ">
-			<h1 className="text-base my-2">Tus tarjetas</h1>
+		<Container className={'border border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-2xl w-10/12 flex flex-col'}>
+		<h1 className="text-base my-2">Tus tarjetas</h1>
 			<div className="w-11/12 flex flex-col-reverse items-center">
 				{cardsList.length > 0 ? (
 					cardsList.map((item, index) => (
@@ -42,7 +43,7 @@ const ListCards = () => {
 								</p>
 								<div className="flex flex-col col-span-5 items-start col-start-9 md:col-start-11 lg:col-start-11 xl:col-start-12">
 									<Button
-										children={"Eliminar"}
+										title={"Eliminar"}
 										className="border-none"
 										onClick={() => deleteCard(item.id)}
 									/>
@@ -60,7 +61,7 @@ const ListCards = () => {
 					</p>
 				)}
 			</div>
-		</div>
+		</Container>
 	);
 };
 

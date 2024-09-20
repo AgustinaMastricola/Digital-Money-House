@@ -15,6 +15,32 @@
     @apply font-bold;
     @apply text-sm;
   }
+  .custom-card-size{
+    @apply flex;
+    @apply flex-col;
+    @apply items-center;
+  }
+  .custom-card-size .rccs {
+    @apply w-max;
+    @apply h-auto;
+    @apply transform scale-[0.98];
+    @apply transform origin-top-left;
+    @apply drop-shadow-md;
+    @apply border-b-total-black;
+  }
+  .custom-card-size .rccs__card--unknown > div{
+    background-image: linear-gradient(to left top, #EEEAEA, #e0e0e0);
+    @apply text-footer-gray;
+  }
+
+  @media (min-width: 768px) {
+    .custom-card-size .rccs {
+      @apply transform scale-100;
+      @apply transform origin-center;
+      @apply pl-0;
+    }
+  }
+
 }
 html, body {
   height: 100%;
@@ -39,4 +65,3 @@ main {
   -webkit-appearance: none;
   margin: 0;
 }
-

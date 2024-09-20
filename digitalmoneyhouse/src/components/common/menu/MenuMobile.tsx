@@ -6,7 +6,7 @@ type MenuMobileProps= {
 }
 
 const MenuMobile = ({ onClickLink }: MenuMobileProps) => {
-	const {firstname,lastname,token,user_id,account_id} = useUserContext()
+	const {firstname,lastname} = useUserContext()
 
 	return (
 		<div className="bg-total-primary z-10 h-screen absolute right-0 top-0 w-3/5 md:hidden">

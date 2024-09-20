@@ -77,7 +77,7 @@ const FormularioSignup = () => {
                                 type='number'
                                 placeholder='Teléfono (opcional)'
                                 fieldName='phone' />
-                            <Button children={"Crear cuenta"} type="submit" className="p-3 w-full my-4 bg-total-primary border-total-primary" />
+                            <Button title={"Crear cuenta"} type="submit" className="p-3 w-full my-4 bg-total-primary border-total-primary" />
                             {Object.values(errors).length > 0 && (
                                 <div className="text-error-text">
                                     {Object.values(errors).map((error, index) => (

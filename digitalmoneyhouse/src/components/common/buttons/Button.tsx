@@ -2,7 +2,7 @@ import clsx from "clsx"
 import Link from "next/link"
 
 type ButtonProps = {
-  children: React.ReactNode,
+  title: string,
   className?: string,
   href?:string,
   asLink?:boolean,
@@ -10,13 +10,13 @@ type ButtonProps = {
   type?: 'button' | 'submit' | 'reset'
 }
 
-function Button({children, className, href, asLink = false, onClick, type}:ButtonProps) {
+function Button({title, className, href, asLink = false, onClick, type}:ButtonProps) {
   if(asLink && href) {
     return (
       <Link 
         href={href}
         className={clsx( "text-center font-bold p-3 border rounded-lg", className )}>
-        {children}
+        {title}
       </Link>
     )
   }
@@ -28,7 +28,7 @@ function Button({children, className, href, asLink = false, onClick, type}:Butto
       type={type}
       >
       
-      {children}
+      {title}
     </button>
   )
 }

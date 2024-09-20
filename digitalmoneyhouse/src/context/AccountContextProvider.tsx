@@ -39,7 +39,7 @@ export default function AccountProvider({children}:{children: React.ReactNode}) 
           .catch(error => {
             console.error("Error fetching user data:", error);
           })
-    }}, [session]);
+    }}, [session, status]);
 
   const value = useMemo(() => 
     ({

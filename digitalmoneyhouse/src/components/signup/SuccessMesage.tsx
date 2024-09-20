@@ -18,7 +18,7 @@ const SuccessMesage = ({style, textH2, textP, buttonText, buttonHREF, styleH2, s
       <h2 className={clsx(' text-3xl text-center', styleH2)}>{textH2}</h2>
       <CheckedIcon/>
       <p className={clsx('text-center' , styleP)}>{textP}</p>
-      <Button children={buttonText} asLink={true} href={buttonHREF} className='bg-total-primary border-total-primary'/>
+      <Button title={`${buttonText}`} asLink={true} href={buttonHREF} className='bg-total-primary border-total-primary'/>
     </div>
   )
 }
