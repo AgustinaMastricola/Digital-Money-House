@@ -27,7 +27,6 @@ const FormularioLogin = () => {
     const router = useRouter();
     const onSubmit = async (dataForm: LoginFormData) => {
         const responseNextAuth = await signIn('credentials', {...dataForm, redirect:false})
-        console.log(responseNextAuth)
         if (responseNextAuth?.error) {
             alert('credenciales invalidas')
             reset()
