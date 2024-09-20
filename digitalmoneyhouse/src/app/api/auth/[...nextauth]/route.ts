@@ -11,7 +11,6 @@ const handler = NextAuth({
       },
 
       async authorize(credentials, req) {
-        console.log(req.body);
         try {
           const res = await fetch(`${URL_BACK}login`, {
             method: 'POST',

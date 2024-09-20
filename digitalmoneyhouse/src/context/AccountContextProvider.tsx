@@ -25,7 +25,6 @@ export default function AccountProvider({children}:{children: React.ReactNode}) 
   useEffect(() => {      
     if (status === "authenticated" && session?.user?.token) {
       const token = session.user.token;
-      console.log(token)
       accountAPI.getMyAccount(`${token}`)
         .then(accountData => {
           setAccount({
