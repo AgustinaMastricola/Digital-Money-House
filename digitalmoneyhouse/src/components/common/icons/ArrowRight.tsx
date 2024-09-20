@@ -15,10 +15,7 @@ export default function ArrowRightIcon({ className }: ArrowRightIconProps) {
 		>
 			<path
 				d="M6 12H18M18 12L13 7M18 12L13 17"
-				stroke={clsx({
-					'#000000' : !className,
-					'#0AEB8C': className
-				})}
+				stroke={className}
 				strokeWidth="2"
 				strokeLinecap="round"
 				strokeLinejoin="round"

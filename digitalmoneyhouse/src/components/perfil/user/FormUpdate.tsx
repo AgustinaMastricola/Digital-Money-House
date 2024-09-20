@@ -90,12 +90,12 @@ const FormUpdate = ({userInfo, atribut}:FormUpdateProp) => {
 						</div>
 						<div className="flex items-center space-x-2 lg:space-y-0 lg:col-span-2">
 							<Button
-								children={"Modificar"}
+								title={"Modificar"}
 								className="p-2 text-xs lg:text-sm bg-total-primary border-total-primary"
 								onClick={() => handleSubmit(onSubmit)}
 							/>
 							<Button
-								children={"Cancelar"}
+								title={"Cancelar"}
 								className="p-2 text-xs lg:text-sm text-total-black"
 								type="button"
 								onClick={() => setShowInput(false)}

@@ -49,7 +49,7 @@ export default function UserProvider({children}:{children: React.ReactNode}) {
         })
       })      
     }
-  }, [session]);
+  }, [session, status]);
 
   const value = useMemo(() => 
     ({

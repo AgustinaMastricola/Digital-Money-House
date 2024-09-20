@@ -2,11 +2,12 @@ import Link from "next/link";
 import React from "react";
 import AddIcon from "../common/icons/AddIcon";
 import ArrowRightIcon from "../common/icons/ArrowRight";
+import Container from "../common/containers/Container";
 
 const AddCard = () => {
 	return (
-		<div className="mb-4 bg-total-black w-11/12 md:mt-4 rounded-lg p-3 flex flex-col py-6 md:px-5 space-y-8">
-			<h2 className="text-total-white text-center md:text-start">
+		<Container className={'bg-total-black md:mt-6 md:pb-4'}>
+			<h2 className="text-total-white text-start">
 				Agregá tu tarjeta de débito o crédito
 			</h2>
 			<div className="flex items-center justify-between  mt-5 md:mt-10 ">
@@ -15,13 +16,13 @@ const AddCard = () => {
 					href={"/dashboard/tarjetas/agregar"}
 				>
 					<AddIcon />
-					<p className="text-total-primary">Nueva tarjeta</p>
+					<p className="text-total-primary font-bold">Nueva tarjeta</p>
 				</Link>
 				<Link href={"/dashboard/tarjetas/agregar"}>
-					<ArrowRightIcon className="fill-total-primary" />
+					<ArrowRightIcon className="#0aeb8c" />
 				</Link>
 			</div>
-		</div>
+		</Container>
 	);
 };
 

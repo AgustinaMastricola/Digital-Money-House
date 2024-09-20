@@ -1,12 +1,13 @@
 import DataRow from "./DataRow";
 import { AccountData } from "@/types/account.types";
+import Container from "@/components/common/containers/Container";
 
-type ContainerProps = {
+type ContainerDataProps = {
   account: AccountData 
 }
-const ContainterDataAccount = ({account} : ContainerProps) => {
+const ContainterDataAccount = ({account} : ContainerDataProps) => {
 	return (
-		<div className="bg-total-black w-11/12 h-2/4 rounded-lg p-2 space-y-8 py-5 md:py-10 px-5 mb-4">
+		<Container className={'bg-total-black'}>
 			<p className="text-total-white text-sm md:text-base md:font-semibold">
 				Copia tu cvu o alias para ingresar o transferir dinero desde otra cuenta
 			</p>
@@ -14,7 +15,7 @@ const ContainterDataAccount = ({account} : ContainerProps) => {
         <DataRow accountData={account.cvu} title={'CVU'}/>
         <DataRow accountData={account.alias} title={'ALIAS'}/>
       </div>
-		</div>
+		</Container>
 	);
 };
 

@@ -52,8 +52,8 @@ const FormularioLogin = () => {
                                 placeholder={'Correo electrónico'}
                                 fieldName={"email"}
                             />
-                            <Button children={'Continuar'} onClick={handleEmailSubmit} type="button" className="p-3 w-full my-4 bg-total-primary border-total-primary"/>
-                            <Button children={'Crear cuenta'} onClick={handleEmailSubmit} asLink={true} href={'/signup'} type="button" className="p-3 w-full bg-light-gray border-light-gray block"/>               
+                            <Button title={'Continuar'} onClick={handleEmailSubmit} type="button" className="p-3 w-full my-4 bg-total-primary border-total-primary"/>
+                            <Button title={'Crear cuenta'} onClick={handleEmailSubmit} asLink={true} href={'/signup'} type="button" className="p-3 w-full bg-light-gray border-light-gray block"/>               
                             <div className="text-error-text text-center">{errors.email?.message}</div>  
                         </div>
                         <div className={step === 2? 'visible':'hidden'}>
@@ -63,7 +63,7 @@ const FormularioLogin = () => {
                                 type='password'
                                 placeholder={'Contraseña'} 
                                 fieldName={"password"}/>
-                            <Button children={"Ingresar"} type="submit" className="p-3 w-full my-4 bg-total-primary border-total-primary"/>
+                            <Button title={"Ingresar"} type="submit" className="p-3 w-full my-4 bg-total-primary border-total-primary"/>
                             <div className="text-error-text italic text-center">{errors.password?.message}</div>
                         </div>
                     </form>
