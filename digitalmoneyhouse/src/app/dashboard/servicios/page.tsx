@@ -1,6 +1,6 @@
 'use client'
 
-const page = () => {
+const ServicesPage = () => {
   return (
 		<>
 			SERVICIOS
@@ -8,4 +8,4 @@ const page = () => {
   )
 }
 
-export default page
+export default ServicesPage

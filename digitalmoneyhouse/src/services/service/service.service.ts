@@ -1,42 +1,12 @@
 import { ServiceInvoiceType, ServiceType } from "@/types/service.types";
-
+const API_URL = process.env.NEXT_PUBLIC_API_URL
 class ServicesAPI {
-
   getAllServices = async ():Promise<ServiceType[]> =>  {
-    const res = await fetch(`https://digitalmoney.digitalhouse.com/api/service`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    if (!res.ok) {
-      console.log('error')
-    }
+    const res = await fetch(`${API_URL}service`)
     return res.json();
   }
-
-  getServiceByID = async (user_id:number):Promise<ServiceInvoiceType> =>  {
-    const res = await fetch(`https://digitalmoney.digitalhouse.com/api/service/${user_id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    if (!res.ok) {
-      console.log('error')
-    }
-    return res.json();
-  }
-  getServiceByQUERY = async (query: string):Promise<ServiceType> =>  {
-    const res = await fetch(`https://digitalmoney.digitalhouse.com/api/service/${query}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    if (!res.ok) {
-      console.log('error')
-    }
+  getServiceByID = async (service_id:number):Promise<ServiceInvoiceType> =>  {
+    const res = await fetch(`${API_URL}service/${service_id}`)
     return res.json();
   }
 }

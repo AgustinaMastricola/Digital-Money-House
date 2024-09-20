@@ -1,47 +1,29 @@
 import { UserData, UserType } from "@/types/users.types";
-
+const API_URL = process.env.NEXT_PUBLIC_API_URL
 class UserAPI {
-
   newUser = async (data: UserType): Promise<UserData> => {
-    const res = await fetch(`https://digitalmoney.digitalhouse.com/api/users`, {
+    const res = await fetch(`${API_URL}users`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify(data)
     })
-    if (!res.ok) {
-      console.log('error')
-    }
     return res.json();
   }
-
-  getUserData = async(token: string | undefined, id: number):Promise<UserType> => {
-    const res = await fetch(`https://digitalmoney.digitalhouse.com/api/users/${id}`, {
-      method: 'GET',
+  getUserData = async(token: string, user_id: number):Promise<UserType> => {
+    const res = await fetch(`${API_URL}users/${user_id}`, {
       headers: {
-        'Content-Type': 'application/json',
-        Authorization : `${token}`
+        Authorization : token
       },
     })
-    if(!res.ok){
-      console.log('error')
-    }
     return res.json()
   }
-
-  updateUserData = async(token: string, id: number, data:object):Promise<UserType> => {
-    const res = await fetch(`https://digitalmoney.digitalhouse.com/api/users/${id}`, {
+  updateUserData = async(token: string, user_id: number, data:object):Promise<UserType> => {
+    const res = await fetch(`${API_URL}users/${user_id}`, {
       method: 'PATCH',
       headers: {
-        'Content-Type': 'application/json',
-        Authorization : `${token}`
+        Authorization : token
       },
       body: JSON.stringify(data)
     })
-    if(!res.ok){
-      console.log('error')
-    }
     return res.json()
   }
 }

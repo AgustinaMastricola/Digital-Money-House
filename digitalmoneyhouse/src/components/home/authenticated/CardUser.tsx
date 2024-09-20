@@ -1,20 +1,19 @@
 import Link from 'next/link'
+import AvailableAmount from './AvailableAmount'
+import Container from '@/components/common/containers/Container'
 
-type CardUserProps = {
-  amount: string
-}
-const CardUser = ({amount}:CardUserProps) => {
+const CardUser = () => {
   return (
-    <div className='bg-total-black w-11/12 h-2/4 rounded-lg p-2'>
+    <Container className={'bg-total-black md:mt-6'}>
       <div className='text-total-white text-sm flex justify-end items-center space-x-2'>
-        <Link className='underline' href={'/tarjetas'}>Ver tarjetas</Link>
-        <Link className='underline' href={'/perfil'}>Ver CVU</Link>
+        <Link className='underline' href={'/dashboard/tarjetas'}>Ver tarjetas</Link>
+        <Link className='underline' href={'/dashboard/perfil'}>Ver CVU</Link>
       </div>
-      <div className='text-total-white my-8 ml-3 w-max space-y-2'>
+      <div className='text-total-white mt-4 ml-3 lg:ml-10 lg:mb-4 w-max space-y-2'>
         <h2>Dinero disponible</h2>
-        <p className='border rounded-full border-total-primary text-center p-1 py-2 text-2xl'>$ {amount},00</p>
+        <AvailableAmount/>
       </div>
-    </div>
+    </Container>
   )
 }
 

@@ -1,14 +1,16 @@
-import CardPicture from '@/components/tarjetas/CardPicture'
-import FormAddCard from '@/components/tarjetas/FormAddCard'
-import React from 'react'
+import ArrowRightIcon from "@/components/common/icons/ArrowRight";
+import FormAddCard from "@/components/tarjetas/FormAddCard";
 
-const CargarTarjeta = () => {
-  return (
-    <div className='flex flex-col items-center w-full h-full'>
-      <CardPicture/>
-      <FormAddCard/>
-    </div>
-  )
-}
+const AddNewCardPage = async () => {
+	return (
+		<>
+			<div className="flex space-x-2 text-sm w-10/12 items-center md:hidden my-2">
+				<ArrowRightIcon className="#000000"/>
+				<span className="underline">Tarjetas / Agregar</span>
+			</div>
+			<FormAddCard />
+		</>
+	);
+};
 
-export default CargarTarjeta
+export default AddNewCardPage;
