@@ -5,6 +5,7 @@ interface Params {
   account_id: string;
   card_id: string;
 }
+const URL_BACK = process.env.API_URL_BACK_END
 
 export const GET = async (req: NextRequest, {params} : {params: Params}) => {
   const account_id = params.account_id;
@@ -17,7 +18,7 @@ export const GET = async (req: NextRequest, {params} : {params: Params}) => {
   }
 
   try{
-    const response = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/cards/${card_id}`, {
+    const response = await fetch(`${URL_BACK}accounts/${account_id}/cards/${card_id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -55,7 +56,7 @@ export const DELETE = async (req: NextRequest, {params} : {params: Params}) => {
     return NextResponse.json({ error: "No se obtuvo un Token " }, { status: 401 });
   }
   try{
-    await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/cards/${card_id}`,{ 
+    await fetch(`${URL_BACK}accounts/${account_id}/cards/${card_id}`,{ 
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

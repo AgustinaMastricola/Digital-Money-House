@@ -3,13 +3,14 @@ interface Params {
   service_id: string;
 }
 //Este endpoint tiene un GET que devuelve un servicio en especifico, y un GET que busca un servicio por query params
+const URL_BACK = process.env.API_URL_BACK_END
 
 export const GET = async (req: NextRequest, {params} : {params: Params}) => {
   const service_id = params.service_id;
   const query = req.nextUrl.searchParams;
 
   try{
-    let url = `https://digitalmoney.digitalhouse.com/api/service/${service_id}`;
+    let url = `${URL_BACK}service/${service_id}`;
     if (query){
       const queryString = new URLSearchParams(query).toString();
       url += `?${queryString}`;

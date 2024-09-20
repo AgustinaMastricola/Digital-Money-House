@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 interface Params {
   account_id: string;
 }
+const URL_BACK = process.env.API_URL_BACK_END
 
 export const POST = async (req: NextRequest, {params} : {params: Params}) => {
   const id = params.account_id;
@@ -16,7 +17,7 @@ export const POST = async (req: NextRequest, {params} : {params: Params}) => {
     return NextResponse.json({ error: "No se obtuvo un Token " }, { status: 401 });
   }
   try{
-  const results = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${id}/transactions`,{ 
+  const results = await fetch(`${URL_BACK}accounts/${id}/transactions`,{ 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

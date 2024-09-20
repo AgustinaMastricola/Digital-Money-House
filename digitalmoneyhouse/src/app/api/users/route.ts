@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+const URL_BACK = process.env.API_URL_BACK_END
 
 // Este endpoint es un POST para crear un nuevo usuario
 export const POST = async (req: NextRequest) => {
@@ -7,7 +8,7 @@ export const POST = async (req: NextRequest) => {
   const { passwordConfirmed, ...data } = userData;
 
   try{
-  const results = await fetch(`https://digitalmoney.digitalhouse.com/api/users`,{ 
+  const results = await fetch(`${URL_BACK}users`,{ 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

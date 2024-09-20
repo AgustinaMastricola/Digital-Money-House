@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 interface Params {
   account_id: string;
 }
+const URL_BACK = process.env.API_URL_BACK_END
 
 export const PATCH = async (req: NextRequest, {params} : {params: Params}) => {
   const id = params.account_id;
@@ -14,7 +15,7 @@ export const PATCH = async (req: NextRequest, {params} : {params: Params}) => {
     return NextResponse.json({ error: "API token is not provided" }, { status: 401 });
   }
   try{
-  const results = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${id}`,{ 
+  const results = await fetch(`${URL_BACK}accounts/${id}`,{ 
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',

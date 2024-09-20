@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 // Este endpoint devuelve los datos de la cuenta del usuario
-
+const URL_BACK = process.env.API_URL_BACK_END
 export const GET = async (req: NextRequest) => {
   const token = req.headers.get('Authorization');
 
@@ -10,7 +10,7 @@ export const GET = async (req: NextRequest) => {
   }
 
   try{
-    const response = await fetch(`https://digitalmoney.digitalhouse.com/api/account`, {
+    const response = await fetch(`${URL_BACK}account`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

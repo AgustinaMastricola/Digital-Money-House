@@ -4,6 +4,7 @@ import {NextRequest, NextResponse} from "next/server";
 interface Params {
   account_id: string;
 }
+const URL_BACK = process.env.API_URL_BACK_END
 
 export const GET = async (req: NextRequest, {params} : {params: Params}) => {
   const id = params.account_id;
@@ -15,7 +16,7 @@ export const GET = async (req: NextRequest, {params} : {params: Params}) => {
   }
 
   try{
-    const activitiesList = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${id}/activity`, {
+    const activitiesList = await fetch(`${URL_BACK}accounts/${id}/activity`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

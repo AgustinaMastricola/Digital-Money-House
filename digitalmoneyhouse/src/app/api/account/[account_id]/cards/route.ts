@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 interface Params {
   account_id: string;
 }
+const URL_BACK = process.env.API_URL_BACK_END
 
 export const GET = async (req: NextRequest, {params} : {params: Params}) => {
   const id = params.account_id;
@@ -15,7 +16,7 @@ export const GET = async (req: NextRequest, {params} : {params: Params}) => {
   }
 
   try{
-    const cardsList = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${id}/cards`, {
+    const cardsList = await fetch(`${URL_BACK}accounts/${id}/cards`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -52,7 +53,7 @@ export const POST = async (req: NextRequest, {params} : {params: Params}) => {
     return NextResponse.json({ error: "No se obtuvo un Token " }, { status: 401 });
   }
   try{
-  const results = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${id}/cards`,{ 
+  const results = await fetch(`${URL_BACK}accounts/${id}/cards`,{ 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

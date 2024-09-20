@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 
 //Este endpoint devuelve una lista de servicios que se pueden pagar con la cuenta del usuario
+const URL_BACK = process.env.API_URL_BACK_END
 
 export const GET = async () => {
 
   try{
-    const servicesList = await fetch(`https://digitalmoney.digitalhouse.com/api/sevice`, {
+    const servicesList = await fetch(`${URL_BACK}sevice`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

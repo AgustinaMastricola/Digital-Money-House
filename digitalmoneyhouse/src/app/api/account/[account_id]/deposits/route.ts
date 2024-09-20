@@ -3,6 +3,8 @@ interface Params {
   account_id: string;
 }
 //Este endpoint tiene un POST para crear un nuevo deposito
+const URL_BACK = process.env.API_URL_BACK_END
+
 export const POST = async (req: NextRequest, {params} : {params: Params}) => {
   const id = params.account_id;
   const depositData = await req.json();
@@ -13,7 +15,7 @@ export const POST = async (req: NextRequest, {params} : {params: Params}) => {
     return NextResponse.json({ error: "No se obtuvo un Token " }, { status: 401 });
   }
   try{
-  const results = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${id}/deposits`,{ 
+  const results = await fetch(`${URL_BACK}accounts/${id}/deposits`,{ 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

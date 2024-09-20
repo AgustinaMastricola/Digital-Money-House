@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 interface Params {
   user_id: string;
 }
+const URL_BACK = process.env.API_URL_BACK_END
+
 //Este endpoint tiene un GET para obtener los datos del usuario y un PATCH para actualizarlos
 export const GET = async (req: NextRequest, {params} : {params: Params}) => {
   const user_id = params.user_id;
@@ -13,7 +15,7 @@ export const GET = async (req: NextRequest, {params} : {params: Params}) => {
   }
 
   try{
-    const response = await fetch(`https://digitalmoney.digitalhouse.com/api/users/${user_id}`, {
+    const response = await fetch(`${URL_BACK}users/${user_id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -43,7 +45,7 @@ export const PATCH = async (req: NextRequest, {params} : {params: Params}) => {
     return NextResponse.json({ error: "API token is not provided" }, { status: 401 });
   }
   try{
-  const results = await fetch(`https://digitalmoney.digitalhouse.com/api/users/${user_id}`,{ 
+  const results = await fetch(`${URL_BACK}users/${user_id}`,{ 
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',

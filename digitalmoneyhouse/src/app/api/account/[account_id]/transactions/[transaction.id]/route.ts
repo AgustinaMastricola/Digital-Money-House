@@ -3,6 +3,8 @@ interface Params {
   transaction_id: string;
   account_id: string;
 }
+const URL_BACK = process.env.API_URL_BACK_END
+
 //Este endpoint busca una transaccion especifica en la cuenta del usuario
 export const GET = async (req: NextRequest, {params} : {params: Params}) => {
   const transaction_id = params.transaction_id;
@@ -15,7 +17,7 @@ export const GET = async (req: NextRequest, {params} : {params: Params}) => {
   }
 
   try{
-    const response = await fetch(`https://digitalmoney.digitalhouse.com/api/accounts/${account_id}/transactions/${transaction_id}`, {
+    const response = await fetch(`${URL_BACK}accounts/${account_id}/transactions/${transaction_id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
