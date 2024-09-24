@@ -4,7 +4,7 @@ import { useAccountContext } from "@/context/AccountContextProvider";
 import { useUserContext } from "@/context/UserContextProvider";
 import transactionsAPI from "@/services/transactions/transactions.service"
 import { TransferenceType } from "@/types/transference.types";
-import transformDay from "@/utils/functions"
+import transformDate from "@/utils/functions/transformDate";
 import { usePathname } from "next/navigation";
 import { memo, useEffect, useState } from "react"
 
@@ -22,47 +22,13 @@ const ActivityList = () => {
     fetchData();
   }, [token, id]);
 
-  const transformDate = (date: string) => {
-    const dateTransaction = new Date(date);
-    const dateNow = new Date();
-    const dayNow = dateNow.getDate();
-    const dayTransaction = dateTransaction.getDate();
-    const monthNow = dateNow.getMonth();
-    const monthTransaction = dateTransaction.getMonth();
-    const difDays = dayNow - dayTransaction;
-  
-    // Verificar si la diferencia de días es mayor a 7 o menor a -7, o si son de meses diferentes
-    if (difDays > 7 || difDays < -7 || monthNow !== monthTransaction) {
-      const dayName = transformDay(dateTransaction.getDay());
-      const day = dateTransaction.getDate();
-      const month = dateTransaction.toLocaleString('default', { month: 'short' });
-      return `${dayName} ${day} ${month}`;
-    } else {
-      const dayName = transformDay(dateTransaction.getDay());
-      return dayName;
-    }
-  }
-
-  const getFilteredActivityList = () => {
-    // Ordenar el array por fecha en orden descendente
-    if(!Array.isArray(activityList)) {
-      return [];
-    }
-    const sortedActivityList = [...activityList].sort((a, b) => new Date(a.dated).getTime() - new Date(b.dated).getTime());
-
-    if(location === '/dashboard'){
-      // Tomar los primeros 10 elementos del array ordenado
-      return sortedActivityList.slice(-10);
-    }
-    return sortedActivityList;
-  }
-
-  const filteredActivityList = getFilteredActivityList();
+  const orderedList = Array.isArray(activityList) ? activityList.toReversed() : [];
+  const lastTenResults = orderedList.slice(-10);
 
   return (
     <div className="w-11/12 flex flex-col-reverse">
-        { filteredActivityList.length > 0 ?
-          filteredActivityList.map((item, index)=>( 
+        { lastTenResults.length > 0 ?
+          lastTenResults.map((item, index)=>( 
             <div key={`transaction-${index}`}>
               <hr className="text-medium-gray opacity-30"/>
               <div  className="grid gap-x-2 grid-cols-12 items-center my-3 w-full text-sm md:text-base">
