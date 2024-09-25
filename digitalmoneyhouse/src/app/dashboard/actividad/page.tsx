@@ -1,30 +1,54 @@
 'use client'
-import ActivityListFilter from "@/components/actividad/ActivityListFilter"
-import Button from "@/components/common/buttons/Button"
-import ArrowRightIcon from "@/components/common/icons/ArrowRight"
-import FilterIcon from "@/components/common/icons/FilterIcon"
-import SearchIcon from "@/components/common/icons/SearchIcon"
+import Filter from "@/components/actividad/Filter";
+import Button from "@/components/common/buttons/Button";
+import Container from "@/components/common/containers/Container";
+import ArrowRightIcon from "@/components/common/icons/ArrowRight";
+import FilterIcon from "@/components/common/icons/FilterIcon";
+import SearchIcon from "@/components/common/icons/SearchIcon";
+import ActivityList from "@/components/home/authenticated/ActivityList";
+import { useAccountContext } from "@/context/AccountContextProvider";
+import { useUserContext } from "@/context/UserContextProvider";
+import { useState } from "react";
 
 const ActivityPage = () => {
+  const { id } = useAccountContext();
+  const { token } = useUserContext();
+  const [filter, setFilter] = useState<string | null>('today');
+
+  const handleFilterChange = (newFilter: string) => {
+    setFilter(newFilter);
+  };
+
   return (
-		<>
-			<div className="flex space-x-2 text-sm w-10/12 items-center md:hidden my-2">
-        <ArrowRightIcon className="#000000"/>
+    <>
+      <div className="flex space-x-2 text-sm w-10/12 items-center md:hidden my-2">
+        <ArrowRightIcon className="#000000" />
         <span className="underline">Tu actividad</span>
       </div>
-			<div className="md:mt-6 w-10/12 md:flex md:items-center md:space-x-5 mb-4">
+      <div className="md:mt-6 w-10/12 md:flex md:items-center md:space-x-5 mb-4">
         <div className="w-full flex items-center relative">
-          <SearchIcon className="h-min absolute left-2"/>
-          <input placeholder="Buscar en tu actividad" className="p-3 pl-10 w-full border-t border-total-gray border-opacity-15 rounded-lg border-t-1  bg-total-white shadow-lg focus:outline-none"/>
+          <SearchIcon className="h-min absolute left-2" />
+          <input placeholder="Buscar en tu actividad" className="p-3 pl-10 w-full border-t border-total-gray border-opacity-15 rounded-lg border-t-1  bg-total-white shadow-lg focus:outline-none" />
         </div>
-				<div className="md:flex md:items-center md:justify-between md:space-x-2 md:p-3 hidden md:bg-total-primary md:rounded-lg md:w-4/12">
-          <Button title={"Filtrar"} className="border-none"/>
-          <FilterIcon fill="#0AEB8C"/>
+        <div className="md:flex md:items-center md:justify-between md:space-x-2 md:p-3 hidden md:bg-total-primary md:rounded-lg md:w-4/12">
+          <Button title={"Filtrar"} className="border-none" />
+          <FilterIcon fill="#0AEB8C" />
         </div>
       </div>
-			<ActivityListFilter/>
-		</>
+      <Filter onFilterChange={handleFilterChange} />
+      <Container className={"border border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-2xl w-10/12 flex flex-col "}>
+        <div className="flex justify-between">
+          <h1 className="text-base my-2">Tu actividad</h1>
+          <div className="flex items-center space-x-2 px-4 md:hidden">
+            <Button title={"Filtrar"} className="border-none" />
+            <FilterIcon fill="white" />
+          </div>
+        </div>
+        <hr className="text-medium-gray opacity-30 mt-2 w-full" />
+        <ActivityList filter={filter} accountId={id} token={token} />
+      </Container>
+    </>
   )
 }
 
-export default ActivityPage
+export default ActivityPage;
