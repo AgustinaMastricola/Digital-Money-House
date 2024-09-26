@@ -7,7 +7,7 @@ type ContainerDataProps = {
 }
 const ContainterDataAccount = ({account} : ContainerDataProps) => {
 	return (
-		<Container className={'bg-total-black'}>
+		<Container className={'bg-total-black w-11/12 md:w-10/12'}>
 			<p className="text-total-white text-sm md:text-base md:font-semibold">
 				Copia tu cvu o alias para ingresar o transferir dinero desde otra cuenta
 			</p>

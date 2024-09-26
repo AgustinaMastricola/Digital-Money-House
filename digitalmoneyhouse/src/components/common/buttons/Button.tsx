@@ -7,10 +7,11 @@ type ButtonProps = {
   href?:string,
   asLink?:boolean,
   onClick?:()=>void,
-  type?: 'button' | 'submit' | 'reset'
+  type?: 'button' | 'submit' | 'reset',
+  children?: React.ReactNode
 }
 
-function Button({title, className, href, asLink = false, onClick, type}:ButtonProps) {
+function Button({title, className, href, asLink = false, onClick, type, children}:ButtonProps) {
   if(asLink && href) {
     return (
       <Link 
@@ -27,8 +28,8 @@ function Button({title, className, href, asLink = false, onClick, type}:ButtonPr
       onClick={onClick}
       type={type}
       >
-      
       {title}
+      {children}
     </button>
   )
 }

@@ -4,7 +4,7 @@ import Container from '@/components/common/containers/Container'
 
 const CardUser = () => {
   return (
-    <Container className={'bg-total-black md:mt-6'}>
+    <Container className={'bg-total-black md:mt-6 w-11/12 md:w-10/12'}>
       <div className='text-total-white text-sm flex justify-end items-center space-x-2'>
         <Link className='underline' href={'/dashboard/tarjetas'}>Ver tarjetas</Link>
         <Link className='underline' href={'/dashboard/perfil'}>Ver CVU</Link>
