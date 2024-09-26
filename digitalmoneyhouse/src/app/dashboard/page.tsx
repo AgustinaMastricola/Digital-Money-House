@@ -1,10 +1,29 @@
-import ActivityContainer from "@/components/home/authenticated/ActivityContainer";
+'use client'
 import CardUser from "@/components/home/authenticated/CardUser";
 import SearchIcon from "@/components/common/icons/SearchIcon";
 import ArrowRightIcon from "@/components/common/icons/ArrowRight";
 import Button from "@/components/common/buttons/Button";
+import { useState } from "react";
+import Container from "@/components/common/containers/Container";
+import ActivityList from "@/components/home/authenticated/ActivityList";
+import Link from "next/link";
+import { useAccountContext } from "@/context/AccountContextProvider";
+import { useUserContext } from "@/context/UserContextProvider";
 
 export default function DashboardPage() {
+  const [valueInput, setValueInput] = useState<string | null>(null);
+  const { id } = useAccountContext();
+	const { token } = useUserContext();
+
+  const handleInputSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value;
+		console.log(value);
+		if (value === "") {
+			setValueInput(null);
+			return;
+		}
+		setValueInput(value);
+	}
   return (
     <>
       <div className="flex space-x-2 text-sm w-11/12 md:w-10/12 items-center md:hidden my-2">
@@ -19,10 +38,18 @@ export default function DashboardPage() {
       <div className=" w-11/12 md:w-10/12">
         <div className="w-full flex items-center relative my-4">
           <SearchIcon className="h-min absolute left-2"/>
-          <input placeholder="Buscar en tu actividad" className="hide-arrow p-3 pl-10 w-full border-t border-total-gray border-opacity-15 rounded-lg border-t-1  bg-total-white shadow-lg focus:outline-none"/>
+          <input onChange={handleInputSearchChange} placeholder="Buscar en tu actividad" className="hide-arrow p-3 pl-10 w-full border-t border-total-gray border-opacity-15 rounded-lg border-t-1  bg-total-white shadow-lg focus:outline-none"/>
         </div>
       </div>
-      <ActivityContainer/>
+      <Container className="border border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-2xl w-11/12 md:w-10/12 flex flex-col ">
+      <h1 className="text-base my-2">Tu actividad</h1>
+        <ActivityList filter={null} accountId={id} token={token} valueInputSearch={valueInput} page={0}/>
+        <hr className="text-medium-gray opacity-30 mt-2 w-full"/>
+      <div className="flex justify-between w-full pr-5 items-center">
+        <Link href={'/dashboard/actividad'} className="text-sm font-semibold py-3">Ver toda tu actividad</Link>
+        <ArrowRightIcon className="#000000"/>
+      </div>
+    </Container>
     </>
   )
 }
