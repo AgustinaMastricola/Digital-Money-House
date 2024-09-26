@@ -13,8 +13,12 @@ const ActivityList = ({ filter, accountId, token }:ActivityListProps) => {
   
   return (
     <div className="w-11/12 flex flex-col-reverse">
-      {filteredActivities.length > 0 ?
-        filteredActivities.map((item, index) => (
+      {
+      loading ? <p>Cargando...</p>
+      :
+      filteredActivities.length > 0 
+      ?
+      filteredActivities.map((item, index) => (
           <div key={`transaction-${index}`}>
             <hr className="text-medium-gray opacity-30" />
             <div className="grid gap-x-2 grid-cols-12 items-center my-3 w-full text-sm md:text-base">
