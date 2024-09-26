@@ -90,10 +90,11 @@ const useActivities = (
         // const startIndex = (page - 1) * 10;
         // const paginated = filtered.slice(startIndex, startIndex + 10);
       }
-      setFilteredActivities(filtered)
+      const lastTenResults = filtered.slice(-10);
+      setFilteredActivities(lastTenResults)
 		};
 		applyFilter();
-	}, [activities, filter, page]);
+	}, [activities, activities.length, filter, page]);
 
 	return { filteredActivities, loading };
 };
