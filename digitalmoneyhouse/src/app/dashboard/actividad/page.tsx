@@ -16,6 +16,7 @@ const ActivityPage = () => {
 	const { token } = useUserContext();
 	const [filter, setFilter] = useState<string | null>(null);
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
+	const [valueInput, setValueInput] = useState<string | null>(null);
 
 	const handleFilterChange = (newFilter: string | null) => {
 		setFilter(newFilter);
@@ -23,6 +24,15 @@ const ActivityPage = () => {
 	const toggleFilterVisibility = () => {
 		setIsFilterVisible(!isFilterVisible);
 	};
+	const handleInputSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value;
+		console.log(value);
+		if (value === "") {
+			setValueInput(null);
+			return;
+		}
+		setValueInput(value);
+	}
 
 	return (
 		<>
@@ -38,6 +48,7 @@ const ActivityPage = () => {
 				<div className="w-full flex items-center relative">
 					<SearchIcon className="h-min absolute left-2" />
 					<input
+						onChange={handleInputSearchChange}
 						placeholder="Buscar en tu actividad"
 						className="p-3 pl-10 w-full border-t border-total-gray border-opacity-15 rounded-lg border-t-1  bg-total-white shadow-lg focus:outline-none"
 					/>
@@ -79,7 +90,7 @@ const ActivityPage = () => {
 					</div>
 				</div>
 				<hr className="text-medium-gray opacity-30 mt-2 w-full" />
-				<ActivityList filter={filter} accountId={id} token={token} />
+				<ActivityList filter={filter} accountId={id} token={token} valueInputSearch={valueInput} page={0} />
 			</Container>
 		</>
 	);

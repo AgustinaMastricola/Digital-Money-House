@@ -6,10 +6,12 @@ interface ActivityListProps {
   filter: string | null;
   accountId: number;
   token: string;
+  valueInputSearch: string | null;
+  page: number
 }
 
-const ActivityList = ({ filter, accountId, token }:ActivityListProps) => {
-  const { filteredActivities, loading } = useActivities(accountId, token, filter, 1);
+const ActivityList = ({ filter, accountId, token, valueInputSearch, page }:ActivityListProps) => {
+  const { filteredActivities, loading } = useActivities(filter, accountId, token, valueInputSearch, page);
   
   return (
     <div className="w-11/12 flex flex-col-reverse">

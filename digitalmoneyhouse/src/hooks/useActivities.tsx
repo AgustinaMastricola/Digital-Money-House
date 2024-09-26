@@ -4,10 +4,11 @@ import { TransferenceType } from "@/types/transference.types";
 import { usePathname } from "next/navigation";
 
 const useActivities = (
+	filter: string | null,
 	account_id: number,
 	token: string,
-	filter: string | null,
-	page: number
+  valueInputSearch: string | null,
+	page: number,
 ) => {
 	const [activities, setActivities] = useState<TransferenceType[]>([]);
 	const [filteredActivities, setFilteredActivities] = useState<TransferenceType[]>([]);
@@ -93,8 +94,18 @@ const useActivities = (
       const lastTenResults = filtered.slice(-10);
       setFilteredActivities(lastTenResults)
 		};
+
+    const searchValueInput = () => {
+      if(valueInputSearch !== null && valueInputSearch !== ''){
+        const searchResults = activities.filter((activity) => {
+          return activity.description.toLowerCase().includes(valueInputSearch.toLowerCase());
+        });
+        setFilteredActivities(searchResults);
+      }
+    }
 		applyFilter();
-	}, [activities, activities.length, filter, page]);
+    searchValueInput()
+	}, [activities, activities.length, filter, page, valueInputSearch]);
 
 	return { filteredActivities, loading };
 };
