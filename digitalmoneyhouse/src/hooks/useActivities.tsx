@@ -23,7 +23,7 @@ const useActivities = (
 				account_id,
 				token
 			);
-			setActivities(data);
+			setActivities(Array.isArray(data) ? data : []);
 			setLoading(false);
 		};
 		fetchActivities();
@@ -31,7 +31,7 @@ const useActivities = (
 
 	useEffect(() => {
 		const applyFilter = () => {
-			let filtered = activities;
+			let filtered: TransferenceType[] = activities;
 			const now = new Date();
       
       //Aplico el filtro fecha a la lista completa de actividades y guardo el resultado en el estado l-12
@@ -91,19 +91,28 @@ const useActivities = (
         // const startIndex = (page - 1) * 10;
         // const paginated = filtered.slice(startIndex, startIndex + 10);
       }
-      const lastTenResults = filtered.slice(-10);
-      setFilteredActivities(lastTenResults)
+      if (Array.isArray(filtered)) {
+        const lastTenResults = filtered.slice(-10);
+        setFilteredActivities(lastTenResults);
+      } else {
+        setFilteredActivities([]);
+      }
 		};
 
     const searchValueInput = () => {
       if(valueInputSearch !== null && valueInputSearch !== ''){
         const searchResults = activities.filter((activity) => {
-          return activity.description.toLowerCase().includes(valueInputSearch.toLowerCase());
+          return (
+            typeof activity.description === 'string' &&
+            typeof valueInputSearch === 'string' &&
+            activity.description.toLowerCase().includes(valueInputSearch.toLowerCase())
+          );
         });
         setFilteredActivities(searchResults);
       }
+      
     }
-		applyFilter();
+    applyFilter();
     searchValueInput()
 	}, [activities, activities.length, filter, page, valueInputSearch]);
 
