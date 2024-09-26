@@ -15,7 +15,15 @@ const transformDate = (date: string) => {
     const day = dateTransaction.getDate();
     const month = dateTransaction.toLocaleString('default', { month: 'short' });
     return `${dayName} ${day} ${month}`;
-  } else {
+  } else  if (
+    dateTransaction.getDate() === dateNow.getDate() &&
+    dateTransaction.getMonth() === dateNow.getMonth() &&
+    dateTransaction.getFullYear() === dateNow.getFullYear()
+  ) {
+    const isToday = transformDay(7)
+    return isToday;
+  }
+  else {
     const dayName = transformDay(dateTransaction.getDay());
     return dayName;
   }
