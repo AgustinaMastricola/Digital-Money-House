@@ -78,12 +78,12 @@ const useActivities = (
               return activityDate >= lastMonth && activityDate <= now;
             });
             break;
-          case "lastYear":
-            const lastYear = new Date(now);
-            lastYear.setFullYear(now.getFullYear() - 1);
+          case "last3months":
+            const last3months = new Date(now);
+            last3months.setMonth(now.getMonth() - 3);
             filtered = activities.filter((activity) => {
               const activityDate = new Date(activity.dated);
-              return activityDate >= lastYear && activityDate <= now;
+              return activityDate >= last3months && activityDate <= now;
             });
             break;
           default:
