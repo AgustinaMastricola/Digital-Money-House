@@ -48,7 +48,7 @@ const Filter = ({ onFilterChange, className, onClose, currentFilter}: FilterProp
       <InputRadio label={"Ayer"} onChange={handleFilterChange} value="yesterday" checked={selectedFilter} />
       <InputRadio label={"Última semana"} onChange={handleFilterChange} value="lastWeek" checked={selectedFilter} />
       <InputRadio label={"Últimos 15 días"} onChange={handleFilterChange} value="last15days" checked={selectedFilter} />
-      <InputRadio label={"Último año"} onChange={handleFilterChange} value="lastYear" checked={selectedFilter} />
+      <InputRadio label={"Últimos 3 meses"} onChange={handleFilterChange} value="last3months" checked={selectedFilter} />
       <div className="flex items-center justify-between px-4 py-2 w-full ">
         <Button title={"Otro período"} className="border-none text-medium-gray font-normal" />
         <ArrowV width="11" height="7" stroke="#A6A5A7" className={'transform  '} />
