@@ -20,6 +20,7 @@ const ActivityPage = () => {
   const [page, setPage] = useState<number>(1);
 
   const handleFilterChange = (newFilter: string | null) => {
+    setPage(1)
     setFilter(newFilter);
   };
 
@@ -34,6 +35,7 @@ const ActivityPage = () => {
       setValueInput(null);
       return;
     }
+    setPage(1)
     setValueInput(value);
   };
 
