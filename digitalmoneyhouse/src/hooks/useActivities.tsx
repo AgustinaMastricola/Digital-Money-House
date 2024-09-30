@@ -4,38 +4,41 @@ import { TransferenceType } from "@/types/transference.types";
 import { usePathname } from "next/navigation";
 
 const useActivities = (
-	filter: string | null,
-	account_id: number,
-	token: string,
+  filter: string | null,
+  account_id: number,
+  token: string,
   valueInputSearch: string | null,
-	page: number,
+  page: number,
 ) => {
-	const [activities, setActivities] = useState<TransferenceType[]>([]);
-	const [filteredActivities, setFilteredActivities] = useState<TransferenceType[]>([]);
-	const [loading, setLoading] = useState<boolean>(true);
+  const [activities, setActivities] = useState<TransferenceType[]>([]);
+  const [filteredActivities, setFilteredActivities] = useState<TransferenceType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [totalPages, setTotalPages] = useState<number>(1);
   const location = usePathname();
+  const resultPerPage = 10;
 
-	useEffect(() => {
-		//Busco en el back la lista de actividades completa y la guardo en el estado l-11
-		const fetchActivities = async () => {
-			setLoading(true);
-			const data = await transactionsAPI.getAllTransactionsUser(
-				account_id,
-				token
-			);
-			setActivities(Array.isArray(data) ? data : []);
-			setLoading(false);
-		};
-		fetchActivities();
-	}, [account_id, token, filter]);
+  useEffect(() => {
+    // Fetch activities from the backend and store them in the state
+    const fetchActivities = async () => {
+      setLoading(true);
+      const data = await transactionsAPI.getAllTransactionsUser(
+        account_id,
+        token
+      );
+      const sortedData = Array.isArray(data) ? data.sort((a, b) => new Date(b.dated).getTime() - new Date(a.dated).getTime()) : [];
+      setActivities(sortedData);
+      setLoading(false);
+    };
+    fetchActivities();
+  }, [account_id, token]);
 
-	useEffect(() => {
-		const applyFilter = () => {
-			let filtered: TransferenceType[] = activities;
-			const now = new Date();
-      
-      //Aplico el filtro fecha a la lista completa de actividades y guardo el resultado en el estado l-12
-			if(filter !== null && location === '/dashboard/actividad'){
+  useEffect(() => {
+    const applyFilter = () => {
+      let filtered: TransferenceType[] = activities;
+      const now = new Date();
+
+      // Apply date filter
+      if (filter !== null && location === '/dashboard/actividad') {
         switch (filter) {
           case "today":
             filtered = activities.filter((activity) => {
@@ -86,37 +89,34 @@ const useActivities = (
           default:
             break;
         }
-        setFilteredActivities(filtered);
-        // // Paginar resultados
-        // const startIndex = (page - 1) * 10;
-        // const paginated = filtered.slice(startIndex, startIndex + 10);
       }
-      if (Array.isArray(filtered)) {
-        const lastTenResults = filtered.slice(-10);
-        setFilteredActivities(lastTenResults);
-      } else {
-        setFilteredActivities([]);
-      }
-		};
 
-    const searchValueInput = () => {
-      if(valueInputSearch !== null && valueInputSearch !== ''){
-        const searchResults = activities.filter((activity) => {
+      // Apply search filter
+      if (valueInputSearch !== null && valueInputSearch !== '') {
+        filtered = filtered.filter((activity) => {
           return (
             typeof activity.description === 'string' &&
             typeof valueInputSearch === 'string' &&
             activity.description.toLowerCase().includes(valueInputSearch.toLowerCase())
           );
         });
-        setFilteredActivities(searchResults);
       }
-      
-    }
-    applyFilter();
-    searchValueInput()
-	}, [activities, activities.length, filter, page, valueInputSearch]);
 
-	return { filteredActivities, loading };
+      // Calculate total pages based on filtered results
+      const calculatedTotalPages = Math.ceil(filtered.length / resultPerPage);
+      setTotalPages(calculatedTotalPages);
+
+      // Apply pagination
+      const startPage = (page - 1) * resultPerPage;
+      const endPage = startPage + resultPerPage;
+      const paginated = filtered.slice(startPage, endPage);
+      setFilteredActivities(paginated);
+    };
+
+    applyFilter();
+  }, [activities, filter, page, valueInputSearch, location]);
+
+  return { filteredActivities, loading, totalPages };
 };
 
 export default useActivities;

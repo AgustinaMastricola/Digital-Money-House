@@ -8,7 +8,8 @@ type ButtonProps = {
   asLink?:boolean,
   onClick?:()=>void,
   type?: 'button' | 'submit' | 'reset',
-  children?: React.ReactNode
+  children?: React.ReactNode,
+  disabled?: boolean
 }
 
 function Button({title, className, href, asLink = false, onClick, type, children}:ButtonProps) {
@@ -27,6 +28,7 @@ function Button({title, className, href, asLink = false, onClick, type, children
       className={clsx("text-center font-bold border rounded-lg", className )}
       onClick={onClick}
       type={type}
+      disabled={false}
       >
       {title}
       {children}
