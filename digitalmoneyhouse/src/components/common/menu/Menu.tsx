@@ -2,7 +2,7 @@ import Link from "next/link";
 import { signOut } from "next-auth/react";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 
 type MenuProps = {
 	onClickLink?: () => void;
@@ -10,6 +10,8 @@ type MenuProps = {
 const Menu = ({ onClickLink }: MenuProps) => {
 	const [currentPath, setCurrentPath] = useState("");
 	const location = usePathname();
+	const paramsUrl = useParams();
+	const [urlHasParams, setUrlHasParams] = useState(false);
 
 	useEffect(() => {
 		setCurrentPath(location);
@@ -31,7 +33,10 @@ const Menu = ({ onClickLink }: MenuProps) => {
 					<li
 						className={clsx("text-footer-gray hover:text-total-black", {
 							"font-bold": currentPath === link.href,
-							"font-bold ": currentPath === "/dashboard/tarjetas/agregar" && link.href === "/dashboard/tarjetas",
+							"font-bold ": currentPath.includes("/dashboard/tarjetas") && link.href === "/dashboard/tarjetas",
+							"font-bold  ": currentPath.includes("/dashboard/actividad") && link.href === "/dashboard/actividad",
+							"font-bold   ": currentPath.includes("/dashboard/transacciones") && link.href === "/dashboard/transacciones",
+							"font-bold    ": currentPath.includes("/dashboard/servicios") && link.href === "/dashboard/servicios",
 						})}
 						key={`option-menu-${index}`}
 					>

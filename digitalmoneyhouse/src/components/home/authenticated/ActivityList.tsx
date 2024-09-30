@@ -28,7 +28,7 @@ const ActivityList = ({ filter, accountId, token, valueInputSearch, page, onPage
           filteredActivities.map((item, index) => (
             <Link key={`transaction-${index}`} 
               href={
-                location === '/dashboard/actividad' ? `/dashboard/actividad/${item.id}` : `dashboard/actividad/${item.id}`
+                location === '/dashboard/actividad' ? `/dashboard/actividad/detalle/${item.id}` : `dashboard/actividad/detalle/${item.id}`
               }>
                 <div className="grid gap-x-2 grid-cols-12 items-center my-3 w-full text-sm md:text-base">
                   <ElipseIcon className={"fill-total-primary"} width="18" height="18" />
