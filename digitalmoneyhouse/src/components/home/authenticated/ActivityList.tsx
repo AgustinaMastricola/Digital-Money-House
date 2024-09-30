@@ -1,57 +1,60 @@
-'use client'
-import ElipseIcon from "@/components/common/icons/ElipseIcon"
-import { useAccountContext } from "@/context/AccountContextProvider";
-import { useUserContext } from "@/context/UserContextProvider";
-import transactionsAPI from "@/services/transactions/transactions.service"
-import { TransferenceType } from "@/types/transference.types";
-import transformDay from "@/utils/functions"
-import { memo, useEffect, useState } from "react"
+import Button from "@/components/common/buttons/Button";
+import ElipseIcon from "@/components/common/icons/ElipseIcon";
+import useActivities from "@/hooks/useActivities";
+import transformDate from "@/utils/functions/transformDate";
+import { usePathname } from "next/navigation";
 
-const ActivityList = () => {
-  const {token} = useUserContext()
-  const {id} = useAccountContext() 
-  const [activityList, setActivityList] = useState<TransferenceType[]>([]);
+interface ActivityListProps {
+  filter: string | null;
+  accountId: number;
+  token: string;
+  valueInputSearch: string | null;
+  page: number;
+  onPageChange: (newPage: number) => void;
+  showPagination: boolean; 
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await transactionsAPI.getAllTransactionsUser(id, token);
-      setActivityList(data);
-    };
-
-    fetchData();
-  }, [token, id]);
-  
-  const transformDate = (date:string) => {
-    const fecha = new Date(date)
-    const dayName = fecha.getDay()
-    const day = transformDay(dayName)
-    return day
-  }  
-  const lastTenResults = Array.isArray(activityList) ? activityList.slice(0, 10) : []
+const ActivityList = ({ filter, accountId, token, valueInputSearch, page, onPageChange, showPagination }: ActivityListProps) => {
+  const { filteredActivities, loading, totalPages } = useActivities(filter, accountId, token, valueInputSearch, page);
+  const location = usePathname();
 
   return (
-    <div className="w-11/12 flex flex-col-reverse">
-        { lastTenResults.length > 0 ?
-          lastTenResults.map((item, index)=>(
-            <div key={`tansaction-${index}`}>
-              <hr className="text-medium-gray opacity-30"/>
-              <div  className="grid gap-x-2 grid-cols-12 items-center my-3 w-full text-sm md:text-base">
-                <ElipseIcon className={"fill-total-primary"} width="18" height="18"/>
+    <>
+      <div className="w-11/12 flex flex-col">
+        {loading ? (
+          <p>Cargando...</p>
+        ) : filteredActivities.length > 0 ? (
+          filteredActivities.map((item, index) => (
+            <div key={`transaction-${index}`}>
+              <div className="grid gap-x-2 grid-cols-12 items-center my-3 w-full text-sm md:text-base">
+                <ElipseIcon className={"fill-total-primary"} width="18" height="18" />
                 <p className="col-span-6 ml-2">{item.description}</p>
                 <div className="flex flex-col col-span-5 items-start col-start-9 lg:col-start-11 xl:col-start-12">
-                  <p>{item.description.match('transfriste')? `$ ${item.amount}`: `$ ${item.amount.toLocaleString('de-DE')}` }</p>
+                  <p>{item.description.match('transfriste') ? `$ ${item.amount}` : `$ ${item.amount.toLocaleString('de-DE')}`}</p>
                   <p className="text-sm text-medium-gray">{transformDate(item.dated)}</p>
                 </div>
               </div>
+              <hr className="text-medium-gray opacity-30" />
             </div>
-          )) 
-          :
-          <>
+          ))
+        ) : (
           <p>No tienes transacciones en tu cuenta</p>
-          </>
-        }
+        )}
       </div>
-  )
-}
+      {showPagination && location === '/dashboard/actividad' && totalPages >= 1 && (
+        <div className="flex items-center">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <Button
+              key={index}
+              title={(index + 1).toString()}
+              onClick={() => onPageChange(index + 1)}
+              className={page === index + 1 ? "bg-light-gray bg-opacity-30 border-none my-3 mx-2 py-2 px-3" : "border-none my-3 mx-2 py-2 px-3"}
+            />
+          ))}
+        </div>
+      )}
+    </>
+  );
+};
 
-export default memo(ActivityList)
+export default ActivityList;

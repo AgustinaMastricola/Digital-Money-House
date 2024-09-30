@@ -13,7 +13,9 @@ const transformDay = (numberDay: number) => {
     case 5:
       return "Viernes"; 
     case 6:
-      return "Sábado";       
+      return "Sábado";  
+    case 7:
+      return "Hoy";       
     default:
       break;
   }

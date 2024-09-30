@@ -7,7 +7,7 @@ type ContainerProps = {
 }
 const ContainerDataUser = ({user}: ContainerProps) => {
   return (
-      <Container className={'border border-total-gray md:mt-6 border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-2xl w-10/12 flex flex-col'}>
+      <Container className={'border border-total-gray md:mt-6 border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-2xl w-11/12 md:w-10/12 flex flex-col'}>
         <h1 className='mb-4 text-lg'>Tus datos</h1>
         <div className='space-y-2 w-full'>
           <DataRow title={'Email'} atribut={['email']} userInfo={[`${user.email}`]} />
