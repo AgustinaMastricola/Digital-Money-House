@@ -11,7 +11,7 @@ class TransactionsAPI {
       })
     return res.json();
   }
-  getASpecificTransactionUser = async (token: string, account_id: number, transaction_id: number ):Promise<TransferenceType[]> =>  {
+  getASpecificTransactionUser = async (token: string, account_id: number, transaction_id: number ):Promise<TransferenceType> =>  {
     const res = await fetch(`${API_URL}account/${account_id}/transactions/${transaction_id}`, {
       headers: {
         Authorization : token
