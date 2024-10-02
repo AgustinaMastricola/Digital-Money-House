@@ -9,7 +9,7 @@ export async function middleware(req: NextRequest) {
   // Check if token is expired
   if (!token) {
     // Redirect to login page if token is expired or not present
-    return NextResponse.redirect(new URL('/', req.url));
+    return NextResponse.redirect(new URL('/login', req.url));
   }
 
   return NextResponse.next();

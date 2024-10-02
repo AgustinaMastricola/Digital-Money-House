@@ -1,14 +1,14 @@
 import { useUserContext } from "@/context/UserContextProvider";
+import { initialsOfNames } from "@/utils/functions/initialsOfNames";
 import Link from "next/link";
-import { memo } from "react";
+import { useState } from "react";
 
 const UserName = () => {
-	const { firstname, lastname } = useUserContext();
+	const { firstname, lastname, token } = useUserContext();
+	const [initials, setInitials] = useState<string>("");
 
-	function getInitialsName(firstname: string, lastname: string) {
-		const f = firstname.charAt(0).toUpperCase();
-		const l = lastname.charAt(0).toUpperCase();
-		return `${f}${l}`;
+	if (token && !initials) {
+		setInitials(initialsOfNames(firstname, lastname));
 	}
 
 	return (
@@ -17,7 +17,7 @@ const UserName = () => {
 				className="text-total-black bg-total-primary uppercase p-[0.4rem] rounded-lg font-bold md:text-lg"
 				href={"/dashboard/perfil"}
 			>
-				{getInitialsName(firstname, lastname)}
+				{initials}
 			</Link>
 			<Link
 				className="hidden md:items-center md:space-x-2 md:text-total-primary md:pr-5 md:flex"
@@ -28,4 +28,4 @@ const UserName = () => {
 		</div>
 	);
 };
-export default memo(UserName);
+export default UserName;
