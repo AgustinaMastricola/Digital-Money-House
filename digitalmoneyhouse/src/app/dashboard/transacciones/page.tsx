@@ -9,7 +9,12 @@ const DepositPage = () => {
         <ArrowRightIcon className="#000000"/>
         <span className="underline">Cargar dinero</span>
       </div>
-			<Container className={'bg-total-black'}>
+			<Container className={'bg-total-black md:mt-6'}>
+				<div className="text-total-white">
+					HOLA
+				</div>
+			</Container>
+			<Container className={'bg-total-black '}>
 				<div className="text-total-white">
 					HOLA
 				</div>
