@@ -12,8 +12,8 @@ export default function IconSelectCard({
 }: FilterIconProps) {
 	return (
 		<svg
-			width={width || "39"}
-			height={height || "39"}
+			width={width || "35"}
+			height={height || "35"}
 			viewBox="0 0 39 39"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
