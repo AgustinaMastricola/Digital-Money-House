@@ -4,7 +4,7 @@ type FilterIconProps = {
 	width?: string;
 	height?: string;
 };
-export default function FilterIcon({
+export default function IconSelectCard({
 	className,
 	width,
 	height,
