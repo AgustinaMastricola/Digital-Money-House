@@ -23,12 +23,12 @@ const DepositPage = () => {
 					<ArrowRightIcon className="#0AEB8C" width="38px" height="38px" />
 				</Link>
 			</Container>
-			<Container className={"bg-total-black py-9 md:py-10 pl-[26px] pr-[23px] md:pl-[35px]"}>
+			<Container className={"bg-total-black mt-3 py-9 md:py-10 pl-[26px] pr-[23px] md:pl-[35px]"}>
 				<Link href={'/dashboard/transacciones/tarjetas'} className="text-total-white flex items-center justify-between">
 					<div className="flex items-center justify-start">
 						<IconSelectCard />
 						<h2 className="text-xl font-bold text-total-primary pl-5">
-							Seleccionar tarjeta
+							Seleccionar tarjeta          
 						</h2>
 					</div>
 					<ArrowRightIcon className="#0AEB8C" width="38px" height="38px" />

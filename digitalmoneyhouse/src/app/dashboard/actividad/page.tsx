@@ -58,7 +58,7 @@ const ActivityPage = () => {
       </div>
       <div className="md:mt-6 w-11/12 md:w-10/12 md:flex md:items-center md:space-x-5 mb-4">
         <div className="w-full flex items-center relative">
-          <SearchIcon className="h-min absolute left-2" />
+          <SearchIcon className="h-min absolute left-2 " />
           <input
             onChange={handleInputSearchChange}
             placeholder="Buscar en tu actividad"
@@ -87,11 +87,11 @@ const ActivityPage = () => {
       )}
       <Container
         className={
-          "border border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-2xl w-11/12 md:w-10/12 flex flex-col items-center"
+          "border border-total-gray border-opacity-15 bg-total-white drop-shadow-2xl w-11/12 md:w-10/12 flex flex-col items-center pt-3 mb-4"
         }
       >
-        <div className="flex justify-between w-full">
-          <h1 className="text-base my-2">Tu actividad</h1>
+        <div className="flex w-full justify-between">
+          <h1 className="text-base my-2 pl-3 md:pl-9">Tu actividad</h1>
           <div className="flex md:hidden">
             <Button
               title={"Filtrar"}
@@ -102,7 +102,7 @@ const ActivityPage = () => {
             </Button>
           </div>
         </div>
-        <hr className="text-medium-gray opacity-30 mt-2 w-full" />
+        <hr className="text-medium-gray opacity-30 mt-2 w-11/12" />
         <ActivityList
 					filter={filter}
 					accountId={id}
