@@ -12,7 +12,7 @@ const DepositPage = () => {
 				<ArrowRightIcon className="#000000" />
 				<span className="underline">Cargar dinero</span>
 			</div>
-			<Container className={"bg-total-black md:mt-6 py-9 md:py-10 pl-[26px] pr-[23px] md:pl-[35px]"}>
+			<Container className={"bg-total-black  w-11/12 md:w-10/12 md:mt-6 py-9 md:py-10 pl-[26px] pr-[23px] md:pl-[35px]"}>
 				<Link href={'/dashboard/transacciones/cuenta'} className="text-total-white flex items-center justify-between">
 					<div className="flex items-center justify-start">
 						<IconTransference/>
@@ -23,7 +23,7 @@ const DepositPage = () => {
 					<ArrowRightIcon className="#0AEB8C" width="38px" height="38px" />
 				</Link>
 			</Container>
-			<Container className={"bg-total-black mt-3 py-9 md:py-10 pl-[26px] pr-[23px] md:pl-[35px]"}>
+			<Container className={"bg-total-black  w-11/12 md:w-10/12 mt-3 py-9 md:py-10 pl-[26px] pr-[23px] md:pl-[35px]"}>
 				<Link href={'/dashboard/transacciones/tarjetas'} className="text-total-white flex items-center justify-between">
 					<div className="flex items-center justify-start">
 						<IconSelectCard />
