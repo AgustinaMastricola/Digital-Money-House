@@ -2,6 +2,7 @@ import Button from "@/components/common/buttons/Button";
 import ElipseIcon from "@/components/common/icons/ElipseIcon";
 import useActivities from "@/hooks/useActivities";
 import transformDate from "@/utils/functions/transformDate";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 interface ActivityListProps {
@@ -25,7 +26,10 @@ const ActivityList = ({ filter, accountId, token, valueInputSearch, page, onPage
           <p>Cargando...</p>
         ) : filteredActivities.length > 0 ? (
           filteredActivities.map((item, index) => (
-            <div key={`transaction-${index}`}>
+            <Link key={`transaction-${index}`} 
+            href={
+              location === '/dashboard/actividad' ? `/dashboard/actividad/detalle/${item.id}` : `dashboard/actividad/detalle/${item.id}`
+            }>
               <div className="grid gap-x-2 grid-cols-12 items-center my-3 w-full text-sm md:text-base">
                 <div className="xl:ml-6">
 
@@ -38,7 +42,7 @@ const ActivityList = ({ filter, accountId, token, valueInputSearch, page, onPage
                 </div>
               </div>
               <hr className="text-medium-gray opacity-30" />
-            </div>
+            </Link>
           ))
         ) : (
           <p>No tienes transacciones en tu cuenta</p>
