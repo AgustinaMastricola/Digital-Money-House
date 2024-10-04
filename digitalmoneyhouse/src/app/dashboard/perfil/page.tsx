@@ -18,7 +18,7 @@ const ProfilePage = () => {
       </div>
 			<ContainerDataUser user={user}/>
 			<PaymentGestion />
-			<ContainterDataAccount account={account}/>
+			<ContainterDataAccount account={account} className="mb-4 px-6 md:px-8 "/>
 		</>
 	);
 };
