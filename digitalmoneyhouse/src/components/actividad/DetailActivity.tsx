@@ -38,7 +38,7 @@ const DetailActivity = () => {
 	const random = Math.floor(Math.random() * 1e11);
 
 	return (
-		<Container className={"bg-total-black w-11/12 md:w-10/12 md:mt-6"}>
+		<Container className={"bg-total-black w-11/12 md:w-10/12 md:mt-6 p-5 mb-4"}>
 			<div className="flex items-center w-full justify-between">
 				<div className="flex items-center ml-2">
 					<CheckedIcon width="30px" />
