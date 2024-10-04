@@ -6,7 +6,7 @@ import Container from "../common/containers/Container";
 
 const AddCard = () => {
 	return (
-		<Container className={'bg-total-black md:mt-6 md:pb-4'}>
+		<Container className={'bg-total-black w-11/12 md:w-10/12 md:mt-6 p-5'}>
 			<h2 className="text-total-white text-start">
 				Agregá tu tarjeta de débito o crédito
 			</h2>
@@ -19,7 +19,7 @@ const AddCard = () => {
 					<p className="text-total-primary font-bold">Nueva tarjeta</p>
 				</Link>
 				<Link href={"/dashboard/tarjetas/agregar"}>
-					<ArrowRightIcon className="#0aeb8c" />
+					<ArrowRightIcon className="#0aeb8c" width="32" height="32"/>
 				</Link>
 			</div>
 		</Container>

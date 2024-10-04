@@ -91,7 +91,7 @@ const ActivityPage = () => {
         }
       >
         <div className="flex w-full justify-between">
-          <h1 className="text-base my-2 pl-3 md:pl-9">Tu actividad</h1>
+          <h1 className="text-base my-2 pl-3 md:pl-9 xl:ml-6">Tu actividad</h1>
           <div className="flex md:hidden">
             <Button
               title={"Filtrar"}
