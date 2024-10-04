@@ -16,10 +16,10 @@ const DataRow = ({ accountData, title }: DataRowProps) => {
 		}, 10000);
 	};
 	return (
-		<div className="flex items-center justify-between">
+		<div className="flex items-center justify-between my-5 md:my-0">
 			<div className="">
-				<p className="text-total-primary font-bold mt-3">{title}</p>
-				<p className="text-total-white text-xs md:text-base">{accountData}</p>
+				<p className="text-total-primary font-bold text-xl">{title}</p>
+				<p className="text-total-white text-base md:text-base">{accountData}</p>
 			</div>
 			<CopyToClipboard text={`${accountData}`}>
 				{dataCopied ? (

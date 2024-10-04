@@ -11,7 +11,7 @@ const CardsPage = () => {
         <span className="underline">Tarjetas</span>
       </div>
 			<AddCard/>
-			<ListCards/>
+			
 		</>
 	);
 };

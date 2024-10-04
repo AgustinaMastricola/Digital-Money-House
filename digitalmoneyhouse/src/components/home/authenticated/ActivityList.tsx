@@ -27,7 +27,10 @@ const ActivityList = ({ filter, accountId, token, valueInputSearch, page, onPage
           filteredActivities.map((item, index) => (
             <div key={`transaction-${index}`}>
               <div className="grid gap-x-2 grid-cols-12 items-center my-3 w-full text-sm md:text-base">
+                <div className="xl:ml-6">
+
                 <ElipseIcon className={"fill-total-primary"} width="18" height="18" />
+                </div>
                 <p className="col-span-6 ml-2">{item.description}</p>
                 <div className="flex flex-col col-span-5 items-start col-start-9 lg:col-start-11 xl:col-start-12">
                   <p>{item.description.match('transfriste') ? `$ ${item.amount}` : `$ ${item.amount.toLocaleString('de-DE')}`}</p>

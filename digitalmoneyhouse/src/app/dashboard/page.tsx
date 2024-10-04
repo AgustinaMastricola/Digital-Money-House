@@ -47,7 +47,7 @@ export default function DashboardPage() {
           <input onChange={handleInputSearchChange} placeholder="Buscar en tu actividad" className="hide-arrow p-3 pl-10 w-full border-t border-total-gray border-opacity-15 rounded-lg border-t-1  bg-total-white shadow-lg focus:outline-none"/>
         </div>
       </div>
-      <Container className="border border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-2xl w-11/12 md:w-10/12 flex flex-col ">
+      <Container className="border border-total-gray border-opacity-15 bg-total-white drop-shadow-2xl w-11/12 md:w-10/12 flex flex-col  pl-3 pt-3 mb-4">
         <h1 className="text-base my-2">Tu actividad</h1>
         <ActivityList 
           filter={null} 

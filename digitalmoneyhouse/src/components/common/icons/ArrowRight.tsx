@@ -2,16 +2,24 @@ import clsx from "clsx";
 
 type ArrowRightIconProps = {
 	className?: string;
+	fill?: string;
+	width?: string;
+	height?: string;
 };
-export default function ArrowRightIcon({ className }: ArrowRightIconProps) {
+export default function ArrowRightIcon({
+	className,
+	width,
+	height,
+	fill,
+}: ArrowRightIconProps) {
 	return (
 		<svg
-			width="22px"
-			height="22px"
+			width={width || "22px"}
+			height={height || "22px"}
 			viewBox="0 0 24 24"
-			fill="none"
+			fill={fill || "none"}
 			xmlns="http://www.w3.org/2000/svg"
-      className={className}
+			className={className}
 		>
 			<path
 				d="M6 12H18M18 12L13 7M18 12L13 17"
