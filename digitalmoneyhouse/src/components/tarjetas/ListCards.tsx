@@ -7,30 +7,38 @@ import { CardType } from "@/types/card.types";
 import clsx from "clsx";
 import { useAccountContext } from "@/context/AccountContextProvider";
 import Container from "../common/containers/Container";
-
-const ListCards = () => {
-	const {token} = useUserContext();
-	const {id} = useAccountContext();
+type ListCardsProps = {
+	className?: string;
+	canDelete?: boolean;
+};
+const ListCards = ({ className, canDelete }: ListCardsProps) => {
+	const { token } = useUserContext();
+	const { id } = useAccountContext();
 	const [cardsList, setCardsList] = useState<CardType[]>([]);
 
 	useEffect(() => {
-    const fetchData = async () => {
-      const data = await cardsAPI.getCardsByAccountID(token, id);
-      setCardsList(data);
-    };
-    fetchData();
-  }, [token, id]);
+		const fetchData = async () => {
+			const data = await cardsAPI.getCardsByAccountID(token, id);
+			setCardsList(data);
+		};
+		fetchData();
+	}, [token, id]);
 
 	const deleteCard = async (card_id: number) => {
 		const newCardsList = cardsList.filter((card) => card.id !== card_id);
 		setCardsList(newCardsList);
-		await cardsAPI.deleteCard( token, id, card_id);
-	}
+		await cardsAPI.deleteCard(token, id, card_id);
+	};
 
 	return (
-		<Container className={'border border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-2xl w-10/12 flex flex-col'}>
-		<h1 className="text-base my-2">Tus tarjetas</h1>
-			<div className="w-11/12 flex flex-col-reverse items-center">
+		<Container
+			className={clsx(
+				"border border-total-gray border-opacity-15 bg-total-white drop-shadow-2xl",
+				className
+			)}
+		>
+			<h1 className="text-base my-2">Tus tarjetas</h1>
+			<div className="w-full flex flex-col-reverse items-center">
 				{cardsList.length > 0 ? (
 					cardsList.map((item, index) => (
 						<div key={`card-${index}`} className="w-full">
@@ -41,20 +49,22 @@ const ListCards = () => {
 									Terminada en{" "}
 									{item.number_id.toLocaleString().replace(/\D/g, "").slice(-4)}
 								</p>
-								<div className="flex flex-col col-span-5 items-start col-start-9 md:col-start-11 lg:col-start-11 xl:col-start-12">
-									<Button
-										title={"Eliminar"}
-										className="border-none"
-										onClick={() => deleteCard(item.id)}
-									/>
-								</div>
+								{canDelete && (
+									<div className="flex flex-col col-span-5 items-start col-start-9 md:col-start-11 lg:col-start-11 xl:col-start-12">
+										<Button
+											title={"Eliminar"}
+											className="border-none"
+											onClick={() => deleteCard(item.id)}
+										/>
+									</div>
+								)}
 							</div>
 						</div>
 					))
 				) : (
 					<p
 						className={clsx("py-6", {
-							'hidden':	cardsList === undefined || cardsList === null,
+							hidden: cardsList === undefined || cardsList === null,
 						})}
 					>
 						No tienes tarjetas agregadas en tu cuenta

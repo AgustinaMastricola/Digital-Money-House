@@ -8,7 +8,7 @@ import Link from "next/link";
 const DepositPage = () => {
 	return (
 		<>
-			<div className="flex space-x-2 text-sm w-10/12 items-center md:hidden my-2">
+			<div className='flex space-x-2 text-sm w-11/12 md:w-10/12 items-center md:hidden my-2'>
 				<ArrowRightIcon className="#000000" />
 				<span className="underline">Cargar dinero</span>
 			</div>
