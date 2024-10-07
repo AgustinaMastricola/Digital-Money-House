@@ -65,3 +65,6 @@ main {
   -webkit-appearance: none;
   margin: 0;
 }
+input[type="radio"] {
+  color: #0AEB8C;
+}
