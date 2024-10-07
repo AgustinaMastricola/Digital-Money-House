@@ -31,7 +31,7 @@
   position: absolute;
   left: 0;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(10%);
   width: 16px; /* Tamaño estático */
   height: 16px; /* Tamaño estático */
   border: 1.5px solid black; /* Borde negro */
@@ -44,7 +44,7 @@
   position: absolute;
   left: 8px; /* Ajustar posición */
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 56%);
   width: 9px; /* Tamaño estático */
   height: 9px; /* Tamaño estático */
   border-radius: 50%; /* Hace que sea circular */
