@@ -23,7 +23,7 @@ const ActivityList = ({ filter, accountId, token, valueInputSearch, page, onPage
     <>
       <div className="w-11/12 flex flex-col">
         {loading ? (
-          <p>Cargando...</p>
+          <p className="my-4">Cargando...</p>
         ) : filteredActivities.length > 0 ? (
           filteredActivities.map((item, index) => (
             <Link key={`transaction-${index}`} 
@@ -45,7 +45,7 @@ const ActivityList = ({ filter, accountId, token, valueInputSearch, page, onPage
             </Link>
           ))
         ) : (
-          <p>No tienes transacciones en tu cuenta</p>
+          <p className="my-4">No tienes transacciones en tu cuenta</p>
         )}
       </div>
       {showPagination && location === '/dashboard/actividad' && totalPages >= 1 && (
