@@ -6,6 +6,7 @@ type InputProps = {
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	value: string;
 	className?: string;
+	onClick?: () => void;
 };
 
 const InputRadio = ({
@@ -14,6 +15,7 @@ const InputRadio = ({
 	onChange,
 	value,
 	className,
+	onClick,
 }: InputProps) => {
 	const isChecked = checked;
 
@@ -28,8 +30,9 @@ const InputRadio = ({
 						checked={isChecked === value ? true : false}
 						onChange={onChange}
 						value={value}
+						onClick={onClick}
 					/>
-          <span className="radio-label"></span>
+					<span className="radio-label"></span>
 				</div>
 			</label>
 		</div>
