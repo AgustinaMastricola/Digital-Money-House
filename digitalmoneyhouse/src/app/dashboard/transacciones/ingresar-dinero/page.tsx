@@ -4,6 +4,8 @@ import ArrowRightIcon from "@/components/common/icons/ArrowRight";
 import CheckDeposit from "@/components/ingresar-dinero/CheckDeposit";
 import SelectAmount from "@/components/ingresar-dinero/SelectAmount";
 import SelectCard from "@/components/ingresar-dinero/SelectCard";
+import { useAccountContext } from "@/context/AccountContextProvider";
+import DepositProvider from "@/context/DepositContextPrivider";
 import React, { useState } from "react";
 
 const IngresarDineroPage = () => {
@@ -14,6 +16,7 @@ const IngresarDineroPage = () => {
 	}
 	return (
 		<>
+		<DepositProvider>
 			<div className="flex space-x-2 text-sm w-11/12 items-center md:hidden my-2">
 				<ArrowRightIcon className="#000000" />
 				<span className="underline">Cargar dinero</span>
@@ -21,9 +24,11 @@ const IngresarDineroPage = () => {
 			{stepDeposit === 1 ? (
 				<SelectCard handleClickStep={handleClickStep}/>
 			) : stepDeposit === 2 ? (
-				<SelectAmount />
+				<SelectAmount handleClickStep={handleClickStep}/>
 			) : stepDeposit === 3 ? (
-				<CheckDeposit />
+				<CheckDeposit handleClickStep={handleClickStep}/>
+			) : stepDeposit === 4 ? (
+				<></>
 			) : (
 				<></>
 			)}
@@ -31,11 +36,12 @@ const IngresarDineroPage = () => {
 				<Button
 					title={"Continuar"}
 					className={
-						"bg-total-primary border-total-primary px-9 py-3 md:hidden"
+						"bg-total-primary border-total-primary px-9 py-3 md:hidden shadow-md shadow-light-gray"
 					}
 					onClick={() => handleClickStep(stepDeposit + 1)}
 				/>
 			</div>
+		</DepositProvider>
 		</>
 	);
 };
