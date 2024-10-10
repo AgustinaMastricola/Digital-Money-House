@@ -1,16 +1,26 @@
-import React from 'react'
-import Container from '../common/containers/Container'
-import ListCards from '../tarjetas/ListCards'
-import Link from 'next/link'
-import AddIcon from '../common/icons/AddIcon'
-import Button from '../common/buttons/Button'
+import React, { useState } from "react";
+import Container from "../common/containers/Container";
+import ListCards from "../tarjetas/ListCards";
+import Link from "next/link";
+import AddIcon from "../common/icons/AddIcon";
+import Button from "../common/buttons/Button";
+import clsx from "clsx";
+import { useDepositContext } from "@/context/DepositContextPrivider";
 type SelectCardProps = {
-	handleClickStep: (n:number) =>void
-}
-const SelectCard = ({handleClickStep}: SelectCardProps) => {
-  return (
-    <>
-    <Container
+	handleClickStep: (n: number) => void;
+};
+const SelectCard = ({ handleClickStep }: SelectCardProps) => {
+	const [cardId, setCardId] = useState<number | null>();
+	const { setCardIdSelected } = useDepositContext();
+
+	const handleGetCardSelected = (card_id: number) => {
+		setCardId(card_id);
+		setCardIdSelected(card_id);
+	};
+
+	return (
+		<>
+			<Container
 				className={
 					"bg-total-black w-11/12 md:w-10/12 md:mt-6 flex flex-col py-4 px-5"
 				}
@@ -18,9 +28,12 @@ const SelectCard = ({handleClickStep}: SelectCardProps) => {
 				<h2 className="text-total-primary font-bold md:w-full">
 					Seleccionar tarjeta
 				</h2>
-				<ListCards className="w-full px-4 py-2 mt-5" canDelete={false} />
-
-				<div className="flex items-center justify-between">
+				<ListCards
+					className="w-full px-4 py-2 mt-5"
+					canDelete={false}
+					handleGetCardSelected={handleGetCardSelected}
+				/>
+				<div className="flex items-center justify-between md:flex-col md:items-start lg:flex-row lg:items-center">
 					<Link
 						className="flex items-center space-x-4 mt-5"
 						href={"/dashboard/tarjetas/agregar"}
@@ -30,15 +43,20 @@ const SelectCard = ({handleClickStep}: SelectCardProps) => {
 					</Link>
 					<Button
 						title={"Continuar"}
-						className={
-							"bg-total-primary border-total-primary px-9 py-3 md:block mt-5 hidden"
-						}
+						disabled={!cardId}
+						className={clsx(
+							"px-9 py-3 md:block md:w-full lg:w-auto mt-5 hidden",
+							{
+								"bg-total-primary border-total-primary ": cardId,
+								"bg-light-gray border-ligth-gray cursor-not-allowed": !cardId,
+							}
+						)}
 						onClick={() => handleClickStep(2)}
 					/>
 				</div>
 			</Container>
-    </>
-  )
-}
+		</>
+	);
+};
 
-export default SelectCard
+export default SelectCard;
