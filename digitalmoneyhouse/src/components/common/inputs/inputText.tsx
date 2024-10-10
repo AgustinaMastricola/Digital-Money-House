@@ -3,7 +3,7 @@ import { useFormContext } from "react-hook-form";
 
 type InputTextProps = {
     type:'text' | 'password' | 'email' | 'number';
-    fieldName: string;
+    fieldName?: string;
     placeholder?: string;
     className?:string;
     onChange?:(e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -15,7 +15,7 @@ const InputText = ({type, fieldName, placeholder, className, onChange, onFocus}:
         <input 
             type={type} 
             placeholder={placeholder}
-            {...register(fieldName)} 
+            {...(fieldName ? register(fieldName) : {})} 
             className={clsx("bg-total-white border border-medium-gray rounded-lg outline-none", className)}
             autoFocus={true}
             onChange={onChange}
