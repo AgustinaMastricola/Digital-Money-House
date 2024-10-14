@@ -1,7 +1,7 @@
 'use client'
 import cardsAPI from "@/services/cards/cards.service";
 import { useSession } from "next-auth/react";
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import { useAccountContext } from "./AccountContextProvider";
 
 type Deposit = {
@@ -28,7 +28,7 @@ export default function DepositProvider({ children }: { children: React.ReactNod
   const [deposit, setDeposit] = useState<Deposit>({
     amount: 0,
     destination: "",
-    origin: "",
+    origin: cvu,
     card_id: 0,
     loading: true,
   });
@@ -38,8 +38,7 @@ export default function DepositProvider({ children }: { children: React.ReactNod
       setDeposit((prevDeposit) => ({
         ...prevDeposit,
         card_id: cardId,
-        origin: `${cardData.number_id}`,
-        destination: cvu
+        origin: `${cardData.number_id}`
       }));
     })
   };
