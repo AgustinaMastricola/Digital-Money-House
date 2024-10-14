@@ -55,6 +55,20 @@ const SelectCard = ({ handleClickStep }: SelectCardProps) => {
 					/>
 				</div>
 			</Container>
+			<div className="w-11/12 md:w-10/12 flex justify-end mt-4">
+				<Button
+					title={"Continuar"}
+					disabled={!cardId}
+					className={clsx(
+						"px-9 py-3 md:hidden shadow-md shadow-light-gray border-none",
+						{
+							"bg-total-primary border-total-primary ": cardId,
+							"bg-light-gray border-ligth-gray cursor-not-allowed": !cardId,
+						}
+					)}
+					onClick={() => handleClickStep(2)}
+				/>
+			</div>
 		</>
 	);
 };

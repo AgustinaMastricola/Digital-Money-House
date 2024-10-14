@@ -48,6 +48,20 @@ const SelectAmount = ({ handleClickStep }: SelectAmountProps) => {
 					/>
 				</div>
 			</Container>
+			<div className="w-11/12 md:w-10/12 flex justify-end mt-4">
+				<Button
+					title={"Continuar"}
+					disabled={!amount}
+					className={clsx(
+						"px-9 py-3 md:hidden shadow-md shadow-light-gray border-none",
+						{
+							"bg-total-primary border-total-primary ": amount,
+							"bg-light-gray border-ligth-gray cursor-not-allowed": !amount,
+						}
+					)}
+					onClick={() => handleClickStep(3)}
+				/>
+			</div>
 		</>
 	);
 };

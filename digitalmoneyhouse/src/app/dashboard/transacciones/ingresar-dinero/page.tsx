@@ -29,15 +29,6 @@ const IngresarDineroPage = () => {
 				) : (
 					<></>
 				)}
-				<div className="w-11/12 md:w-10/12 flex justify-end mt-4">
-					<Button
-						title={"Continuar"}
-						className={
-							"bg-total-primary border-total-primary px-9 py-3 md:hidden shadow-md shadow-light-gray"
-						}
-						onClick={() => handleClickStep(stepDeposit + 1)}
-					/>
-				</div>
 			</DepositProvider>
 		</>
 	);

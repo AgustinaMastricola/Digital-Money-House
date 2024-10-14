@@ -10,6 +10,7 @@ import ConfirmMessage from "../common/messages/ConfirmMessage";
 import Link from "next/link";
 import DetailDeposit from "./DetailDeposit";
 import { DepositResponseType } from "@/types/deposit.types";
+import clsx from "clsx";
 
 type CheckDepositProps = {
 	handleClickStep: (n: number) => void;
@@ -53,7 +54,7 @@ const CheckDeposit = ({ handleClickStep }: CheckDepositProps) => {
 			)}
 			<Container
 				className={
-					"bg-total-black w-11/12 md:w-10/12 md:mt-6 flex flex-col py-4 px-5"
+					"bg-total-black w-11/12 md:w-10/12 md:mt-6 flex flex-col py-4 px-5 mb-4"
 				}
 			>
 				{!succesMessage && (
@@ -93,9 +94,10 @@ const CheckDeposit = ({ handleClickStep }: CheckDepositProps) => {
 						<div className="lg:flex lg:justify-end">
 							<Button
 								title={"Confirmar"}
-								className={
-									"bg-total-primary border-total-primary px-9 py-3 md:block md:w-full lg:w-4/12 mt-5 hidden "
-								}
+								className={clsx(
+									"bg-total-primary border-total-primary px-9 py-3 md:block md:w-full lg:w-4/12 hidden mt-5",
+									{ hidden: succesMessage }
+								)}
 								onClick={handleSubmit}
 							/>
 						</div>
@@ -123,6 +125,36 @@ const CheckDeposit = ({ handleClickStep }: CheckDepositProps) => {
 					</>
 				)}
 			</Container>
+			{succesMessage && dataDeposit && (
+				<>
+					<div className=" w-11/12 flex flex-col md:hidden">
+						<Button
+							title={"Descargar comprobante"}
+							className={
+								"bg-total-primary border-total-primary px-9 py-3 border-none"
+							}
+						/>
+						<Link
+							className={
+								"text-center font-bold border rounded-lg bg-light-gray border-none px-9 py-3 my-3"
+							}
+							href={"/dashboard"}
+						>
+							Ir al inicio
+						</Link>
+					</div>
+				</>
+			)}
+			<div className="flex justify-end w-11/12 md:w-10/12 md:hidden">
+				<Button
+					title={"Confirmar"}
+					className={clsx(
+						"bg-total-primary border-total-primary px-9 py-3 md:w-full lg:w-4/12",
+						{ hidden: succesMessage }
+					)}
+					onClick={handleSubmit}
+				/>
+			</div>
 		</>
 	);
 };
