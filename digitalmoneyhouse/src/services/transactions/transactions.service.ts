@@ -1,4 +1,4 @@
-import { DepositType } from "@/types/deposit.types";
+import { DepositResponseType, DepositType } from "@/types/deposit.types";
 import { TransferenceType } from "@/types/transference.types";
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 class TransactionsAPI {
@@ -29,7 +29,7 @@ class TransactionsAPI {
     })
     return res.json();
   }
-  createDeposit = async (token: string, account_id: number, data:object):Promise<DepositType> =>  {
+  createDeposit = async (token: string, account_id: number, data:object):Promise<DepositResponseType> =>  {
     const res = await fetch(`${API_URL}account/${account_id}/deposits`, {
       method: 'POST',
       headers: {
@@ -37,6 +37,7 @@ class TransactionsAPI {
       },
       body: JSON.stringify(data)
     })
+    console.log("Endpoint que pega a la api next");
     return res.json();
   }
 }

@@ -8,7 +8,7 @@ import Link from "next/link";
 const DepositPage = () => {
 	return (
 		<>
-			<div className="flex space-x-2 text-sm w-10/12 items-center md:hidden my-2">
+			<div className='flex space-x-2 text-sm w-11/12 md:w-10/12 items-center md:hidden my-2'>
 				<ArrowRightIcon className="#000000" />
 				<span className="underline">Cargar dinero</span>
 			</div>
@@ -24,7 +24,7 @@ const DepositPage = () => {
 				</Link>
 			</Container>
 			<Container className={"bg-total-black  w-11/12 md:w-10/12 mt-3 py-9 md:py-10 pl-[26px] pr-[23px] md:pl-[35px]"}>
-				<Link href={'/dashboard/transacciones/tarjetas'} className="text-total-white flex items-center justify-between">
+				<Link href={'/dashboard/transacciones/ingresar-dinero'} className="text-total-white flex items-center justify-between">
 					<div className="flex items-center justify-start">
 						<IconSelectCard />
 						<h2 className="text-xl font-bold text-total-primary pl-5">

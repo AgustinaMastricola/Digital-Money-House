@@ -1,8 +1,8 @@
 .custom-radio {
   position: relative;
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  width: 20px; /* Tamaño estático */
+  height: 20px; /* Tamaño estático */
 }
 
 .custom-radio input[type="radio"] {
@@ -14,44 +14,49 @@
 }
 
 .custom-radio input[type="radio"]:checked + .radio-label::before {
-  background-color: #0AEB8C; /* Cambia este color al que necesites */
-  border: 1px solid #0b0c0b;
+  background-color: #0AEB8C; /* Color de fondo cuando está checked */
+  border: 1.5px solid black; /* Borde negro */
 }
-
 
 .radio-label {
   position: relative;
-  padding-left: 30px;
+  padding-left: 30px; /* Espacio para el radio */
   cursor: pointer;
+  display: flex;
+  align-items: center; /* Alinear el texto y el radio */
 }
 
 .radio-label::before {
   content: '';
   position: absolute;
-  left: 0px;
-  top: 10px;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  border: 1px solid #A6A5A7; /* Cambia este color al que necesites */
-  border-radius: 50%;
-  background-color: white;
+  left: 0;
+  top: 50%;
+  transform: translateY(10%);
+  width: 16px; /* Tamaño estático */
+  height: 16px; /* Tamaño estático */
+  border: 1.5px solid black; /* Borde negro */
+  border-radius: 50%; /* Hace que sea circular */
+  background-color: white; /* Color de fondo por defecto */
 }
 
 .radio-label::after {
   content: '';
   position: absolute;
-  left: 3px;
-  bottom: 1px;
-  transform: translateY(-50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #0b0c0b; /* Cambia este color al que necesites */ 
-  opacity: 0;
+  left: 8px; /* Ajustar posición */
+  top: 50%;
+  transform: translate(-50%, 56%);
+  width: 9px; /* Tamaño estático */
+  height: 9px; /* Tamaño estático */
+  border-radius: 50%; /* Hace que sea circular */
+  background-color: black; /* Círculo central negro */
+  opacity: 0; /* Oculto por defecto */
   transition: opacity 0.2s;
 }
-
+@media (max-width: 640px) { /* Ajusta este tamaño según sea necesario */
+  .radio-label::after {
+    left: 8px; /* Ajustar left para pantallas pequeñas */
+  }
+}
 .custom-radio input[type="radio"]:checked + .radio-label::after {
-  opacity: 1;
+  opacity: 1; /* Muestra el círculo central cuando está checked */
 }

@@ -38,8 +38,8 @@ export default function DashboardPage() {
       </div>
       <CardUser/>
       <div className="flex flex-col items-center space-y-4 w-11/12 md:w-10/12 lg:flex-row lg:items-center lg:space-x-4">
-        <Button title={"Ingresar dinero"} asLink={true} href={"/transacciones"} className="bg-total-primary border border-total-primary text-total-black w-full text-center py-4 md:py-5 lg:py-6 font-bold rounded-lg md:h-18 lg:text-xl mt-4"/>
-        <Button title={"Pago de servicios"} asLink={true} href={"/servicios"} className="bg-total-primary border border-total-primary text-total-black w-full text-center py-4 md:py-5 lg:py-6 font-bold rounded-lg md:h-18 lg:text-xl"/>
+        <Button title={"Ingresar dinero"} asLink={true} href={"dashboard/transacciones"} className="bg-total-primary border border-total-primary text-total-black w-full text-center py-4 md:py-5 lg:py-6 font-bold rounded-lg md:h-18 lg:text-xl mt-4"/>
+        <Button title={"Pago de servicios"} asLink={true} href={"dashboard/servicios"} className="bg-total-primary border border-total-primary text-total-black w-full text-center py-4 md:py-5 lg:py-6 font-bold rounded-lg md:h-18 lg:text-xl"/>
       </div>
       <div className=" w-11/12 md:w-10/12">
         <div className="w-full flex items-center relative my-4">
