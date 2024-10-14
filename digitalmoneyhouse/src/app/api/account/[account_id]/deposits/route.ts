@@ -1,3 +1,4 @@
+import { DepositResponseType } from "@/types/deposit.types";
 import { NextRequest, NextResponse } from "next/server";
 interface Params {
   account_id: string;
@@ -24,6 +25,7 @@ export const POST = async (req: NextRequest, {params} : {params: Params}) => {
     body: JSON.stringify(depositData)
   }
   ) 
+  console.log("Endpoint que pega al back");
   const card = await results.json();
   return NextResponse.json(card);
   }

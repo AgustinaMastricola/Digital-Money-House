@@ -17,7 +17,7 @@ export const GET = async (req: NextRequest, { params }: { params: Params }) => {
   }
 
   if (!transaction_id || !account_id) {
-    console.error("Faltan parámetros en la URL");
+    console.error("Faltan parámetros en la URL" );
     return NextResponse.json({ error: "Faltan parámetros en la URL" }, { status: 400 });
   }
 
@@ -31,6 +31,7 @@ export const GET = async (req: NextRequest, { params }: { params: Params }) => {
     });
 
     if (!response.ok) {
+      console.log("transaction_id: ", transaction_id + " account_id: ", account_id);
       const errorText = await response.text();
       console.error(`Error ${response.status}: ${errorText}`);
       return NextResponse.json({ error: `Error ${response.status}: ${errorText}` }, { status: response.status });

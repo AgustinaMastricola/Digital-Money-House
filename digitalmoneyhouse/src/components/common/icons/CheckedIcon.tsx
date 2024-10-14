@@ -4,8 +4,9 @@ type CheckedIconProps = {
 	width?: string;
 	height?: string;
 	className?: string;
+	colorHex?: string;
 };
-export default function CheckedIcon({ className, width, height }: CheckedIconProps) {
+export default function CheckedIcon({ className, width, height, colorHex }: CheckedIconProps) {
 	return (
 		<svg
 			width={width || "60px"}
@@ -15,10 +16,10 @@ export default function CheckedIcon({ className, width, height }: CheckedIconPro
 			xmlns="http://www.w3.org/2000/svg"
 			className={className}
 		>
-			<circle cx="12" cy="12" r="10" stroke="#0AEB8C" strokeWidth="1.5" />
+			<circle cx="12" cy="12" r="10" stroke={colorHex || "#0AEB8C"} strokeWidth="1.5" />
 			<path
 				d="M8.5 12.5L10.5 14.5L15.5 9.5"
-				stroke="#0AEB8C"
+				stroke={colorHex || "#0AEB8C"}
 				strokeWidth="1.5"
 				strokeLinecap="round"
 				strokeLinejoin="round"

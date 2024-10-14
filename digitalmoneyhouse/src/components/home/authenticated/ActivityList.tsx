@@ -23,26 +23,29 @@ const ActivityList = ({ filter, accountId, token, valueInputSearch, page, onPage
     <>
       <div className="w-11/12 flex flex-col">
         {loading ? (
-          <p>Cargando...</p>
+          <p className="my-4">Cargando...</p>
         ) : filteredActivities.length > 0 ? (
           filteredActivities.map((item, index) => (
             <Link key={`transaction-${index}`} 
-              href={
-                location === '/dashboard/actividad' ? `/dashboard/actividad/detalle/${item.id}` : `dashboard/actividad/detalle/${item.id}`
-              }>
-                <div className="grid gap-x-2 grid-cols-12 items-center my-3 w-full text-sm md:text-base">
-                  <ElipseIcon className={"fill-total-primary"} width="18" height="18" />
-                  <p className="col-span-6 ml-2">{item.description}</p>
-                  <div className="flex flex-col col-span-5 items-start col-start-9 lg:col-start-11 xl:col-start-12">
-                    <p>{item.description.match('transfriste') ? `$ ${item.amount}` : `$ ${item.amount.toLocaleString('de-DE')}`}</p>
-                    <p className="text-sm text-medium-gray">{transformDate(item.dated)}</p>
-                  </div>
+            href={
+              location === '/dashboard/actividad' ? `/dashboard/actividad/detalle/${item.id}` : `dashboard/actividad/detalle/${item.id}`
+            }>
+              <div className="grid gap-x-2 grid-cols-12 items-center my-3 w-full text-sm md:text-base">
+                <div className="xl:ml-6">
+
+                <ElipseIcon className={"fill-total-primary"} width="18" height="18" />
                 </div>
-                <hr className="text-medium-gray opacity-30" />
+                <p className="col-span-6 ml-2">{item.description}</p>
+                <div className="flex flex-col col-span-5 items-start col-start-9 lg:col-start-11 xl:col-start-12">
+                  <p>{item.description.match('transfriste') ? `$ ${item.amount}` : `$ ${item.amount.toLocaleString('de-DE')}`}</p>
+                  <p className="text-sm text-medium-gray">{transformDate(item.dated)}</p>
+                </div>
+              </div>
+              <hr className="text-medium-gray opacity-30" />
             </Link>
           ))
         ) : (
-          <p>No tienes transacciones en tu cuenta</p>
+          <p className="my-4">No tienes transacciones en tu cuenta</p>
         )}
       </div>
       {showPagination && location === '/dashboard/actividad' && totalPages >= 1 && (

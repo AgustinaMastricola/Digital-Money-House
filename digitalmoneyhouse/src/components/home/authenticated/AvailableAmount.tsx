@@ -6,7 +6,7 @@ const AvailableAmount = () => {
   const {available_amount} = useAccountContext();
   const amount = formatAmount(`${available_amount}`);
   return (
-    <p className='border rounded-full border-total-primary text-center px-8 py-2 text-xl'>
+    <p className='border-2 rounded-full border-total-primary font-bold text-center px-3 py-2 text-xl lg:text-3xl'>
       {amount}
     </p>
   )

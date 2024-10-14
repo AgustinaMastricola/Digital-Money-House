@@ -38,8 +38,8 @@ export default function DashboardPage() {
       </div>
       <CardUser/>
       <div className="flex flex-col items-center space-y-4 w-11/12 md:w-10/12 lg:flex-row lg:items-center lg:space-x-4">
-        <Button title={"Ingresar dinero"} asLink={true} href={"/transacciones"} className="bg-total-primary border border-total-primary text-total-black w-full text-center py-4 md:py-5 lg:py-6 font-bold rounded-lg md:h-18 lg:text-xl mt-4"/>
-        <Button title={"Pago de servicios"} asLink={true} href={"/servicios"} className="bg-total-primary border border-total-primary text-total-black w-full text-center py-4 md:py-5 lg:py-6 font-bold rounded-lg md:h-18 lg:text-xl"/>
+        <Button title={"Ingresar dinero"} asLink={true} href={"dashboard/transacciones"} className="bg-total-primary border border-total-primary text-total-black w-full text-center py-4 md:py-5 lg:py-6 font-bold rounded-lg md:h-18 lg:text-xl mt-4"/>
+        <Button title={"Pago de servicios"} asLink={true} href={"dashboard/servicios"} className="bg-total-primary border border-total-primary text-total-black w-full text-center py-4 md:py-5 lg:py-6 font-bold rounded-lg md:h-18 lg:text-xl"/>
       </div>
       <div className=" w-11/12 md:w-10/12">
         <div className="w-full flex items-center relative my-4">
@@ -47,7 +47,7 @@ export default function DashboardPage() {
           <input onChange={handleInputSearchChange} placeholder="Buscar en tu actividad" className="hide-arrow p-3 pl-10 w-full border-t border-total-gray border-opacity-15 rounded-lg border-t-1  bg-total-white shadow-lg focus:outline-none"/>
         </div>
       </div>
-      <Container className="border border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-2xl w-11/12 md:w-10/12 flex flex-col ">
+      <Container className="border border-total-gray border-opacity-15 bg-total-white drop-shadow-2xl w-11/12 md:w-10/12 flex flex-col  pl-3 pt-3 mb-4">
         <h1 className="text-base my-2">Tu actividad</h1>
         <ActivityList 
           filter={null} 
