@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 
 //Este endpoint devuelve una lista de servicios que se pueden pagar con la cuenta del usuario
-const URL_BACK = process.env.API_URL_BACK_END
+const URL_BACK = process.env.API_URL_BACK_END_SERVICE
 
 export const GET = async () => {
 
   try{
-    const servicesList = await fetch(`${URL_BACK}sevice`, {
+    const servicesList = await fetch(`${URL_BACK}service`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
