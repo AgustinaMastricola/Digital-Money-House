@@ -34,7 +34,7 @@ const ServicesPage = () => {
 					/>
 				</div>
 
-				<ListServices/>
+				<ListServices valueInputSearch={valueInput}/>
 			</div>
 		</>
 	);
