@@ -9,6 +9,8 @@ import { useAccountContext } from "@/context/AccountContextProvider";
 import ConfirmMessage from "../common/messages/ConfirmMessage";
 import DetailPayment from "./DetailPayment";
 import cardsAPI from "@/services/cards/cards.service";
+import { useRouter } from "next/navigation";
+import ErrorService from "./ErrorService";
 
 type PayMethodProps = {
 	name: string;
@@ -23,6 +25,7 @@ const PayMethod = ({ name, invoiceValue }: PayMethodProps) => {
 	const [succesMessage, setSuccesMessage] = useState<string>("");
 	const [payDetail, setPayDetail] = useState<any>();
   const [lastNumbers, setLastNumbers] = useState<string>("");
+	const route = useRouter();
 
 	const convertToARS = (usd: number) => {
 		setAmount(usd * 1350);
@@ -70,8 +73,10 @@ const PayMethod = ({ name, invoiceValue }: PayMethodProps) => {
 					<ConfirmMessage text={"Ya realizamos tu pago"} />
 					<DetailPayment detail={payDetail} lastCardNumbers={lastNumbers}/>
 				</>
-			) : (
-				<>
+			) 
+			:
+			( invoiceValue !== "0" ?
+				(<>
 					<Container
 						className={
 							"bg-total-black w-11/12 md:w-10/12 mt-4 md:mt-6 flex flex-col py-4 px-5 mb-4"
@@ -109,8 +114,13 @@ const PayMethod = ({ name, invoiceValue }: PayMethodProps) => {
 							onClick={handleSubmitPayment}
 						/>
 					</div>
-				</>
-			)}
+				</>)
+				:
+				(
+					<ErrorService/>
+				)
+			)
+			}
 		</>
 	);
 };

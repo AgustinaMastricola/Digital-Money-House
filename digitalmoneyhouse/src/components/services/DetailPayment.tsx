@@ -4,7 +4,6 @@ import { TransferenceType } from "@/types/transference.types";
 import Link from "next/link";
 import Button from "../common/buttons/Button";
 import transformMonth from "@/utils/functions/transformMonth";
-import cardsAPI from "@/services/cards/cards.service";
 import { formatAmount } from "@/utils/functions/formatAmount";
 
 type DetailPaymentProps = {
