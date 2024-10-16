@@ -1,5 +1,4 @@
 "use client";
-import Button from "@/components/common/buttons/Button";
 import ArrowRightIcon from "@/components/common/icons/ArrowRight";
 import CheckDeposit from "@/components/ingresar-dinero/CheckDeposit";
 import SelectAmount from "@/components/ingresar-dinero/SelectAmount";

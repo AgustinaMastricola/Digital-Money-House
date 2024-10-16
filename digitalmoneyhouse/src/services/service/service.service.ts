@@ -5,7 +5,7 @@ class ServicesAPI {
     const res = await fetch(`${API_URL}service`)
     return res.json();
   }
-  getServiceByID = async (service_id:number):Promise<ServiceInvoiceType> =>  {
+  getServiceByID = async (service_id:string):Promise<ServiceInvoiceType> =>  {
     const res = await fetch(`${API_URL}service/${service_id}`)
     return res.json();
   }
