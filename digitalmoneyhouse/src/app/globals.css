@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer components{
+  Image {
+    @apply w-auto;
+    @apply h-auto;
+  }
   h1 {
     @apply font-bold;
     @apply text-2xl;
