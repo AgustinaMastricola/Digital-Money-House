@@ -3,6 +3,8 @@ import Container from "../common/containers/Container"
 import { ServiceType } from "@/types/service.types"
 import servicesAPI from "@/services/service/service.service"
 import Image from "next/image"
+import Button from "../common/buttons/Button"
+import { usePathname } from "next/navigation"
 
 type ListServicesProps = {
   valueInputSearch: string | null
@@ -11,6 +13,7 @@ type ListServicesProps = {
 const ListServices = ({valueInputSearch}:ListServicesProps) => {
   const [allServices, setAllServices] = useState<ServiceType[]>([]);
   const [listServices, setListServices] = useState<ServiceType[]>([]);
+  const location = usePathname();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,11 +47,17 @@ const ListServices = ({valueInputSearch}:ListServicesProps) => {
             <div key={`${service.name}-${index}`} className="w-full">
               <div className="w-full flex justify-between items-center border-b border-total-gray border-opacity-15 py-3 px-3">
                 <div className="flex items-center">
-                  <Image src={`/servicesIcons/${service.name}.png`} alt={`Logo ${service.name}`} width={90} height={40}/>
+                  <Image src={`/servicesIcons/${service.name}.png`} alt={`Logo ${service.name}`} width={70} height={40}/>
                   <span className="text-sm text-footer-gray md:text-base ml-6">{service.name}</span>
                 </div>
                 <div className="flex items-center">
-                  <button className="text-sm md:text-base font-bold" >Seleccionar</button>
+                  <Button 
+                    className="text-xs md:text-base font-bold border-none" 
+                    title={"Seleccionar"} 
+                    asLink={true} 
+                    href={
+                      location === '/dashboard/servicios' ? `/dashboard/servicios/pagar/${service.id}` : `/dashboard/servicios/pagar/${service.id}`
+                    }/>
                 </div>
               </div>
             </div>

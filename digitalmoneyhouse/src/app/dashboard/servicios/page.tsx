@@ -5,18 +5,18 @@ import ListServices from "@/components/services/ListServices";
 import { useState } from "react";
 
 const ServicesPage = () => {
-  const [valueInput, setValueInput] = useState<string | null>(null);
+	const [valueInput, setValueInput] = useState<string | null>(null);
 
 	const handleInputSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    console.log(value);
-    if (value === "") {
-      setValueInput(null);
-      return;
-    }
-    setValueInput(value);
+		const value = e.target.value;
 		console.log(value);
-  };
+		if (value === "") {
+			setValueInput(null);
+			return;
+		}
+		setValueInput(value);
+		console.log(value);
+	};
 	return (
 		<>
 			<div className="flex space-x-2 text-sm w-11/12 md:w-10/12 items-center md:hidden my-2 ">
@@ -34,7 +34,7 @@ const ServicesPage = () => {
 					/>
 				</div>
 
-				<ListServices valueInputSearch={valueInput}/>
+				<ListServices valueInputSearch={valueInput} />
 			</div>
 		</>
 	);

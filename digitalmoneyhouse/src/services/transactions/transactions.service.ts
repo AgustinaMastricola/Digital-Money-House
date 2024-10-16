@@ -40,6 +40,18 @@ class TransactionsAPI {
     console.log("Endpoint que pega a la api next");
     return res.json();
   }
+
+  createTransference = async (token: string, account_id: number, data:object):Promise<TransferenceType> =>  {
+    const res = await fetch(`${API_URL}account/${account_id}/transferences`, {
+      method: 'POST',
+      headers: {
+        Authorization : token
+      },
+      body: JSON.stringify(data)
+    })
+    console.log("Endpoint que pega a la api next");
+    return res.json();
+  }
 }
 const transactionsAPI = new TransactionsAPI();
 export default transactionsAPI; 
