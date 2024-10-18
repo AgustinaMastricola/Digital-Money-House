@@ -3,6 +3,7 @@ import * as yup from "yup"
 const textRegex = /^[A-Za-z]+$/
 const passRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/
 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+const dateRegex = /^(0[1-9]|1[0-2])\/\d{4}$/
 
 export const signupSchema = yup.object({
   dni: yup.number().min(8, 'Ingresa un DNI válido.').typeError('El dni solo puede contener números, sin puntos.').required('Completá los campos requeridos.'),
@@ -34,8 +35,8 @@ export const updateAliasSchema = yup.object({
 })
 
 export const addCardPaySchema = yup.object({
-  cod: yup.number().required(),
-  expiration_date: yup.string().required(),
+  cod: yup.number().required().max(4, 'El código de seguridad debe tener 3 o 4 dígitos.'),
+  expiration_date: yup.string().required().matches(dateRegex, 'El formato de la fecha de vencimiento es inválido. Ejemplo: 12/2022').max(6,"Solo ingrese mes y año"),
   first_last_name: yup.string().required(),
   number_id: yup.number().required()
 }).required()

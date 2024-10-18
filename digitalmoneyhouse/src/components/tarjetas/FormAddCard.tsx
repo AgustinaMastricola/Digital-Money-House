@@ -64,18 +64,31 @@ const FormAddCard = () => {
 
 	const [cardData, setCardData] = useState({
 		cod: "",
-		expiration_date: "MM/AA",
-		first_last_name: "NOMBRE DEL TITULAR",
+		expiration_date: "",
+		first_last_name: "",
 		number_id: "**** **** **** ****",
 		focus: "",
 	});
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = e.target;
+		let formattedValue = value.replace(/\D/g, ""); // Eliminar caracteres no numéricos
+
+		if (name === "number_id" && formattedValue.length > 16) {
+				formattedValue = formattedValue.slice(0, 16); // Limitar a 16 dígitos
+		} else if (name === "cod" && formattedValue.length > 4) {
+				formattedValue = formattedValue.slice(0, 4); // Limitar a 3 dígitos
+		}
+		if(name === 'first_last_name'){
+			const onlyLetters = value.replace(/\d/g, ""); // Eliminar caracteres numéricos
+      formattedValue = onlyLetters
+		}
+
 		setCardData({
-			...cardData,
-			[e.target.name]: e.target.value,
+				...cardData,
+				[name]: formattedValue,
 		});
-	};
+};
 	const handleInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
 		setCardData({
 			...cardData,
@@ -116,11 +129,11 @@ const FormAddCard = () => {
 					}
 				)}
 			>
-				<div className="custom-card-size">
+				<div className="custom-card-size ml-1.5 mt-4">
 					<Cards
 						cvc={cardData.cod}
-						expiry={cardData.expiration_date}
-						name={cardData.first_last_name}
+						expiry={cardData.expiration_date || 'MM/YY'}
+						name={cardData.first_last_name || 'NOMBRE APELLIDO'}
 						number={cardData.number_id} 
 						
 						/>
@@ -128,7 +141,7 @@ const FormAddCard = () => {
 				<FormProvider {...methods}>
 					<form
 						onSubmit={handleSubmit(onSubmit)}
-						className="mt-4 items-center justify-center md:p-4 flex flex-col space-y-4 
+						className="mt-4 items-center justify-center p-3 md:p-4 flex flex-col space-y-4 
 						lg:flex-row lg:space-y-0 lg:space-x-16 lg:items-start"
 					>
 						<div className="w-full flex flex-col space-y-4 lg:items-end">
@@ -139,6 +152,7 @@ const FormAddCard = () => {
 								className="p-3 w-full lg:w-10/12 border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-lg hide-arrow"
 								onChange={handleInputChange}
 								onFocus={handleInputFocus}
+								value={cardData.number_id}
 							/>
 							<InputText
 								type="text"
@@ -147,6 +161,7 @@ const FormAddCard = () => {
 								className="p-3 w-full lg:w-10/12 border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-lg"
 								onChange={handleInputChange}
 								onFocus={handleInputFocus}
+								value={cardData.first_last_name}
 							/>
 						</div>
 						<div className="w-full flex-col space-y-4 items-start lg:items-start">
@@ -160,6 +175,7 @@ const FormAddCard = () => {
 									lg:ml-0 lg:mt-4"
 									onChange={handleInputChange}
 									onFocus={handleInputFocus}
+									value={cardData.cod}
 								/>
 								<InputText
 									type="text"

@@ -8,8 +8,9 @@ type InputTextProps = {
     className?:string;
     onChange?:(e: React.ChangeEvent<HTMLInputElement>) => void;
     onFocus?:(e: React.FocusEvent<HTMLInputElement>) => void;
+    value?: string;
 }
-const InputText = ({type, fieldName, placeholder, className, onChange, onFocus}:InputTextProps) => {
+const InputText = ({type, fieldName, placeholder, className, onChange, onFocus, value}:InputTextProps) => {
     const {register} = useFormContext()
     return (
         <input 
@@ -20,6 +21,7 @@ const InputText = ({type, fieldName, placeholder, className, onChange, onFocus}:
             autoFocus={true}
             onChange={onChange}
             onFocus={onFocus}
+            value={value}
         />
     )
 }

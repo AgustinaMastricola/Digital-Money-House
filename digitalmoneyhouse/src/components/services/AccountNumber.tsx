@@ -33,19 +33,19 @@ const AccountNumberService = ({ handleClickStep }: AccountNumberServiceProps) =>
                         value={numberAccount}
                         onChange={(e) => handleGetNumberAccount(e.target.value)}
                         placeholder="0"
-                        className="mt-3 py-3 px-2 mb-4 w-full lg:w-4/12 border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-lg hide-arrow"
+                        className="mt-3  py-3 px-2 mb-4 w-full lg:w-4/12 border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-lg hide-arrow"
                     />
-										<p className="text-total-white text-xs">Son 11 números sin espacios, sin el “2” inicial. Agregá ceros adelante si tenés menos. </p>
+					<p className="text-total-white text-xs">Son 11 números sin espacios, sin el “2” inicial. Agregá ceros adelante si tenés menos. </p>
                 </div>
                 <div className="flex w-full justify-end">
                     <Button
                         title={"Continuar"}
-                        disabled={!numberAccount}
+                        disabled={ numberAccount.length < 11}
                         className={clsx(
                             "px-9 py-3 md:block md:w-full lg:w-auto mt-5 hidden",
                             {
-                                "bg-total-primary border-total-primary ": numberAccount,
-                                "bg-light-gray border-ligth-gray cursor-not-allowed": !numberAccount,
+                                "bg-total-primary border-total-primary ": numberAccount.length === 11,
+                                "bg-light-gray border-ligth-gray cursor-not-allowed": numberAccount.length < 11,
                             }
                         )}
                         onClick={() => handleClickStep(2)}
