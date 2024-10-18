@@ -15,8 +15,8 @@ export const signupSchema = yup.object({
 }).required()
 
 export const loginSchema = yup.object({
-  email: yup.string().required('Completá los campos requeridos.'),
-  password: yup.string().required('Completá campos requeridos.').min(6, 'La contraseña debe tener 6 caracteres como mínimo.'),
+  email: yup.string().matches(emailRegex,'El formato del email es inválido. Ejemplo: email@gmail.com').required('Completá los campos requeridos.'),
+  password: yup.string().matches(passRegex, "La contraseña debe contener al menos 1 carácter especial, 1 letra mayúscula y un número.").required('Completá campos requeridos.').min(6, 'La contraseña debe tener 6 caracteres como mínimo.'),
 }).required()
 
 export const updateUserSchema = yup.object({

@@ -8,7 +8,6 @@ import { signupSchema } from "@/lib/yup";
 import { SignupFormData } from "@/types/formData.types";
 import Button from "../common/buttons/Button";
 import userApi from "@/services/users/user.service";
-import { revalidateTag } from "next/cache";
 
 const FormularioSignup = () => {
     const methods = useForm<SignupFormData>({
