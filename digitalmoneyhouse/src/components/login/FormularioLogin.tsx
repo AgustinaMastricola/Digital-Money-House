@@ -8,6 +8,7 @@ import { signIn } from "next-auth/react";
 import { LoginFormData } from "@/types/formData.types";
 import { loginSchema } from "@/lib/yup";
 import Button from "../common/buttons/Button";
+import clsx from "clsx";
 
 const FormularioLogin = () => {
 	const methods = useForm<LoginFormData>({
@@ -23,6 +24,7 @@ const FormularioLogin = () => {
 		formState: { errors },
 	} = methods;
 	const [step, setStep] = useState<number>(1);
+	const [loading, setLoading] = useState<boolean>(false);
 
 	const handleEmailSubmit = () => {
 		const isValidEmail = watch("email");
@@ -42,6 +44,7 @@ const FormularioLogin = () => {
 
 	const router = useRouter();
 	const onSubmit = async (dataForm: LoginFormData) => {
+		setLoading(true);
 		const responseNextAuth = await signIn("credentials", {
 			...dataForm,
 			redirect: false,
@@ -94,7 +97,7 @@ const FormularioLogin = () => {
 							</div>
 						</div>
 						<div className={step === 2 ? "visible" : "hidden"}>
-                                <h1 className="text-total-white mb-4 text-center">
+              <h1 className="text-total-white mb-4 text-center">
 								Ingresá tu contraseña
 							</h1>
 							<InputText
@@ -107,7 +110,10 @@ const FormularioLogin = () => {
 							<Button
 								title={"Ingresar"}
 								type="submit"
-								className="p-3 w-full my-4 bg-total-primary border-total-primary"
+								className={clsx("p-3 w-full my-4 bg-total-primary border-total-primary", {
+									'animate-pulse': loading,
+									'animate-none': !loading
+								})}
 							/>
 							<div className="text-error-text italic">
 								{errors.password?.message}

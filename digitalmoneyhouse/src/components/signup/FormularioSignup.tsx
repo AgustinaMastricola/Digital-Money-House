@@ -8,6 +8,7 @@ import { signupSchema } from "@/lib/yup";
 import { SignupFormData } from "@/types/formData.types";
 import Button from "../common/buttons/Button";
 import userApi from "@/services/users/user.service";
+import clsx from "clsx";
 
 const FormularioSignup = () => {
     const methods = useForm<SignupFormData>({
@@ -17,8 +18,10 @@ const FormularioSignup = () => {
     });
     const { handleSubmit, reset, formState: { errors } } = methods;
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const onSubmit = async (data: SignupFormData) => {
+        setLoading(true);
         const response = await userApi.newUser(data);
         if (!response) {
             console.log("Error al registrar el usuario");
@@ -76,7 +79,14 @@ const FormularioSignup = () => {
                                 type='number'
                                 placeholder='Teléfono (opcional)'
                                 fieldName='phone' />
-                            <Button title={"Crear cuenta"} type="submit" className="p-3 w-full my-4 bg-total-primary border-total-primary" />
+                            <Button 
+                                title={"Crear cuenta"} 
+                                type="submit" 
+                                className={clsx("p-3 w-full my-4 bg-total-primary border-total-primary", {
+									'animate-pulse': loading,
+									'animate-none': !loading
+                                })}
+                            />
                             {Object.values(errors).length > 0 && (
                                 <div className="text-error-text">
                                     {Object.values(errors).map((error, index) => (
