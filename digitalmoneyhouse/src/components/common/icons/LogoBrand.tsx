@@ -1,12 +1,17 @@
+import clsx from "clsx";
 import Link from "next/link";
 
 type LogoBrandProps = {
 	className?: string;
 	href: string | "/";
+	loading?:boolean
 };
-export default function LogoBrand({ className, href }: LogoBrandProps) {
+export default function LogoBrand({ className, href, loading }: LogoBrandProps) {
 	return (
-		<Link href={href} className="mt-2 ml-2">
+		<Link href={href} className={clsx("mt-2 ml-2",{
+			"animate-pulse": loading,
+			"animate-none": !loading,
+		})}>
 			<svg
 				version="1.0"
 				xmlns="http://www.w3.org/2000/svg"
