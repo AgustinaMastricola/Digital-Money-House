@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, useForm } from "react-hook-form";
 import InputText from "../common/inputs/inputText";
 import Button from "../common/buttons/Button";
-import Cards from "react-credit-cards-2";
+import Cards, { Focused } from "react-credit-cards-2";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import clsx from "clsx";
@@ -45,14 +45,15 @@ const FormAddCard = () => {
     formState: { errors },
   } = methods;
 
-  const onSubmit = async (data: NewCardPay) => {
+  const onSubmit = async (cardData: any) => {
     // Convert string values to numbers
     const formattedData = {
-      ...data,
-      cod: Number(data.cod),
-      number_id: Number(data.number_id),
+			cod: cardData.cvc,
+			expiration_date: cardData.expiry,
+			first_last_name: cardData.name,
+			number_id: cardData.number,
     };
-
+		
     if (token && id) {
 			console.log("formattedData: ", formattedData);
       try {
@@ -67,30 +68,30 @@ const FormAddCard = () => {
   };
 
   const [cardData, setCardData] = useState({
-    cod: "",
-    expiration_date: "",
-    first_last_name: "",
-    number_id: "",
-    focus: "",
+    number: "",
+    expiry: "",
+    cvc: "",
+    name: "",
+    focus: undefined as Focused | undefined
   });
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 		let formattedValue = value;
 	
-		if (name === "number_id") {
+		if (name === "number") {
 			formattedValue = value.replace(/\D/g, ""); // Eliminar caracteres no numéricos
 			if (formattedValue.length > 16) {
 				formattedValue = formattedValue.slice(0, 16); // Limitar a 16 dígitos
 			}
-		} else if (name === "cod") {
+		} else if (name === "cvc") {
 			formattedValue = value.replace(/\D/g, ""); // Eliminar caracteres no numéricos
 			if (formattedValue.length > 4) {
 				formattedValue = formattedValue.slice(0, 4); // Limitar a 4 dígitos
 			}
-		} else if (name === "first_last_name") {
+		} else if (name === "name") {
 			formattedValue = value.replace(/\d/g, ""); // Eliminar caracteres numéricos
-		} else if (name === "expiration_date") {
+		} else if (name === "expiry") {
 			formattedValue = value.replace(/[^0-9/]/g, ""); // Permitir solo números y '/'
 			if(formattedValue.length > 7) {
 				formattedValue = formattedValue.slice(0, 7); // Limitar a 7 caracteres
@@ -111,7 +112,7 @@ const FormAddCard = () => {
   const handleInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     setCardData({
       ...cardData,
-      focus: e.target.name,
+      focus: e.target.name as Focused,
     });
   };
 
@@ -153,88 +154,89 @@ const FormAddCard = () => {
       </div>
       <Container
         className={clsx(
-          "md:mt-6 w-11/12 md:w-10/12 border border-total-gray border-opacity-15 border-1 bg-total-white drop-shadow-2xl",
+          "md:my-6 mb-6 py-6 w-11/12 md:w-10/12 border border-total-gray border-opacity-15 border-1 bg-total-white drop-shadow-2xl",
           {
             hidden: showSuccessMessage || memoizedLengthCardList >= 10,
             block: !showSuccessMessage || memoizedLengthCardList < 10,
           }
         )}
       >
-        <div className="custom-card-size ml-1.5 mt-4">
+        <div className="custom-card-size">
           <Cards
-            cvc={cardData.cod || "***"}
-            expiry={cardData.expiration_date || "MM/AA"}
-            name={cardData.first_last_name || "NOMBRE APELLIDO"}
-            number={cardData.number_id || "**** **** **** ****"}
+            cvc={cardData.cvc || "***"}
+            expiry={cardData.expiry || "MM/AA"}
+            name={cardData.name || "NOMBRE APELLIDO"}
+            number={cardData.number || "**** **** **** ****"}
+            focused={cardData.focus}
           />
         </div>
         <FormProvider {...methods}>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="mt-4 items-center justify-center p-3 md:p-4 flex flex-col space-y-4 
+            className=" mt-4 items-center justify-center p-3 md:p-4 flex flex-col space-y-4 
             lg:flex-row lg:space-y-0 lg:space-x-16 lg:items-start"
           >
             <div className="w-full flex flex-col space-y-4 lg:items-end">
               <InputText
                 type="text"
-                fieldName={"number_id"}
+                fieldName={"number"}
                 placeholder="Número de la tarjeta*"
                 className="p-3 w-full lg:w-10/12 border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-lg hide-arrow"
                 onChange={handleInputChange}
                 onFocus={handleInputFocus}
-                value={cardData.number_id}
+                value={cardData.number}
               />
               <InputText
                 type="text"
-                fieldName={"first_last_name"}
+                fieldName={"name"}
                 placeholder="Nombre y apellido*"
                 className="p-3 w-full lg:w-10/12 border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-lg"
                 onChange={handleInputChange}
                 onFocus={handleInputFocus}
-                value={cardData.first_last_name}
+                value={cardData.name}
               />
             </div>
             <div className="w-full flex-col space-y-4 items-start lg:items-start">
               <div className="flex flex-col space-y-4 md:flex-row-reverse md:space-y-0 lg:flex-col-reverse lg:space-y-0">
                 <InputText
                   type="text"
-                  fieldName={"cod"}
+                  fieldName={"cvc"}
                   placeholder="Código de seguridad*"
                   className="p-3 w-full lg:w-10/12 hide-arrow border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-lg
                   md:ml-2
                   lg:ml-0 lg:mt-4"
                   onChange={handleInputChange}
                   onFocus={handleInputFocus}
-                  value={cardData.cod}
+                  value={cardData.cvc}
                 />
                 <InputText
                   type="text"
-                  fieldName={"expiration_date"}
+                  fieldName={"expiry"}
                   placeholder="Fecha de vencimiento*"
                   className="p-3 w-full lg:w-10/12 border-total-gray border-opacity-15 rounded-lg border-1 bg-total-white drop-shadow-lg
                   md:mr-2
                   lg:mr-0 lg:mb-2"
                   onChange={handleInputChange}
                   onFocus={handleInputFocus}
-									value={cardData.expiration_date}
+									value={cardData.expiry}
                 />
               </div>
-              {errors.number_id?.message && (
+              {errors.number?.message && (
                 <p className="text-error-text">
                   Ingrese los 16 dígitos de su tarjeta.
                 </p>
               )}
-              {errors.cod?.message && (
+              {errors.cvc?.message && (
                 <p className="text-error-text">
                   Ingrese el código que aparece al dorso de su tarjeta.
                 </p>
               )}
-              {errors.first_last_name?.message && (
+              {errors.name?.message && (
                 <p className="text-error-text">
                   Ingrese el nombre y apellido tal cual figura en su tarjeta.
                 </p>
               )}
-              {errors.expiration_date?.type && (
+              {errors.expiry?.type && (
                 <p className="text-error-text">
                   La fecha de vencimiento debe ser posterior, y en formato
                   mm/aaaa.
@@ -245,15 +247,15 @@ const FormAddCard = () => {
                   title={"Continuar"}
                   className={clsx("p-3 w-full rounded-lg text-xs lg:text-sm", {
                     "bg-light-gray border-light-gray cursor-not-allowed":
-                      !cardData.cod ||
-                      !cardData.expiration_date ||
-                      !cardData.first_last_name ||
-                      !cardData.number_id,
+                      !cardData.cvc ||
+                      !cardData.expiry ||
+                      !cardData.name ||
+                      !cardData.number,
                     "bg-total-primary border-total-primary":
-                      cardData.cod &&
-                      cardData.expiration_date &&
-                      cardData.first_last_name &&
-                      cardData.number_id,
+                      cardData.cvc &&
+                      cardData.expiry &&
+                      cardData.name &&
+                      cardData.number,
                   })}
                   onClick={() => handleSubmit(onSubmit)}
                 />

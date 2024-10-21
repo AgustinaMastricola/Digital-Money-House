@@ -49,12 +49,13 @@ export const updateAliasSchema = yup.object({
 })
 
 export const addCardPaySchema = yup.object({
-  cod: yup.number().required().max(9999, 'El código de seguridad debe tener 3 o 4 dígitos.'),
-  expiration_date: yup
+  cvc: yup.number().required().max(9999, 'El código de seguridad debe tener 3 o 4 dígitos.'),
+  expiry: yup
     .string()
     .required("La fecha de vencimiento es requerida.")
     .matches(dateRegex, "La fecha de vencimiento debe ser posterior, y en formato mm/aaaa.")
     .test("is-valid-date", "La fecha de vencimiento debe ser posterior al mes actual.", validateExpirationDate)
-    .max(7, "Solo ingrese mes y año"),  first_last_name: yup.string().required(),
-  number_id: yup.number().required()
+    .max(7, "Solo ingrese mes y año"),  
+    name: yup.string().required(),
+    number: yup.number().required()
 }).required()

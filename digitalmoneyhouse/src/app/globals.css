@@ -44,6 +44,11 @@
       @apply pl-0;
     }
   }
+  @media (max-width: 340px) {
+    .custom-card-size .rccs {
+      @apply w-full; /* Asegúrate de que ocupe el ancho completo del contenedor */
+    }
+  }
 
 }
 html, body {
