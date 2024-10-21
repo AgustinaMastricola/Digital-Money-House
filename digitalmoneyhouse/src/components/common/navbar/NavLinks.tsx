@@ -12,7 +12,7 @@ const NavLinks = ({links}:NavbarProps) => {
             {links && links.map((link, index)=>(
                 <Link 
                     key={`navbar-link-${index}`}
-                    className={clsx('px-3 py-1.5 text-xs rounded-[5px] border font-bold' ,{
+                    className={clsx('px-2 py-2 w-max text-sm rounded-[5px] border font-bold' ,{
                         'bg-total-primary text-total-black border-none': !link.outline && !link.solid,
                         'bg-total-black text-total-primary border-total-primary': link.outline,
                         'bg-footer-gray border-footer-gray text-total-white':link.solid
