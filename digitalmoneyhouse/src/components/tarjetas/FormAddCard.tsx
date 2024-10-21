@@ -10,16 +10,18 @@ import Cards, { Focused } from "react-credit-cards-2";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import clsx from "clsx";
-import SuccessMesage from "../signup/SuccessMesage";
 import { useUserContext } from "@/context/UserContextProvider";
 import { useAccountContext } from "@/context/AccountContextProvider";
 import Container from "../common/containers/Container";
+import ConfirmMessage from "../common/messages/ConfirmMessage";
+import SuccessMesage from "../signup/SuccessMesage";
 
 const FormAddCard = () => {
   const { token } = useUserContext();
   const { id } = useAccountContext();
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [lengthCardList, setLengthCardList] = useState(0);
+	const [loading, setLoading] = useState<boolean>(false);
 
   const CardList = useCallback(async () => {
     if (token && id) {
@@ -46,6 +48,7 @@ const FormAddCard = () => {
   } = methods;
 
   const onSubmit = async (cardData: any) => {
+		setLoading(true);
     // Convert string values to numbers
     const formattedData = {
 			cod: cardData.cvc,
@@ -53,7 +56,7 @@ const FormAddCard = () => {
 			first_last_name: cardData.name,
 			number_id: cardData.number,
     };
-		
+
     if (token && id) {
 			console.log("formattedData: ", formattedData);
       try {
@@ -124,15 +127,7 @@ const FormAddCard = () => {
   return (
     <>
       {showSuccessMessage && (
-        <SuccessMesage
-          style="visible"
-          textH2={"Tarjeta agregada"}
-          textP={"Ya puede ver y operar con esta tarjeta"}
-          buttonText={"Mis tarjetas"}
-          buttonHREF={"/dashboard/tarjetas/"}
-          styleH2={"text-total-black"}
-          styleP={"text-total-black"}
-        />
+        <ConfirmMessage text={"Tarjeta agregada con éxito"}/>
       )}
       <div
         className={clsx(
@@ -156,7 +151,7 @@ const FormAddCard = () => {
         className={clsx(
           "md:my-6 mb-6 py-6 w-11/12 md:w-10/12 border border-total-gray border-opacity-15 border-1 bg-total-white drop-shadow-2xl",
           {
-            hidden: showSuccessMessage || memoizedLengthCardList >= 10,
+            hidden:  memoizedLengthCardList >= 10,
             block: !showSuccessMessage || memoizedLengthCardList < 10,
           }
         )}
@@ -245,17 +240,22 @@ const FormAddCard = () => {
               <div className="w-full lg:w-10/12">
                 <Button
                   title={"Continuar"}
+                  disabled={ (!cardData.cvc ||	!cardData.expiry || !cardData.name || !cardData.number) }
                   className={clsx("p-3 w-full rounded-lg text-xs lg:text-sm", {
                     "bg-light-gray border-light-gray cursor-not-allowed":
                       !cardData.cvc ||
                       !cardData.expiry ||
                       !cardData.name ||
-                      !cardData.number,
+                      !cardData.number ||
+											SuccessMesage,
                     "bg-total-primary border-total-primary":
                       cardData.cvc &&
                       cardData.expiry &&
                       cardData.name &&
                       cardData.number,
+										"animate-pulse": loading,
+										"animate-none": !loading,
+										"hidden": showSuccessMessage
                   })}
                   onClick={() => handleSubmit(onSubmit)}
                 />

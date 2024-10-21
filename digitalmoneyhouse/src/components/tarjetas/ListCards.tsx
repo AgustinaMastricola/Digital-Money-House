@@ -50,7 +50,7 @@ const ListCards = ({
 	return (
 		<Container
 			className={clsx(
-				"border border-total-gray border-opacity-15 bg-total-white drop-shadow-2xl",
+				"border border-total-gray border-opacity-15 bg-total-white drop-shadow-2xl mb-6",
 				className
 			)}
 		>
