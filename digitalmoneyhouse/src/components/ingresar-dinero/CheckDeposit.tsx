@@ -22,8 +22,10 @@ const CheckDeposit = ({ handleClickStep }: CheckDepositProps) => {
 	const { origin, amount } = useDepositContext();
 	const [dataDeposit, setDataDeposit] = useState<DepositResponseType>();
 	const [succesMessage, setSuccesMessage] = useState<string>("");
+	const [loading, setLoading] = useState<boolean>(false);
 
 	const handleSubmit = () => {
+		setLoading(true);
 		const postDeposit = async () => {
 			const res = await transactionsAPI
 				.createDeposit(token, id, {
@@ -96,7 +98,11 @@ const CheckDeposit = ({ handleClickStep }: CheckDepositProps) => {
 								title={"Confirmar"}
 								className={clsx(
 									"bg-total-primary border-total-primary px-9 py-3 md:block md:w-full lg:w-4/12 hidden mt-5",
-									{ hidden: succesMessage }
+									{
+										hidden: succesMessage,
+										"animate-pulse": loading,
+										"animate-none": !loading,
+									}
 								)}
 								onClick={handleSubmit}
 							/>
@@ -150,7 +156,11 @@ const CheckDeposit = ({ handleClickStep }: CheckDepositProps) => {
 					title={"Confirmar"}
 					className={clsx(
 						"bg-total-primary border-total-primary px-9 py-3 md:w-full lg:w-4/12",
-						{ hidden: succesMessage }
+						{
+							hidden: succesMessage,
+							"animate-pulse": loading,
+							"animate-none": !loading,
+						}
 					)}
 					onClick={handleSubmit}
 				/>
