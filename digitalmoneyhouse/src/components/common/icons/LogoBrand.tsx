@@ -8,7 +8,7 @@ type LogoBrandProps = {
 };
 export default function LogoBrand({ className, href, loading }: LogoBrandProps) {
 	return (
-		<Link href={href} className={clsx("mt-2 ml-2",{
+		<Link href={href} aria-label="Logo de la marca / ir a la Home" className={clsx("mt-2 ml-2",{
 			"animate-pulse": loading,
 			"animate-none": !loading,
 		})}>
