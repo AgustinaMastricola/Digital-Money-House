@@ -2,7 +2,7 @@ import Link from "next/link";
 import { signOut } from "next-auth/react";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
-import { useParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 type MenuProps = {
 	onClickLink?: () => void;
@@ -10,8 +10,6 @@ type MenuProps = {
 const Menu = ({ onClickLink }: MenuProps) => {
 	const [currentPath, setCurrentPath] = useState("");
 	const location = usePathname();
-	const paramsUrl = useParams();
-	const [urlHasParams, setUrlHasParams] = useState(false);
 
 	useEffect(() => {
 		setCurrentPath(location);
@@ -45,12 +43,14 @@ const Menu = ({ onClickLink }: MenuProps) => {
 						</Link>
 					</li>
 				))}
-				<button
-					className="text-total-black opacity-60"
-					onClick={() => signOut()}
-				>
-					Cerrar sesión
-				</button>
+				<li>
+					<button
+						className="text-total-black opacity-70"
+						onClick={() => signOut()}
+					>
+						Cerrar sesión
+					</button>
+				</li>
 			</ul>
 		</div>
 	);

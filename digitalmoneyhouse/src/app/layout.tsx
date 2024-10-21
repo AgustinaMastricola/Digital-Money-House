@@ -14,7 +14,7 @@ export default function RootLayout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
-		<html lang="en">
+		<html lang="es">
 			<body className="flex flex-col `${openSans.className}`">{children}</body>
 		</html>
 	);

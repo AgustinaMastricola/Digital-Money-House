@@ -1,3 +1,5 @@
+import { Focused } from "react-credit-cards-2"
+
 export type CardType = {
   account_id: number,
   cod: number,
@@ -7,8 +9,8 @@ export type CardType = {
   number_id: number
 }
 export type NewCardPay = {
-  cod: number,
-  expiration_date: string,
-  first_last_name: string,
-  number_id: number
+  number: number,
+  expiry: string,
+  cvc: number,
+  name: string,
 }
