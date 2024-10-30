@@ -1,3 +1,6 @@
 export  function formatAmount(amount: string){
-  return `$ ${amount.replace(/\B(?=(\d{3})+(?!\d))/g, ".")},00`
+  const amountNumber = parseInt(amount)
+  const amountFormated = new Intl.NumberFormat('de-DE', ).format(amountNumber)
+  console.log(amountFormated)
+  return `$ ${amountFormated},00`
 }

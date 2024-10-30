@@ -28,8 +28,6 @@ const FormularioLogin = () => {
 
 	const handleEmailSubmit = () => {
 		const isValidEmail = watch("email");
-		console.log(isValidEmail)
-		console.log(errors)
 		if (!isValidEmail) {
 			setError("email", { type: "matches" });
 		}
@@ -38,7 +36,6 @@ const FormularioLogin = () => {
 		}
 		else if(isValidEmail!== '' && !errors.email?.type){
 			setStep(2)
-			console.log(errors)
 		}
 		
 	};
@@ -85,6 +82,10 @@ const FormularioLogin = () => {
 								placeholder={"Correo electrónico"}
 								fieldName="email"
 							/>
+							<div className="text-error-text mt-2">
+								{errors.email?.message}
+								{errors.email?.type === 'required' ? "Este campo es requerido": ''}
+							</div>
 							<Button
 								title={"Continuar"}
 								onClick={handleEmailSubmit}
@@ -99,10 +100,6 @@ const FormularioLogin = () => {
 								type="button"
 								className="p-3 w-full bg-light-gray border-light-gray block"
 							/>
-							<div className="text-error-text mt-2">
-								{errors.email?.message}
-								{errors.email?.type === 'required' ? "Ingresá un correo electrónico": ''}
-							</div>
 						</div>
 						<div className={step === 2 ? "visible" : "hidden"}>
               <h1 className="text-total-white mb-4 text-center">
