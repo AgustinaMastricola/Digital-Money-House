@@ -28,12 +28,19 @@ const FormularioLogin = () => {
 
 	const handleEmailSubmit = () => {
 		const isValidEmail = watch("email");
+		console.log(isValidEmail)
+		console.log(errors)
 		if (!isValidEmail) {
 			setError("email", { type: "matches" });
 		}
-		if (!errors.email?.message) {
-			setStep(2);
+		if(isValidEmail === ''){
+			setError("email", {type: "required"})
 		}
+		else if(isValidEmail!== '' && !errors.email?.type){
+			setStep(2)
+			console.log(errors)
+		}
+		
 	};
 	const handlePasswordValid = () => {
 		const isValidPassword = watch("password");
@@ -94,6 +101,7 @@ const FormularioLogin = () => {
 							/>
 							<div className="text-error-text mt-2">
 								{errors.email?.message}
+								{errors.email?.type === 'required' ? "Ingresá un correo electrónico": ''}
 							</div>
 						</div>
 						<div className={step === 2 ? "visible" : "hidden"}>
